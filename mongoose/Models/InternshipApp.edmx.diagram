@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ff2b39f1e1440eab824cc473d3bc085" Name="Diagram1">
+        <EntityTypeShape EntityType="InternshipAppModel.Cours" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Employer" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Instructor" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Internship_Major" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Internship" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Major" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Semester" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Student_Course" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Student_Internship" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Student_Major" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.Student" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternshipAppModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="InternshipAppModel.FK_75" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_46" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_262" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_163" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_166" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_79" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_67" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_149" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_71" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_84" ManuallyRouted="false" />
+        <AssociationConnector Association="InternshipAppModel.FK_63" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
