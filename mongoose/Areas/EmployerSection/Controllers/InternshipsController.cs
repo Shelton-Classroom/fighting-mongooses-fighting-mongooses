@@ -10,108 +10,112 @@ using mongoose.Models;
 
 namespace mongoose.Areas.EmployerSection.Controllers
 {
-    public class EmployersController : Controller
+    public class InternshipsController : Controller
     {
         private InternshipAppEntities db = new InternshipAppEntities();
 
-        // GET: EmployerSection/Employers
-        [Authorize(Roles = "Employer")]
+        // GET: EmployerSection/Internships
         public ActionResult Index()
         {
-            return View(db.Employers.ToList());
+            var internships = db.Internships.Include(i => i.Employer);
+            return View(internships.ToList());
         }
 
-        // GET: EmployerSection/Employers/Details/5
+        // GET: EmployerSection/Internships/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employer employer = db.Employers.Find(id);
-            if (employer == null)
+            Internship internship = db.Internships.Find(id);
+            if (internship == null)
             {
                 return HttpNotFound();
             }
-            return View(employer);
+            return View(internship);
         }
 
-        // GET: EmployerSection/Employers/Create
+        // GET: EmployerSection/Internships/Create
         public ActionResult Create()
         {
+            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name");
             return View();
         }
 
-        // POST: EmployerSection/Employers/Create
+        // POST: EmployerSection/Internships/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployerId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Employer employer)
+        public ActionResult Create([Bind(Include = "InternshipId,EmployerId,Name,Description,Length,Rate,Location")] Internship internship)
         {
             if (ModelState.IsValid)
             {
-                db.Employers.Add(employer);
+                db.Internships.Add(internship);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employer);
+            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
+            return View(internship);
         }
 
-        // GET: EmployerSection/Employers/Edit/5
+        // GET: EmployerSection/Internships/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employer employer = db.Employers.Find(id);
-            if (employer == null)
+            Internship internship = db.Internships.Find(id);
+            if (internship == null)
             {
                 return HttpNotFound();
             }
-            return View(employer);
+            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
+            return View(internship);
         }
 
-        // POST: EmployerSection/Employers/Edit/5
+        // POST: EmployerSection/Internships/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployerId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Employer employer)
+        public ActionResult Edit([Bind(Include = "InternshipId,EmployerId,Name,Description,Length,Rate,Location")] Internship internship)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employer).State = EntityState.Modified;
+                db.Entry(internship).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(employer);
+            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
+            return View(internship);
         }
 
-        // GET: EmployerSection/Employers/Delete/5
+        // GET: EmployerSection/Internships/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employer employer = db.Employers.Find(id);
-            if (employer == null)
+            Internship internship = db.Internships.Find(id);
+            if (internship == null)
             {
                 return HttpNotFound();
             }
-            return View(employer);
+            return View(internship);
         }
 
-        // POST: EmployerSection/Employers/Delete/5
+        // POST: EmployerSection/Internships/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employer employer = db.Employers.Find(id);
-            db.Employers.Remove(employer);
+            Internship internship = db.Internships.Find(id);
+            db.Internships.Remove(internship);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

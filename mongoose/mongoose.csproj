@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\EmployerSection\Controllers\EmployersController.cs" />
+    <Compile Include="Areas\EmployerSection\Controllers\InternshipsController.cs" />
     <Compile Include="Areas\EmployerSection\EmployerSectionAreaRegistration.cs" />
     <Compile Include="Areas\InstructorSection\Controllers\InstructorsController.cs" />
     <Compile Include="Areas\InstructorSection\InstructorSectionAreaRegistration.cs" />
@@ -298,6 +299,11 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\Details.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Edit.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Index.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Internships\Create.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Internships\Delete.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Internships\Details.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Internships\Edit.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Internships\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

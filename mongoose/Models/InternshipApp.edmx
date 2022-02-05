@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InternshipAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InternshipAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="CourseId" />
@@ -97,6 +97,7 @@
           <Property Name="InternshipId" Type="int" Nullable="false" />
           <Property Name="Midterm" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Final" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Comments" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Student_Major">
           <Key>
@@ -355,8 +356,7 @@
             <End Role="Student_Internship" EntitySet="Student_Internship" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InternshipAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -468,6 +468,7 @@
           <NavigationProperty Name="Instructor" Relationship="Self.FK_262" FromRole="Student_Internship" ToRole="Instructors" />
           <NavigationProperty Name="Internship" Relationship="Self.FK_79" FromRole="Student_Internship" ToRole="Internships" />
           <NavigationProperty Name="Student" Relationship="Self.FK_84" FromRole="Student_Internship" ToRole="Students" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Student_Major">
           <Key>
@@ -841,6 +842,7 @@
           <EntitySetMapping Name="Student_Internship">
             <EntityTypeMapping TypeName="InternshipAppModel.Student_Internship">
               <MappingFragment StoreEntitySet="Student_Internship">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="StudentInternshipId" ColumnName="StudentInternshipId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />

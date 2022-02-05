@@ -20,6 +20,7 @@ namespace mongoose.Models
         public int InternshipId { get; set; }
         public string Midterm { get; set; }
         public string Final { get; set; }
+        public string Comments { get; set; }
     
         public virtual Instructor Instructor { get; set; }
         public virtual Internship Internship { get; set; }
