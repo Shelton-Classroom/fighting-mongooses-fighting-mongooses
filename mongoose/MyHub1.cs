@@ -10,7 +10,9 @@ namespace mongoose
     {
         public void Send(string name, string message)
         {
-            Clients.All.addNewMessageToPage(string name, string message);
+            //Clients.All.addNewMessageToPage(string name, string message);
+            //this code is cited locallly and preventing builds from working, please rectify before deploying uncommented
+            // - GR
         }
     }
 }
