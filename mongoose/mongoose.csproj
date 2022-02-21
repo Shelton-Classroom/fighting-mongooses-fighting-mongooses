@@ -321,6 +321,7 @@
     <Compile Include="Areas\InstructorSection\InstructorSectionAreaRegistration.cs" />
     <Compile Include="Areas\StudentSection\Controllers\StudentsController.cs" />
     <Compile Include="Areas\StudentSection\StudentSectionAreaRegistration.cs" />
+    <Compile Include="ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -387,9 +388,9 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHub1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Startup1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Changlog.txt" />
@@ -401,6 +402,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="index.html" />
+    <Content Include="lib\microsoft\signalr\dist\browser\signalr.js" />
+    <Content Include="lib\microsoft\signalr\dist\browser\signalr.min.js" />
     <Content Include="Models\InternshipApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InternshipApp.edmx</DependentUpon>
@@ -449,6 +453,7 @@
     <Content Include="Areas\EmployerSection\Views\Internships\Details.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Internships\Edit.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Internships\Index.cshtml" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -496,7 +501,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
