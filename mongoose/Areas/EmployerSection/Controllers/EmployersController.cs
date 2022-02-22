@@ -7,21 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
-using Microsoft.AspNet.Identity;
 
 namespace mongoose.Areas.EmployerSection.Controllers
 {
-    [Authorize(Roles = "Employer")]
     public class EmployersController : Controller
     {
         private InternshipAppEntities db = new InternshipAppEntities();
 
         // GET: EmployerSection/Employers
-
+        [Authorize(Roles = "Employer")]
         public ActionResult Index()
         {
-            var employers = db.Employers.Include(e => e.AspNetUser);
-            return View(employers.ToList());
+            return View(db.Employers.ToList());
         }
 
         // GET: EmployerSection/Employers/Details/5
@@ -42,7 +39,6 @@ namespace mongoose.Areas.EmployerSection.Controllers
         // GET: EmployerSection/Employers/Create
         public ActionResult Create()
         {
-            new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -51,18 +47,15 @@ namespace mongoose.Areas.EmployerSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployerId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode,Id")] Employer employer)
+        public ActionResult Create([Bind(Include = "EmployerId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Employer employer)
         {
             if (ModelState.IsValid)
             {
                 db.Employers.Add(employer);
-                var UserId = User.Identity.GetUserId();
-                employer.Id = UserId;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", employer.Id);
             return View(employer);
         }
 
@@ -78,7 +71,6 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", employer.Id);
             return View(employer);
         }
 
@@ -87,7 +79,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployerId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode,Id")] Employer employer)
+        public ActionResult Edit([Bind(Include = "EmployerId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Employer employer)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +87,6 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", employer.Id);
             return View(employer);
         }
 

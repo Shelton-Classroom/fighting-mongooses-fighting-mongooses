@@ -173,7 +173,6 @@
     <Compile Include="Areas\EmployerSection\Controllers\EmployersController.cs" />
     <Compile Include="Areas\EmployerSection\Controllers\InternshipsController.cs" />
     <Compile Include="Areas\EmployerSection\EmployerSectionAreaRegistration.cs" />
-    <Compile Include="Areas\EmployerSection\Views\EmployersTestController.cs" />
     <Compile Include="Areas\InstructorSection\Controllers\InstructorsController.cs" />
     <Compile Include="Areas\InstructorSection\InstructorSectionAreaRegistration.cs" />
     <Compile Include="Areas\StudentSection\Controllers\StudentsController.cs" />
@@ -185,22 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>InternshipApp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>InternshipApp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>InternshipApp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>InternshipApp.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Cours.cs">
-      <DependentUpon>InternshipApp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employer.cs">
@@ -294,6 +278,11 @@
     <Content Include="Areas\EmployerSection\Views\web.config" />
     <Content Include="Areas\EmployerSection\Views\_ViewStart.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Create.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Delete.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Details.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Edit.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Index.cshtml" />
     <Content Include="Areas\StudentSection\Views\web.config" />
     <Content Include="Areas\StudentSection\Views\_ViewStart.cshtml" />
     <Content Include="Areas\StudentSection\Views\Shared\_Layout.cshtml" />
@@ -315,13 +304,6 @@
     <Content Include="Areas\EmployerSection\Views\Internships\Details.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Internships\Edit.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Internships\Index.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Shared\_test.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Shared\_Internship.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Employers\Create.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Employers\Delete.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Employers\Details.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Employers\Edit.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Employers\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
