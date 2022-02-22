@@ -7,24 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
-using Microsoft.AspNet.Identity;
 
-namespace mongoose.Areas.EmployerSection.Controllers
+namespace mongoose.Areas.EmployerSection.Views
 {
-    [Authorize(Roles = "Employer")]
-    public class EmployersController : Controller
+    public class EmployersTestController : Controller
     {
         private InternshipAppEntities db = new InternshipAppEntities();
 
-        // GET: EmployerSection/Employers
-
+        // GET: EmployerSection/EmployersTest
         public ActionResult Index()
         {
             var employers = db.Employers.Include(e => e.AspNetUser);
             return View(employers.ToList());
         }
 
-        // GET: EmployerSection/Employers/Details/5
+        // GET: EmployerSection/EmployersTest/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,14 +36,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View(employer);
         }
 
-        // GET: EmployerSection/Employers/Create
+        // GET: EmployerSection/EmployersTest/Create
         public ActionResult Create()
         {
-            new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
-        // POST: EmployerSection/Employers/Create
+        // POST: EmployerSection/EmployersTest/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -56,8 +53,6 @@ namespace mongoose.Areas.EmployerSection.Controllers
             if (ModelState.IsValid)
             {
                 db.Employers.Add(employer);
-                var UserId = User.Identity.GetUserId();
-                employer.Id = UserId;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +61,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View(employer);
         }
 
-        // GET: EmployerSection/Employers/Edit/5
+        // GET: EmployerSection/EmployersTest/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +77,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View(employer);
         }
 
-        // POST: EmployerSection/Employers/Edit/5
+        // POST: EmployerSection/EmployersTest/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -99,7 +94,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View(employer);
         }
 
-        // GET: EmployerSection/Employers/Delete/5
+        // GET: EmployerSection/EmployersTest/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +109,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View(employer);
         }
 
-        // POST: EmployerSection/Employers/Delete/5
+        // POST: EmployerSection/EmployersTest/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
