@@ -28,6 +28,15 @@
         <AssociationConnector Association="InternshipAppModel.FK_71" ManuallyRouted="false" />
         <AssociationConnector Association="InternshipAppModel.FK_84" ManuallyRouted="false" />
         <AssociationConnector Association="InternshipAppModel.FK_63" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InternshipAppModel.C__MigrationHistory" Width="1.5" PointX="11.625" PointY="4.25" />
+        <EntityTypeShape EntityType="InternshipAppModel.AspNetRole" Width="1.5" PointX="0.5" PointY="19.25" />
+        <EntityTypeShape EntityType="InternshipAppModel.AspNetUserClaim" Width="1.5" PointX="5" PointY="25.25" />
+        <EntityTypeShape EntityType="InternshipAppModel.AspNetUserLogin" Width="1.5" PointX="5" PointY="22.75" />
+        <EntityTypeShape EntityType="InternshipAppModel.AspNetUser" Width="1.5" PointX="2.75" PointY="18" />
+        <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="InternshipAppModel.FK_Id" />
+        <AssociationConnector Association="InternshipAppModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
