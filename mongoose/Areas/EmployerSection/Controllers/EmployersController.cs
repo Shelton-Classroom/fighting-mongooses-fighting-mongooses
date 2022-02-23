@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
+using Microsoft.AspNet.Identity;
 
 namespace mongoose.Areas.EmployerSection.Controllers
 {
@@ -52,6 +53,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             if (ModelState.IsValid)
             {
                 db.Employers.Add(employer);
+                employer.Id = User.Identity.GetUserId();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
