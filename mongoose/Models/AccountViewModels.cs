@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+
+
 namespace mongoose.Models
 {
+    
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -48,6 +51,7 @@ namespace mongoose.Models
 
     public class LoginViewModel
     {
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -58,12 +62,17 @@ namespace mongoose.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+      
+
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        
     }
 
     public class RegisterViewModel
     {
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,8 +88,13 @@ namespace mongoose.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
 
+        [Required]
+        [Display(Name = "Select Role")]
+        public string UserRole { get; set; }
+
+
+    }
     public class ResetPasswordViewModel
     {
         [Required]

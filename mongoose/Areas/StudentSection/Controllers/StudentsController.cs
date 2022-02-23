@@ -15,6 +15,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         private InternshipAppEntities db = new InternshipAppEntities();
 
         // GET: StudentSection/Students
+        [Authorize(Roles = "Student")]
         public ActionResult Index()
         {
             var students = db.Students.Include(s => s.Semester);

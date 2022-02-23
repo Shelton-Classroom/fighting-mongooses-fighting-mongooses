@@ -15,6 +15,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
         private InternshipAppEntities db = new InternshipAppEntities();
 
         // GET: InstructorSection/Instructors
+        [Authorize(Roles = "Instructor")]
         public ActionResult Index()
         {
             return View(db.Instructors.ToList());
