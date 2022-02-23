@@ -18,8 +18,15 @@ namespace mongoose.Areas.EmployerSection.Controllers
         // GET: EmployerSection/Employers
         [Authorize(Roles = "Employer")]
         public ActionResult Index()
-        {
-            return View(db.Employers.ToList());
+        {   var userId = User.Identity.GetUserId();
+            var loggedIn = db.Employers.FirstOrDefault(e => e.Id == userId);
+
+            var profileDetails = loggedIn.EmployerId;
+
+            ViewBag.LoggedIn = loggedIn.Name;
+            ViewBag.EditProfile = profileDetails;
+            
+            return View();
         }
 
         // GET: EmployerSection/Employers/Details/5
