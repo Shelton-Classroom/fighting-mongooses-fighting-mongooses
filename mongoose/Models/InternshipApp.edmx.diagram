@@ -37,6 +37,8 @@
         <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="InternshipAppModel.FK_Id" />
         <AssociationConnector Association="InternshipAppModel.AspNetUserRoles" />
+        <AssociationConnector Association="InternshipAppModel.FK__Instructors__Id__282DF8C2" />
+        <AssociationConnector Association="InternshipAppModel.FK__Students__Id__29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

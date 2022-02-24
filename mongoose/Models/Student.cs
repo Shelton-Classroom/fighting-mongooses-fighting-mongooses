@@ -35,6 +35,7 @@ namespace mongoose.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
+        public string Id { get; set; }
     
         public virtual Semester Semester { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -43,5 +44,6 @@ namespace mongoose.Models
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Major> Student_Major { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

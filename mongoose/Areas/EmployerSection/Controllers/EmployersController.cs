@@ -62,6 +62,9 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 db.Employers.Add(employer);
                 employer.Id = User.Identity.GetUserId();
                 db.SaveChanges();
+                
+                
+
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +96,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(employer).State = EntityState.Modified;
+                employer.Id = User.Identity?.GetUserId();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -4,9 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>WELCOME</h2>
+<h1>@ViewBag.LoggedIn</h1>
+@Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -26,26 +28,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InstructorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InstructorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InstructorId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InstructorId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.InstructorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InstructorId })
+            </td>
+        </tr>
+    }
 
-</table>
+</table>*@

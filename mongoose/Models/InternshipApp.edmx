@@ -102,6 +102,7 @@
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Internship_Major">
           <Key>
@@ -186,6 +187,7 @@
           <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Zipcode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -197,6 +199,30 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK__Instructors__Id__282DF8C2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__Id__29221CFB">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_149">
           <End Role="Semesters" Type="Self.Semesters" Multiplicity="1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
@@ -447,6 +473,14 @@
           <EntitySet Name="Student_Major" EntityType="Self.Student_Major" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Instructors__Id__282DF8C2" Association="Self.FK__Instructors__Id__282DF8C2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__Id__29221CFB" Association="Self.FK__Students__Id__29221CFB">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
           <AssociationSet Name="FK_149" Association="Self.FK_149">
             <End Role="Semesters" EntitySet="Semesters" />
             <End Role="Students" EntitySet="Students" />
@@ -556,6 +590,8 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_262" FromRole="Instructors" ToRole="Student_Internship" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK__Instructors__Id__282DF8C2" FromRole="Instructor" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="Internship_Major">
           <Key>
@@ -659,6 +695,8 @@
           <NavigationProperty Name="Student_Course" Relationship="Self.FK_71" FromRole="Students" ToRole="Student_Course" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_84" FromRole="Students" ToRole="Student_Internship" />
           <NavigationProperty Name="Student_Major" Relationship="Self.FK_63" FromRole="Students" ToRole="Student_Major" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK__Students__Id__29221CFB" FromRole="Student" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -910,6 +948,14 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK__Instructors__Id__282DF8C2" Association="InternshipAppModel.FK__Instructors__Id__282DF8C2">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__Id__29221CFB" Association="InternshipAppModel.FK__Students__Id__29221CFB">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -981,6 +1027,8 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="Employers" Relationship="InternshipAppModel.FK_Id" FromRole="AspNetUser" ToRole="Employer" />
           <NavigationProperty Name="AspNetRoles" Relationship="InternshipAppModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="Instructors" Relationship="InternshipAppModel.FK__Instructors__Id__282DF8C2" FromRole="AspNetUser" ToRole="Instructor" />
+          <NavigationProperty Name="Students" Relationship="InternshipAppModel.FK__Students__Id__29221CFB" FromRole="AspNetUser" ToRole="Student" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1026,6 +1074,30 @@
           <End Type="InternshipAppModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <Association Name="FK__Instructors__Id__282DF8C2">
+          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="InternshipAppModel.Instructor" Role="Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__Id__29221CFB">
+          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="InternshipAppModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1064,6 +1136,7 @@
           <EntitySetMapping Name="Instructors">
             <EntityTypeMapping TypeName="InternshipAppModel.Instructor">
               <MappingFragment StoreEntitySet="Instructors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1148,6 +1221,7 @@
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="InternshipAppModel.Student">
               <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />

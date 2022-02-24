@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
+using Microsoft.AspNet.Identity;
 
 namespace mongoose.Areas.InstructorSection.Controllers
 {
@@ -18,7 +19,15 @@ namespace mongoose.Areas.InstructorSection.Controllers
         [Authorize(Roles = "Instructor")]
         public ActionResult Index()
         {
-            return View(db.Instructors.ToList());
+            var userId = User.Identity.GetUserId();
+            var loggedIn = db.Instructors.FirstOrDefault(e => e.Id == userId);
+
+            var profileDetails = loggedIn.InstructorId;
+
+            ViewBag.LoggedIn = loggedIn.FirstName;
+            ViewBag.EditProfile = profileDetails;
+
+            return View();
         }
 
         // GET: InstructorSection/Instructors/Details/5
@@ -52,6 +61,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
             if (ModelState.IsValid)
             {
                 db.Instructors.Add(instructor);
+                instructor.Id = User.Identity.GetUserId();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,6 +94,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(instructor).State = EntityState.Modified;
+                instructor.Id = User.Identity.GetUserId();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

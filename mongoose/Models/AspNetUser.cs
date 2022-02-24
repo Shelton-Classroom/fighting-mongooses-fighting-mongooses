@@ -21,6 +21,8 @@ namespace mongoose.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Employers = new HashSet<Employer>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Instructors = new HashSet<Instructor>();
+            this.Students = new HashSet<Student>();
         }
     
         public string Id { get; set; }
@@ -44,5 +46,9 @@ namespace mongoose.Models
         public virtual ICollection<Employer> Employers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Instructor> Instructors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
     }
 }
