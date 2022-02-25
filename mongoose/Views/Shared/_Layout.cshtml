@@ -23,7 +23,18 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
-
+                        if (User.IsInRole("Student"))
+                        {
+                            <li>@Html.ActionLink("Student Page", "Index", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })</li>
+                        }
+                        if (User.IsInRole("Employer"))
+                        {
+                            <li>@Html.ActionLink("Employer Page", "Index", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
+                        }
+                        if (User.IsInRole("Instructor"))
+                        {
+                            <li>@Html.ActionLink("Instructor Page", "Index", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
+                        }
                     }
                     else
                     {
@@ -32,18 +43,7 @@
                         <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     }
 
-                    @if (User.IsInRole("Student"))
-                    {
-                        <li>@Html.ActionLink("Student Page", "Index", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })</li>
-                    }
-                    @if (User.IsInRole("Employer Page"))
-                    {
-                        <li>@Html.ActionLink("Employer", "Index", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
-                    }
-                    @if (User.IsInRole("Instructor Page"))
-                    {
-                        <li>@Html.ActionLink("Instructor", "Index", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
-                    }
+
 
                 </ul>
                 @Html.Partial("_LoginPartial")
