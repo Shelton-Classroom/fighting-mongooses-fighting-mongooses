@@ -32,7 +32,7 @@
         <EntityTypeShape EntityType="InternshipAppModel.AspNetRole" Width="1.5" PointX="0.75" PointY="15.75" />
         <EntityTypeShape EntityType="InternshipAppModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="21.75" />
         <EntityTypeShape EntityType="InternshipAppModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="19.25" />
-        <EntityTypeShape EntityType="InternshipAppModel.AspNetUser" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="InternshipAppModel.AspNetUser" Width="1.5" PointX="2.125" PointY="14.25" />
         <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="InternshipAppModel.FK_Id" />

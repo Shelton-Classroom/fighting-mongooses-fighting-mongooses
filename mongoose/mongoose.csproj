@@ -242,6 +242,9 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Status.cs">
+      <DependentUpon>InternshipApp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
@@ -314,6 +317,7 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\Edit.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Index.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Shared\View.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\test.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

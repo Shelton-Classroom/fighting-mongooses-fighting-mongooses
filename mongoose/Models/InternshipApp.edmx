@@ -683,7 +683,7 @@
           <Property Name="SemesterId" Type="Int32" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GraduationDate" Type="DateTime" Precision="3" />
-          <Property Name="EnrollmentStatus" Type="Int32" Nullable="false" />
+          <Property Name="EnrollmentStatus" Type="InternshipAppModel.Status" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="Int32" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1098,6 +1098,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="Status">
+          <Member Name="Enrolled" Value="0" />
+          <Member Name="NotEnrolled" Value="1" />
+          <Member Name="Graduated" Value="2" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

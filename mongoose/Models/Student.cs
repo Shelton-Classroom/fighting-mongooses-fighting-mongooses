@@ -27,7 +27,7 @@ namespace mongoose.Models
         public int SemesterId { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> GraduationDate { get; set; }
-        public int EnrollmentStatus { get; set; }
+        public Status EnrollmentStatus { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
         public string Address1 { get; set; }

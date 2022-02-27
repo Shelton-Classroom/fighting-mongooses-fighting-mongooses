@@ -23,7 +23,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
 
             var profileDetails = loggedIn.EmployerId;
 
-            ViewBag.LoggedIn = loggedIn.Name;
+            ViewBag.LoggedIn = loggedIn.ContactName;
             ViewBag.EditProfile = profileDetails;
             
             return View();
