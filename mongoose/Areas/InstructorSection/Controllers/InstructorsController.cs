@@ -13,7 +13,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
 {
     public class InstructorsController : Controller
     {
-        private InternshipAppEntities db = new InternshipAppEntities();
+        private InternshipEntities db = new InternshipEntities();
 
         // GET: InstructorSection/Instructors
         [Authorize(Roles = "Instructor")]

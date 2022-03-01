@@ -32,8 +32,8 @@ namespace mongoose.Models
         public string Zipcode { get; set; }
         public string Id { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Internship> Internships { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

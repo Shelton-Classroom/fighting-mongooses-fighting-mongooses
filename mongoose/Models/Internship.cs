@@ -28,6 +28,9 @@ namespace mongoose.Models
         public string Length { get; set; }
         public Nullable<decimal> Rate { get; set; }
         public string Location { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public System.DateTime PostDate { get; set; }
+        public int Paid { get; set; }
     
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

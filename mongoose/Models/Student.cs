@@ -24,10 +24,9 @@ namespace mongoose.Models
     
         public int StudentId { get; set; }
         public string FirstName { get; set; }
-        public int SemesterId { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> GraduationDate { get; set; }
-        public Status EnrollmentStatus { get; set; }
+        public status EnrollmentStatus { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
         public string Address1 { get; set; }
@@ -37,13 +36,11 @@ namespace mongoose.Models
         public string Zipcode { get; set; }
         public string Id { get; set; }
     
-        public virtual Semester Semester { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Course> Student_Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Major> Student_Major { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

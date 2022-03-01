@@ -27,8 +27,8 @@ namespace mongoose.Models
         public int Phone { get; set; }
         public string Id { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

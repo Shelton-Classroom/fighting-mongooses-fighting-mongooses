@@ -15,10 +15,10 @@ namespace mongoose.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class InternshipAppEntities : DbContext
+    public partial class InternshipEntities : DbContext
     {
-        public InternshipAppEntities()
-            : base("name=InternshipAppEntities")
+        public InternshipEntities()
+            : base("name=InternshipEntities")
         {
         }
     
@@ -27,23 +27,22 @@ namespace mongoose.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Cours> Courses { get; set; }
         public virtual DbSet<Employer> Employers { get; set; }
         public virtual DbSet<Instructor> Instructors { get; set; }
         public virtual DbSet<Internship_Major> Internship_Major { get; set; }
         public virtual DbSet<Internship> Internships { get; set; }
         public virtual DbSet<Major> Majors { get; set; }
-        public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Student_Course> Student_Course { get; set; }
         public virtual DbSet<Student_Internship> Student_Internship { get; set; }
         public virtual DbSet<Student_Major> Student_Major { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

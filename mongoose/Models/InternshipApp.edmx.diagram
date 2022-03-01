@@ -4,41 +4,38 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9ff2b39f1e1440eab824cc473d3bc085" Name="Diagram1">
-        <EntityTypeShape EntityType="InternshipAppModel.Cours" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Employer" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Instructor" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Internship_Major" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Internship" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Major" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Semester" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Student_Course" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Student_Internship" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Student_Major" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.Student" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InternshipAppModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="InternshipAppModel.FK_75" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_46" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_262" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_163" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_166" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_79" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_67" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_149" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_71" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_84" ManuallyRouted="false" />
-        <AssociationConnector Association="InternshipAppModel.FK_63" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="InternshipAppModel.C__MigrationHistory" Width="1.5" PointX="11.875" PointY="0.75" />
-        <EntityTypeShape EntityType="InternshipAppModel.AspNetRole" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="InternshipAppModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="21.75" />
-        <EntityTypeShape EntityType="InternshipAppModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="19.25" />
-        <EntityTypeShape EntityType="InternshipAppModel.AspNetUser" Width="1.5" PointX="2.125" PointY="14.25" />
-        <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="InternshipAppModel.FK_Id" />
-        <AssociationConnector Association="InternshipAppModel.AspNetUserRoles" />
-        <AssociationConnector Association="InternshipAppModel.FK__Instructors__Id__282DF8C2" />
-        <AssociationConnector Association="InternshipAppModel.FK__Students__Id__29221CFB" />
+      <Diagram DiagramId="7f1982d5fa2547bc9baa99cdbe6e5fcd" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Cours" Width="1.5" PointX="7.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employer" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Instructor" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Internship_Major" Width="1.5" PointX="9.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Internship" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Major" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student_Course" Width="1.5" PointX="9.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student_Internship" Width="1.5" PointX="9.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student_Major" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Instructors__Id__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_75" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_46" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_262" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_163" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_166" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_79" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_67" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_71" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_84" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_63" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

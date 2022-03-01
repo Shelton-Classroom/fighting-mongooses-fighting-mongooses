@@ -232,16 +232,13 @@
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Semester.cs">
-      <DependentUpon>InternshipApp.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Status.cs">
+    <Compile Include="Models\status.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
@@ -284,13 +281,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\InternshipApp.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InternshipApp.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\InternshipApp.edmx.diagram">
-      <DependentUpon>InternshipApp.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\EmployerSection\Views\web.config" />
     <Content Include="Areas\EmployerSection\Views\_ViewStart.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Shared\_Layout.cshtml" />
@@ -320,6 +310,13 @@
     <Content Include="Areas\StudentSection\Views\Students\OpenInternships.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\ActiveInternships.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\LandingPage.cshtml" />
+    <EntityDeploy Include="Models\InternshipApp.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>InternshipApp.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\InternshipApp.edmx.diagram">
+      <DependentUpon>InternshipApp.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

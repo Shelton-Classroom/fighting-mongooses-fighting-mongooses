@@ -11,10 +11,10 @@ namespace mongoose.Models
 {
     using System;
     
-    public enum Status : int
+    public enum status : int
     {
         Enrolled = 0,
-        NotEnrolled = 1,
+        UnEnrolled = 1,
         Graduated = 2
     }
 }

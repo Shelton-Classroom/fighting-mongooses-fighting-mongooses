@@ -13,7 +13,7 @@ namespace mongoose.Areas.StudentSection.Controllers
 {
     public class StudentsController : Controller
     {
-        private InternshipAppEntities db = new InternshipAppEntities();
+        private InternshipEntities db = new InternshipEntities();
 
         // GET: StudentSection/Students
         [Authorize(Roles = "Student")]
@@ -48,7 +48,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         // GET: StudentSection/Students/Create
         public ActionResult Create()
         {
-            ViewBag.SemesterId = new SelectList(db.Semesters, "SemesterId", "Term");
+            
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentId,FirstName,SemesterId,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student student)
+        public ActionResult Create([Bind(Include = "StudentId,FirstName,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace mongoose.Areas.StudentSection.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SemesterId = new SelectList(db.Semesters, "SemesterId", "Term", student.SemesterId);
+           
             return View(student);
         }
 
@@ -83,7 +83,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SemesterId = new SelectList(db.Semesters, "SemesterId", "Term", student.SemesterId);
+            
             return View(student);
         }
 
@@ -101,7 +101,7 @@ namespace mongoose.Areas.StudentSection.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SemesterId = new SelectList(db.Semesters, "SemesterId", "Term", student.SemesterId);
+           
             return View(student);
         }
 

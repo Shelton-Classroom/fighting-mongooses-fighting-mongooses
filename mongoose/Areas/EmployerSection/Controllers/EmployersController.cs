@@ -13,7 +13,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
 {
     public class EmployersController : Controller
     {
-        private InternshipAppEntities db = new InternshipAppEntities();
+        private InternshipEntities db = new InternshipEntities();
 
         // GET: EmployerSection/Employers
         [Authorize(Roles = "Employer")]

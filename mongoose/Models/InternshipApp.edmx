@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="InternshipAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -121,8 +121,11 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="Length" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Rate" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="PostDate" Type="date" Nullable="false" />
+          <Property Name="Paid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Majors">
           <Key>
@@ -132,13 +135,6 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="RequiredCredits" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Semesters">
-          <Key>
-            <PropertyRef Name="SemesterId" />
-          </Key>
-          <Property Name="SemesterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Term" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Student_Course">
           <Key>
@@ -176,7 +172,6 @@
           </Key>
           <Property Name="StudentId" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="SemesterId" Type="int" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="GraduationDate" Type="datetime" />
           <Property Name="EnrollmentStatus" Type="int" Nullable="false" />
@@ -208,30 +203,6 @@
             </Principal>
             <Dependent Role="Instructors">
               <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Students__Id__29221CFB">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_149">
-          <End Role="Semesters" Type="Self.Semesters" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Semesters">
-              <PropertyRef Name="SemesterId" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="SemesterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -454,7 +425,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="InternshipAppModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -467,7 +438,6 @@
           <EntitySet Name="Internship_Major" EntityType="Self.Internship_Major" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Internships" EntityType="Self.Internships" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Majors" EntityType="Self.Majors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Semesters" EntityType="Self.Semesters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Course" EntityType="Self.Student_Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Internship" EntityType="Self.Student_Internship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Major" EntityType="Self.Student_Major" Schema="dbo" store:Type="Tables" />
@@ -476,14 +446,6 @@
           <AssociationSet Name="FK__Instructors__Id__282DF8C2" Association="Self.FK__Instructors__Id__282DF8C2">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Instructors" EntitySet="Instructors" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Students__Id__29221CFB" Association="Self.FK__Students__Id__29221CFB">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_149" Association="Self.FK_149">
-            <End Role="Semesters" EntitySet="Semesters" />
-            <End Role="Students" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_163" Association="Self.FK_163">
             <End Role="Internships" EntitySet="Internships" />
@@ -546,10 +508,72 @@
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="InternshipAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Instructors" Relationship="Self.FK__Instructors__Id__282DF8C2" FromRole="AspNetUsers" ToRole="Instructors" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Id" FromRole="AspNetUsers" ToRole="Employers" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
         <EntityType Name="Cours">
           <Key>
             <PropertyRef Name="CourseId" />
@@ -576,9 +600,9 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Internships" Relationship="Self.FK_46" FromRole="Employers" ToRole="Internships" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK_Id" FromRole="Employer" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Id" FromRole="Employers" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Internships" Relationship="Self.FK_46" FromRole="Employers" ToRole="Internships" />
         </EntityType>
         <EntityType Name="Instructor">
           <Key>
@@ -589,9 +613,9 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Student_Internship" Relationship="Self.FK_262" FromRole="Instructors" ToRole="Student_Internship" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK__Instructors__Id__282DF8C2" FromRole="Instructor" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Instructors__Id__282DF8C2" FromRole="Instructors" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Student_Internship" Relationship="Self.FK_262" FromRole="Instructors" ToRole="Student_Internship" />
         </EntityType>
         <EntityType Name="Internship_Major">
           <Key>
@@ -612,8 +636,11 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Length" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Paid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Employer" Relationship="Self.FK_46" FromRole="Internships" ToRole="Employers" />
           <NavigationProperty Name="Internship_Major" Relationship="Self.FK_163" FromRole="Internships" ToRole="Internship_Major" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_79" FromRole="Internships" ToRole="Student_Internship" />
@@ -628,14 +655,6 @@
           <Property Name="RequiredCredits" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Internship_Major" Relationship="Self.FK_166" FromRole="Majors" ToRole="Internship_Major" />
           <NavigationProperty Name="Student_Major" Relationship="Self.FK_67" FromRole="Majors" ToRole="Student_Major" />
-        </EntityType>
-        <EntityType Name="Semester">
-          <Key>
-            <PropertyRef Name="SemesterId" />
-          </Key>
-          <Property Name="SemesterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_149" FromRole="Semesters" ToRole="Students" />
         </EntityType>
         <EntityType Name="Student_Course">
           <Key>
@@ -659,10 +678,10 @@
           <Property Name="InternshipId" Type="Int32" Nullable="false" />
           <Property Name="Midterm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Final" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Instructor" Relationship="Self.FK_262" FromRole="Student_Internship" ToRole="Instructors" />
           <NavigationProperty Name="Internship" Relationship="Self.FK_79" FromRole="Student_Internship" ToRole="Internships" />
           <NavigationProperty Name="Student" Relationship="Self.FK_84" FromRole="Student_Internship" ToRole="Students" />
-          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Student_Major">
           <Key>
@@ -680,10 +699,9 @@
           </Key>
           <Property Name="StudentId" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SemesterId" Type="Int32" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GraduationDate" Type="DateTime" Precision="3" />
-          <Property Name="EnrollmentStatus" Type="InternshipAppModel.Status" Nullable="false" />
+          <Property Name="EnrollmentStatus" Type="Model.status" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="Int32" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -691,12 +709,10 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Semester" Relationship="Self.FK_149" FromRole="Students" ToRole="Semesters" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Student_Course" Relationship="Self.FK_71" FromRole="Students" ToRole="Student_Course" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_84" FromRole="Students" ToRole="Student_Internship" />
           <NavigationProperty Name="Student_Major" Relationship="Self.FK_63" FromRole="Students" ToRole="Student_Major" />
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK__Students__Id__29221CFB" FromRole="Student" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -708,6 +724,58 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Instructors__Id__282DF8C2">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Instructors" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_75">
           <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
           <End Role="Student_Course" Type="Self.Student_Course" Multiplicity="*" />
@@ -792,18 +860,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_149">
-          <End Role="Semesters" Type="Self.Semester" Multiplicity="1" />
-          <End Role="Students" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Semesters">
-              <PropertyRef Name="SemesterId" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="SemesterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_71">
           <End Role="Students" Type="Self.Student" Multiplicity="1" />
           <End Role="Student_Course" Type="Self.Student_Course" Multiplicity="*" />
@@ -840,19 +896,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InternshipAppEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="InternshipEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Courses" EntityType="Self.Cours" />
           <EntitySet Name="Employers" EntityType="Self.Employer" />
           <EntitySet Name="Instructors" EntityType="Self.Instructor" />
           <EntitySet Name="Internship_Major" EntityType="Self.Internship_Major" />
           <EntitySet Name="Internships" EntityType="Self.Internship" />
           <EntitySet Name="Majors" EntityType="Self.Major" />
-          <EntitySet Name="Semesters" EntityType="Self.Semester" />
           <EntitySet Name="Student_Course" EntityType="Self.Student_Course" />
           <EntitySet Name="Student_Internship" EntityType="Self.Student_Internship" />
           <EntitySet Name="Student_Major" EntityType="Self.Student_Major" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Instructors__Id__282DF8C2" Association="Self.FK__Instructors__Id__282DF8C2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Id" Association="Self.FK_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
           <AssociationSet Name="FK_75" Association="Self.FK_75">
             <End Role="Courses" EntitySet="Courses" />
             <End Role="Student_Course" EntitySet="Student_Course" />
@@ -881,10 +961,6 @@
             <End Role="Majors" EntitySet="Majors" />
             <End Role="Student_Major" EntitySet="Student_Major" />
           </AssociationSet>
-          <AssociationSet Name="FK_149" Association="Self.FK_149">
-            <End Role="Semesters" EntitySet="Semesters" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
           <AssociationSet Name="FK_71" Association="Self.FK_71">
             <End Role="Students" EntitySet="Students" />
             <End Role="Student_Course" EntitySet="Student_Course" />
@@ -896,6 +972,10 @@
           <AssociationSet Name="FK_63" Association="Self.FK_63">
             <End Role="Students" EntitySet="Students" />
             <End Role="Student_Major" EntitySet="Student_Major" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -913,11 +993,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(InternshipAppModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(InternshipAppModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -927,35 +1007,6 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="C__MigrationHistory" EntityType="InternshipAppModel.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="InternshipAppModel.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="InternshipAppModel.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="InternshipAppModel.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="InternshipAppModel.AspNetUser" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="InternshipAppModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Id" Association="InternshipAppModel.FK_Id">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="Employer" EntitySet="Employers" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="InternshipAppModel.AspNetUserRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Instructors__Id__282DF8C2" Association="InternshipAppModel.FK__Instructors__Id__282DF8C2">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="Instructor" EntitySet="Instructors" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Students__Id__29221CFB" Association="InternshipAppModel.FK__Students__Id__29221CFB">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="Student" EntitySet="Students" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -968,139 +1019,9 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="InternshipAppModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaim">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogin">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="InternshipAppModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="InternshipAppModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="Employers" Relationship="InternshipAppModel.FK_Id" FromRole="AspNetUser" ToRole="Employer" />
-          <NavigationProperty Name="AspNetRoles" Relationship="InternshipAppModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-          <NavigationProperty Name="Instructors" Relationship="InternshipAppModel.FK__Instructors__Id__282DF8C2" FromRole="AspNetUser" ToRole="Instructor" />
-          <NavigationProperty Name="Students" Relationship="InternshipAppModel.FK__Students__Id__29221CFB" FromRole="AspNetUser" ToRole="Student" />
-        </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="InternshipAppModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaim">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="InternshipAppModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogin">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Id">
-          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="InternshipAppModel.Employer" Role="Employer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employer">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="InternshipAppModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
-        <Association Name="FK__Instructors__Id__282DF8C2">
-          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="InternshipAppModel.Instructor" Role="Instructor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Instructor">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Students__Id__29221CFB">
-          <End Type="InternshipAppModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="InternshipAppModel.Student" Role="Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EnumType Name="Status">
+        <EnumType Name="status">
           <Member Name="Enrolled" Value="0" />
-          <Member Name="NotEnrolled" Value="1" />
+          <Member Name="UnEnrolled" Value="1" />
           <Member Name="Graduated" Value="2" />
         </EnumType>
       </Schema>
@@ -1108,9 +1029,64 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InternshipAppModelStoreContainer" CdmEntityContainer="InternshipAppEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="InternshipEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="Model.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="Model.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Model.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="InternshipAppModel.Cours">
+            <EntityTypeMapping TypeName="Model.Cours">
               <MappingFragment StoreEntitySet="Courses">
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1122,9 +1098,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employers">
-            <EntityTypeMapping TypeName="InternshipAppModel.Employer">
+            <EntityTypeMapping TypeName="Model.Employer">
               <MappingFragment StoreEntitySet="Employers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
@@ -1135,23 +1110,24 @@
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Instructors">
-            <EntityTypeMapping TypeName="InternshipAppModel.Instructor">
+            <EntityTypeMapping TypeName="Model.Instructor">
               <MappingFragment StoreEntitySet="Instructors">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Internship_Major">
-            <EntityTypeMapping TypeName="InternshipAppModel.Internship_Major">
+            <EntityTypeMapping TypeName="Model.Internship_Major">
               <MappingFragment StoreEntitySet="Internship_Major">
                 <ScalarProperty Name="InternshipMajorId" ColumnName="InternshipMajorId" />
                 <ScalarProperty Name="MajorId" ColumnName="MajorId" />
@@ -1160,7 +1136,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Internships">
-            <EntityTypeMapping TypeName="InternshipAppModel.Internship">
+            <EntityTypeMapping TypeName="Model.Internship">
               <MappingFragment StoreEntitySet="Internships">
                 <ScalarProperty Name="InternshipId" ColumnName="InternshipId" />
                 <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
@@ -1169,11 +1145,14 @@
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Majors">
-            <EntityTypeMapping TypeName="InternshipAppModel.Major">
+            <EntityTypeMapping TypeName="Model.Major">
               <MappingFragment StoreEntitySet="Majors">
                 <ScalarProperty Name="MajorId" ColumnName="MajorId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1182,16 +1161,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Semesters">
-            <EntityTypeMapping TypeName="InternshipAppModel.Semester">
-              <MappingFragment StoreEntitySet="Semesters">
-                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
-                <ScalarProperty Name="Term" ColumnName="Term" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Student_Course">
-            <EntityTypeMapping TypeName="InternshipAppModel.Student_Course">
+            <EntityTypeMapping TypeName="Model.Student_Course">
               <MappingFragment StoreEntitySet="Student_Course">
                 <ScalarProperty Name="StudentCourseid" ColumnName="StudentCourseid" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
@@ -1202,20 +1173,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student_Internship">
-            <EntityTypeMapping TypeName="InternshipAppModel.Student_Internship">
+            <EntityTypeMapping TypeName="Model.Student_Internship">
               <MappingFragment StoreEntitySet="Student_Internship">
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="StudentInternshipId" ColumnName="StudentInternshipId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
                 <ScalarProperty Name="InternshipId" ColumnName="InternshipId" />
                 <ScalarProperty Name="Midterm" ColumnName="Midterm" />
                 <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student_Major">
-            <EntityTypeMapping TypeName="InternshipAppModel.Student_Major">
+            <EntityTypeMapping TypeName="Model.Student_Major">
               <MappingFragment StoreEntitySet="Student_Major">
                 <ScalarProperty Name="StudentMajorId" ColumnName="StudentMajorId" />
                 <ScalarProperty Name="MajorId" ColumnName="MajorId" />
@@ -1224,12 +1195,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="InternshipAppModel.Student">
+            <EntityTypeMapping TypeName="Model.Student">
               <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="GraduationDate" ColumnName="GraduationDate" />
                 <ScalarProperty Name="EnrollmentStatus" ColumnName="EnrollmentStatus" />
@@ -1240,11 +1209,12 @@
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="InternshipAppModel.sysdiagram">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1254,20 +1224,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="InternshipAppModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="InternshipAppModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="InternshipAppModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="InternshipAppModel.Store.sp_helpdiagramdefinition">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Model.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="InternshipAppModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="InternshipAppModel.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Model.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="InternshipAppModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1276,71 +1254,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="InternshipAppModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="InternshipAppModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="InternshipAppModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="InternshipAppModel.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="InternshipAppModel.AspNetUserClaim">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="InternshipAppModel.AspNetUserLogin">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="InternshipAppModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="InternshipAppModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
