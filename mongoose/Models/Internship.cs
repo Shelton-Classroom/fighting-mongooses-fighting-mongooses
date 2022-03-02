@@ -19,6 +19,7 @@ namespace mongoose.Models
         {
             this.Internship_Major = new HashSet<Internship_Major>();
             this.Student_Internship = new HashSet<Student_Internship>();
+            this.Saved_Internship = new HashSet<Saved_Internship>();
         }
     
         public int InternshipId { get; set; }
@@ -30,12 +31,14 @@ namespace mongoose.Models
         public string Location { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public System.DateTime PostDate { get; set; }
-        public int Paid { get; set; }
+        public payMe Paid { get; set; }
     
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Internship_Major> Internship_Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Saved_Internship> Saved_Internship { get; set; }
     }
 }

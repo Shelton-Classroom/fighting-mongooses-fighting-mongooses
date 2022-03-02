@@ -36,6 +36,9 @@
         <AssociationConnector Association="Model.FK_84" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_63" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.Saved_Internship" Width="1.5" PointX="12.75" PointY="11.25" />
+        <AssociationConnector Association="Model.FK_274" />
+        <AssociationConnector Association="Model.FK_271" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

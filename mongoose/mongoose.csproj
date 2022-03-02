@@ -194,6 +194,9 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\corSemester.cs">
+      <DependentUpon>InternshipApp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cours.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
@@ -232,6 +235,15 @@
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\payMe.cs">
+      <DependentUpon>InternshipApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Saved_Internship.cs">
+      <DependentUpon>InternshipApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\semester.cs">
+      <DependentUpon>InternshipApp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>InternshipApp.tt</DependentUpon>
     </Compile>

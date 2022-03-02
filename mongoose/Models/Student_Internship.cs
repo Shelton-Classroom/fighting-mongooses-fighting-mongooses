@@ -21,6 +21,8 @@ namespace mongoose.Models
         public string Midterm { get; set; }
         public string Final { get; set; }
         public string Comments { get; set; }
+        public int Term { get; set; }
+        public corSemester Semester { get; set; }
     
         public virtual Instructor Instructor { get; set; }
         public virtual Internship Internship { get; set; }

@@ -20,6 +20,7 @@ namespace mongoose.Models
             this.Student_Course = new HashSet<Student_Course>();
             this.Student_Internship = new HashSet<Student_Internship>();
             this.Student_Major = new HashSet<Student_Major>();
+            this.Saved_Internship = new HashSet<Saved_Internship>();
         }
     
         public int StudentId { get; set; }
@@ -28,7 +29,7 @@ namespace mongoose.Models
         public Nullable<System.DateTime> GraduationDate { get; set; }
         public status EnrollmentStatus { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string City { get; set; }
@@ -42,5 +43,7 @@ namespace mongoose.Models
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Major> Student_Major { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Saved_Internship> Saved_Internship { get; set; }
     }
 }

@@ -10,18 +10,10 @@
 namespace mongoose.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Student_Course
+    public enum payMe : int
     {
-        public int StudentCourseid { get; set; }
-        public int CourseId { get; set; }
-        public int StudentId { get; set; }
-        public semester SemesterCompleted { get; set; }
-        public string Grade { get; set; }
-        public int Term { get; set; }
-    
-        public virtual Cours Cours { get; set; }
-        public virtual Student Student { get; set; }
+        Payed = 0,
+        NotPayed = 1
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -84,7 +84,7 @@
           <Property Name="EmployerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
@@ -101,7 +101,7 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Internship_Major">
@@ -136,6 +136,14 @@
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="RequiredCredits" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Saved_Internship">
+          <Key>
+            <PropertyRef Name="Saved_InternshipId" />
+          </Key>
+          <Property Name="Saved_InternshipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="InternshipId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Student_Course">
           <Key>
             <PropertyRef Name="StudentCourseid" />
@@ -143,8 +151,9 @@
           <Property Name="StudentCourseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseId" Type="int" Nullable="false" />
           <Property Name="StudentId" Type="int" Nullable="false" />
-          <Property Name="SemesterCompleted" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SemesterCompleted" Type="int" Nullable="false" />
           <Property Name="Grade" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Term" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Student_Internship">
           <Key>
@@ -154,9 +163,11 @@
           <Property Name="StudentId" Type="int" Nullable="false" />
           <Property Name="InstructorId" Type="int" Nullable="false" />
           <Property Name="InternshipId" Type="int" Nullable="false" />
-          <Property Name="Midterm" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="Final" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Midterm" Type="char" MaxLength="10" />
+          <Property Name="Final" Type="char" MaxLength="10" />
           <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="Term" Type="int" Nullable="false" />
+          <Property Name="Semester" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Student_Major">
           <Key>
@@ -176,7 +187,7 @@
           <Property Name="GraduationDate" Type="datetime" />
           <Property Name="EnrollmentStatus" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
@@ -239,6 +250,30 @@
             </Principal>
             <Dependent Role="Student_Internship">
               <PropertyRef Name="InstructorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_271">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Saved_Internship" Type="Self.Saved_Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Saved_Internship">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_274">
+          <End Role="Internships" Type="Self.Internships" Multiplicity="1" />
+          <End Role="Saved_Internship" Type="Self.Saved_Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internships">
+              <PropertyRef Name="InternshipId" />
+            </Principal>
+            <Dependent Role="Saved_Internship">
+              <PropertyRef Name="InternshipId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -438,6 +473,7 @@
           <EntitySet Name="Internship_Major" EntityType="Self.Internship_Major" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Internships" EntityType="Self.Internships" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Majors" EntityType="Self.Majors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saved_Internship" EntityType="Self.Saved_Internship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Course" EntityType="Self.Student_Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Internship" EntityType="Self.Student_Internship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Major" EntityType="Self.Student_Major" Schema="dbo" store:Type="Tables" />
@@ -458,6 +494,14 @@
           <AssociationSet Name="FK_262" Association="Self.FK_262">
             <End Role="Instructors" EntitySet="Instructors" />
             <End Role="Student_Internship" EntitySet="Student_Internship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_271" Association="Self.FK_271">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Saved_Internship" EntitySet="Saved_Internship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_274" Association="Self.FK_274">
+            <End Role="Internships" EntitySet="Internships" />
+            <End Role="Saved_Internship" EntitySet="Saved_Internship" />
           </AssociationSet>
           <AssociationSet Name="FK_46" Association="Self.FK_46">
             <End Role="Employers" EntitySet="Employers" />
@@ -508,8 +552,7 @@
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -593,7 +636,7 @@
           <Property Name="EmployerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -612,7 +655,7 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Instructors__Id__282DF8C2" FromRole="Instructors" ToRole="AspNetUsers" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_262" FromRole="Instructors" ToRole="Student_Internship" />
@@ -640,10 +683,11 @@
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Paid" Type="Int32" Nullable="false" />
+          <Property Name="Paid" Type="Model.payMe" Nullable="false" />
           <NavigationProperty Name="Employer" Relationship="Self.FK_46" FromRole="Internships" ToRole="Employers" />
           <NavigationProperty Name="Internship_Major" Relationship="Self.FK_163" FromRole="Internships" ToRole="Internship_Major" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_79" FromRole="Internships" ToRole="Student_Internship" />
+          <NavigationProperty Name="Saved_Internship" Relationship="Model.FK_274" FromRole="Internship" ToRole="Saved_Internship" />
         </EntityType>
         <EntityType Name="Major">
           <Key>
@@ -663,10 +707,11 @@
           <Property Name="StudentCourseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseId" Type="Int32" Nullable="false" />
           <Property Name="StudentId" Type="Int32" Nullable="false" />
-          <Property Name="SemesterCompleted" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SemesterCompleted" Type="Model.semester" Nullable="false" />
           <Property Name="Grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cours" Relationship="Self.FK_75" FromRole="Student_Course" ToRole="Courses" />
           <NavigationProperty Name="Student" Relationship="Self.FK_71" FromRole="Student_Course" ToRole="Students" />
+          <Property Name="Term" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Student_Internship">
           <Key>
@@ -676,12 +721,14 @@
           <Property Name="StudentId" Type="Int32" Nullable="false" />
           <Property Name="InstructorId" Type="Int32" Nullable="false" />
           <Property Name="InternshipId" Type="Int32" Nullable="false" />
-          <Property Name="Midterm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Final" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Midterm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Final" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Instructor" Relationship="Self.FK_262" FromRole="Student_Internship" ToRole="Instructors" />
           <NavigationProperty Name="Internship" Relationship="Self.FK_79" FromRole="Student_Internship" ToRole="Internships" />
           <NavigationProperty Name="Student" Relationship="Self.FK_84" FromRole="Student_Internship" ToRole="Students" />
+          <Property Name="Term" Type="Int32" Nullable="false" />
+          <Property Name="Semester" Type="Model.corSemester" Nullable="false" />
         </EntityType>
         <EntityType Name="Student_Major">
           <Key>
@@ -703,7 +750,7 @@
           <Property Name="GraduationDate" Type="DateTime" Precision="3" />
           <Property Name="EnrollmentStatus" Type="Model.status" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -713,6 +760,7 @@
           <NavigationProperty Name="Student_Course" Relationship="Self.FK_71" FromRole="Students" ToRole="Student_Course" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_84" FromRole="Students" ToRole="Student_Internship" />
           <NavigationProperty Name="Student_Major" Relationship="Self.FK_63" FromRole="Students" ToRole="Student_Major" />
+          <NavigationProperty Name="Saved_Internship" Relationship="Model.FK_271" FromRole="Student" ToRole="Saved_Internship" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1007,6 +1055,15 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Saved_Internship" EntityType="Model.Saved_Internship" />
+          <AssociationSet Name="FK_274" Association="Model.FK_274">
+            <End Role="Internship" EntitySet="Internships" />
+            <End Role="Saved_Internship" EntitySet="Saved_Internship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_271" Association="Model.FK_271">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Saved_Internship" EntitySet="Saved_Internship" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1023,6 +1080,54 @@
           <Member Name="Enrolled" Value="0" />
           <Member Name="UnEnrolled" Value="1" />
           <Member Name="Graduated" Value="2" />
+        </EnumType>
+        <EnumType Name="payMe">
+          <Member Name="Payed" Value="0" />
+          <Member Name="NotPayed" Value="1" />
+        </EnumType>
+        <EntityType Name="Saved_Internship">
+          <Key>
+            <PropertyRef Name="Saved_InternshipId" />
+          </Key>
+          <Property Name="Saved_InternshipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="InternshipId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Internship" Relationship="Model.FK_274" FromRole="Saved_Internship" ToRole="Internship" />
+          <NavigationProperty Name="Student" Relationship="Model.FK_271" FromRole="Saved_Internship" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_274">
+          <End Type="Model.Internship" Role="Internship" Multiplicity="1" />
+          <End Type="Model.Saved_Internship" Role="Saved_Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="InternshipId" />
+            </Principal>
+            <Dependent Role="Saved_Internship">
+              <PropertyRef Name="InternshipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_271">
+          <End Type="Model.Student" Role="Student" Multiplicity="1" />
+          <End Type="Model.Saved_Internship" Role="Saved_Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Saved_Internship">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="semester">
+          <Member Name="Spring" Value="0" />
+          <Member Name="Summer" Value="1" />
+          <Member Name="Fall" />
+        </EnumType>
+        <EnumType Name="corSemester">
+          <Member Name="Spring" Value="0" />
+          <Member Name="Summer" Value="1" />
+          <Member Name="Fall" Value="2" />
         </EnumType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1164,6 +1269,7 @@
           <EntitySetMapping Name="Student_Course">
             <EntityTypeMapping TypeName="Model.Student_Course">
               <MappingFragment StoreEntitySet="Student_Course">
+                <ScalarProperty Name="Term" ColumnName="Term" />
                 <ScalarProperty Name="StudentCourseid" ColumnName="StudentCourseid" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -1175,6 +1281,8 @@
           <EntitySetMapping Name="Student_Internship">
             <EntityTypeMapping TypeName="Model.Student_Internship">
               <MappingFragment StoreEntitySet="Student_Internship">
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
                 <ScalarProperty Name="StudentInternshipId" ColumnName="StudentInternshipId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
@@ -1256,6 +1364,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Saved_Internship">
+            <EntityTypeMapping TypeName="Model.Saved_Internship">
+              <MappingFragment StoreEntitySet="Saved_Internship">
+                <ScalarProperty Name="InternshipId" ColumnName="InternshipId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Saved_InternshipId" ColumnName="Saved_InternshipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
