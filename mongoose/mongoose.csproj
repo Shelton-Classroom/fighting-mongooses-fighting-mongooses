@@ -340,6 +340,8 @@
     <Content Include="Areas\InternshipSection\Views\Internships\Details.cshtml" />
     <Content Include="Areas\InternshipSection\Views\Internships\Edit.cshtml" />
     <Content Include="Areas\InternshipSection\Views\Internships\Index.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Shared\_employerNav.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\OpenInternships.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
