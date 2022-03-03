@@ -4,6 +4,9 @@
 }
 @Html.Partial("_employerNav")
 <h2>Open Interships</h2>
+<p>
+    @Html.ActionLink("Create New", "Create","Internships", new {area = "InternshipSection"}, null)
+</p>
 <table class="table">
     <tr>
         <th>
@@ -66,10 +69,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Employer.Name)
             </td>
-            <td>    
-                @Html.ActionLink("Edit", "Edit", new { id = item.InternshipId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.InternshipId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.InternshipId })
+            <td>
+                @Html.ActionLink("Edit", "Edit/" + item.InternshipId, "Internships", new {area= "InternshipSection"}, null) |
+                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships",new { area = "InternshipSection" },null) |
+                @Html.ActionLink("Delete", "Delete/" + item.InternshipId, "Internships", new { area = "InternshipSection"}, null)
             </td>
         </tr>
     }

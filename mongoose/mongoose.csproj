@@ -178,6 +178,8 @@
     <Compile Include="Areas\InternshipSection\InternshipSectionAreaRegistration.cs" />
     <Compile Include="Areas\StudentSection\Controllers\StudentsController.cs" />
     <Compile Include="Areas\StudentSection\StudentSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Student_InternshipSection\Controllers\Student_InternshipController.cs" />
+    <Compile Include="Areas\Student_InternshipSection\Student_InternshipSectionAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -303,7 +305,7 @@
     <Content Include="Areas\EmployerSection\Views\Employers\Delete.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Employers\Details.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Employers\Edit.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Employers\Index.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Home.cshtml" />
     <Content Include="Areas\StudentSection\Views\web.config" />
     <Content Include="Areas\StudentSection\Views\_ViewStart.cshtml" />
     <Content Include="Areas\StudentSection\Views\Shared\_Layout.cshtml" />
@@ -342,6 +344,17 @@
     <Content Include="Areas\InternshipSection\Views\Internships\Index.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Shared\_employerNav.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Employers\OpenInternships.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\ActiveInternships.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\web.config" />
+    <Content Include="Areas\Student_InternshipSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Create.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Delete.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Details.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Edit.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Index.cshtml" />
+    <Content Include="Areas\InternshipSection\Views\Shared\_backToEmp.cshtml" />
+    <Content Include="Areas\Student_InternshipSection\Views\Shared\_backTo.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -387,6 +400,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Student_Internship\Create.cshtml" />
+    <Content Include="Views\Student_Internship\Delete.cshtml" />
+    <Content Include="Views\Student_Internship\Details.cshtml" />
+    <Content Include="Views\Student_Internship\Edit.cshtml" />
+    <Content Include="Views\Student_Internship\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -394,6 +412,7 @@
     <Folder Include="Areas\InstructorSection\Data\" />
     <Folder Include="Areas\InternshipSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
+    <Folder Include="Areas\Student_InternshipSection\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

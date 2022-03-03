@@ -17,7 +17,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
 
         // GET: EmployerSection/Employers
         [Authorize(Roles = "Employer")]
-        public ActionResult Index()
+        public ActionResult Home()
         {   var userId = User.Identity.GetUserId();
             var loggedIn = db.Employers.FirstOrDefault(e => e.Id == userId);
 
@@ -35,6 +35,12 @@ namespace mongoose.Areas.EmployerSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer
+            return View(internships.ToList());
+        }
+        public ActionResult ActiveInternships()
+        {
+            var userId = User.Identity.GetUserId();
+            var internships = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId);   //List of internships created by logged in employer
             return View(internships.ToList());
         }
 

@@ -54,7 +54,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             {
                 db.Internships.Add(internship);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("OpenInternships", "Employers", new {area= "EmployerSection"});
             }
 
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
@@ -88,7 +88,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             {
                 db.Entry(internship).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
             }
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
             return View(internship);
@@ -117,7 +117,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             Internship internship = db.Internships.Find(id);
             db.Internships.Remove(internship);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
         }
 
         protected override void Dispose(bool disposing)

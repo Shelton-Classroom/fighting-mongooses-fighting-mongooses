@@ -29,7 +29,7 @@
                         }
                         if (User.IsInRole("Employer"))
                         {
-                            <li>@Html.ActionLink("Employer Page", "Index", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Employer Page", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
                         }
                         if (User.IsInRole("Instructor"))
                         {
@@ -58,8 +58,23 @@
         </footer>
     </div>
 
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        (function () {
+            var current = location.pathname.split('/')[3];
+            console.log(current);
+            if (current === "") return;
+            var menuItems = document.querySelectorAll('.menu-item a');
+            console.log(menuItems);
+            for (var i = 0, len = menuItems.length; i < len; i++) {
+                if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
+                    menuItems[i].parentElement.className += " active";
+                }
+            }
+        })();
+    </script>
 </body>
 </html>

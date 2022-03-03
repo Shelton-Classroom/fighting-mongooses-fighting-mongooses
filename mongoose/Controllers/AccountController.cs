@@ -72,14 +72,30 @@ namespace mongoose.Controllers
             {
                 return View(model);
             }
-
+            var user = await UserManager.FindByNameAsync(model.Email);
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                case SignInStatus.Success:       
-                    return RedirectToLocal(returnUrl);
+                case SignInStatus.Success:
+                    
+                    //on login takes user to correct home page based on role
+                    if (await UserManager.IsInRoleAsync(user.Id, "Employer"))
+                    {
+                        return RedirectToAction("Home", "EmployerSection/Employers");
+                        
+                    } else if (await UserManager.IsInRoleAsync(user.Id, "Student"))
+                    {
+                        return RedirectToAction("Index", "StudentSection/Students");
+                    }
+                    else if (await UserManager.IsInRoleAsync(user.Id, "Instructor"))
+                    {
+                        return RedirectToAction("Index", "InstructorSection/Instructors");
+                    }
+
+                    return RedirectToAction("Index", "Home");
+                    //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

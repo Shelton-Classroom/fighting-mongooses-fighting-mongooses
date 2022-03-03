@@ -1,10 +1,10 @@
 ﻿
 <nav class="navbar navbar-default" style="margin-top:2rem;">
     <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li class="active">@Html.ActionLink("Home", "Index")</li>
-            <li>@Html.ActionLink("Open Internships", "OpenInternships")</li>
-            <li>@Html.ActionLink("Active Internships", "ActiveInterships")</li>
+        <ul class="nav navbar-nav menu_items">
+            <li class="menu-item">@Html.ActionLink("Home", "Home",null, new {id="empHome"})</li>
+            <li class="menu-item">@Html.ActionLink("Open Internships", "OpenInternships", null, new {id= "empOpen"})</li>
+            <li class="menu-item">@Html.ActionLink("Active Internships", "ActiveInternships", null, new { id = "empActive" })</li>
         </ul>
     </div>
 </nav>

@@ -1,0 +1,11 @@
+﻿@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Employer"))
+    {
+        @Html.ActionLink("Back to Active Internships", "ActiveInternships", "Employers", new { area = "EmployerSection" }, null)
+    }
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.ActionLink("Back to Active Internships", "Index", "Instructors", new { area = "InstructorSection" })
+    }
+}
