@@ -400,11 +400,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Student_Internship\Create.cshtml" />
-    <Content Include="Views\Student_Internship\Delete.cshtml" />
-    <Content Include="Views\Student_Internship\Details.cshtml" />
-    <Content Include="Views\Student_Internship\Edit.cshtml" />
-    <Content Include="Views\Student_Internship\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

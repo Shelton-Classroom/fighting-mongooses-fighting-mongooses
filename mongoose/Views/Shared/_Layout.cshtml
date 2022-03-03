@@ -65,10 +65,8 @@
     <script>
         (function () {
             var current = location.pathname.split('/')[3];
-            console.log(current);
             if (current === "") return;
             var menuItems = document.querySelectorAll('.menu-item a');
-            console.log(menuItems);
             for (var i = 0, len = menuItems.length; i < len; i++) {
                 if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
                     menuItems[i].parentElement.className += " active";
