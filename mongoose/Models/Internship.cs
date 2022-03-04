@@ -11,7 +11,8 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Internship
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,17 +25,23 @@ namespace mongoose.Models
     
         public int InternshipId { get; set; }
         public int EmployerId { get; set; }
+        [Display(Name = "Internship")]
         public string Name { get; set; }
         public string Description { get; set; }
         public string Length { get; set; }
         public Nullable<decimal> Rate { get; set; }
         public string Location { get; set; }
+        [Display(Name = "Start Date")]
         public Nullable<System.DateTime> StartDate { get; set; }
+        [Display(Name = "Date Posted")]
         public System.DateTime PostDate { get; set; }
+        [Display(Name = "Paid/Unpaid")]
         public payMe Paid { get; set; }
+        
     
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name = "Major")]
         public virtual ICollection<Internship_Major> Internship_Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }

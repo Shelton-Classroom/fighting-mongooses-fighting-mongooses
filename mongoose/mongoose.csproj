@@ -176,6 +176,10 @@
     <Compile Include="Areas\InstructorSection\InstructorSectionAreaRegistration.cs" />
     <Compile Include="Areas\InternshipSection\Controllers\InternshipsController.cs" />
     <Compile Include="Areas\InternshipSection\InternshipSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Internship_MajorSection\Controllers\Internship_MajorController.cs" />
+    <Compile Include="Areas\Internship_MajorSection\Internship_MajorSectionAreaRegistration.cs" />
+    <Compile Include="Areas\MajorSection\MajorsController.cs" />
+    <Compile Include="Areas\MajorSection\MajorSectionAreaRegistration.cs" />
     <Compile Include="Areas\StudentSection\Controllers\StudentsController.cs" />
     <Compile Include="Areas\StudentSection\StudentSectionAreaRegistration.cs" />
     <Compile Include="Areas\Student_InternshipSection\Controllers\Student_InternshipController.cs" />
@@ -355,6 +359,22 @@
     <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Index.cshtml" />
     <Content Include="Areas\InternshipSection\Views\Shared\_backToEmp.cshtml" />
     <Content Include="Areas\Student_InternshipSection\Views\Shared\_backTo.cshtml" />
+    <Content Include="Areas\MajorSection\Views\web.config" />
+    <Content Include="Areas\MajorSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MajorSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MajorSection\Views\Majors\Create.cshtml" />
+    <Content Include="Areas\MajorSection\Views\Majors\Delete.cshtml" />
+    <Content Include="Areas\MajorSection\Views\Majors\Details.cshtml" />
+    <Content Include="Areas\MajorSection\Views\Majors\Edit.cshtml" />
+    <Content Include="Areas\MajorSection\Views\Majors\Index.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\web.config" />
+    <Content Include="Areas\Internship_MajorSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Create.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Delete.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Details.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Edit.cshtml" />
+    <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -406,6 +426,9 @@
     <Folder Include="Areas\EmployerSection\Data\" />
     <Folder Include="Areas\InstructorSection\Data\" />
     <Folder Include="Areas\InternshipSection\Data\" />
+    <Folder Include="Areas\Internship_MajorSection\Data\" />
+    <Folder Include="Areas\MajorSection\Controllers\" />
+    <Folder Include="Areas\MajorSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
     <Folder Include="Areas\Student_InternshipSection\Data\" />
   </ItemGroup>

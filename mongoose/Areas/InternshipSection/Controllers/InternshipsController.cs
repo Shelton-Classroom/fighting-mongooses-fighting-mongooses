@@ -40,6 +40,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
         public ActionResult Create()
         {
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name");
+            var majors = db.Internship_Major.Where(i => i.InternshipMajorId == i.Internship.InternshipId);
             return View();
         }
 

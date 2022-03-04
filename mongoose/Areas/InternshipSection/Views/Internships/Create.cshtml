@@ -81,7 +81,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Paid, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.Paid, htmlAttributes: new { @class = "form-control" })
+            @Html.EnumDropDownListFor(model => model.Paid, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Paid, "", new { @class = "text-danger" })
         </div>
     </div>

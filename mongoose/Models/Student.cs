@@ -11,7 +11,8 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,7 @@ namespace mongoose.Models
         }
     
         public int StudentId { get; set; }
+        [Display(Name = "Student Name")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> GraduationDate { get; set; }
