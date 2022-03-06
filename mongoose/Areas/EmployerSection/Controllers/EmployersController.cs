@@ -32,8 +32,9 @@ namespace mongoose.Areas.EmployerSection.Controllers
         }
 
         public ActionResult OpenInternships()
-        {
+        {   
             var userId = User.Identity.GetUserId();
+            ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
             var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer
             return View(internships.ToList());
         }

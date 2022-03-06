@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
+using Microsoft.AspNet.Identity;
 
 namespace mongoose.Areas.InternshipSection.Controllers
 {
@@ -49,11 +50,15 @@ namespace mongoose.Areas.InternshipSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InternshipId,EmployerId,Name,Description,Length,Rate,Location,StartDate,PostDate,Paid")] Internship internship)
+        public ActionResult Create([Bind(Include = "InternshipId,Name,Description,Length,Rate,Location,StartDate,Paid")] Internship internship)
         {
             if (ModelState.IsValid)
             {
+                var userId = User.Identity.GetUserId();  //logged in users id
+                var user = db.Employers.FirstOrDefault(e => e.Id == userId); //employer that matches logged in user
                 db.Internships.Add(internship);
+                internship.EmployerId = user.EmployerId; //assigns logged in employer
+                internship.PostDate = DateTime.Now; // assigns current date to post date
                 db.SaveChanges();
                 return RedirectToAction("OpenInternships", "Employers", new {area= "EmployerSection"});
             }
