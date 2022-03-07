@@ -1,4 +1,4 @@
-﻿@model IEnumerable<mongoose.Models.Student_Internship>
+﻿@model IEnumerable<mongoose.Models.Employer_Internship>
 @{
     ViewBag.Title = "ActiveInternships";
 }
@@ -29,7 +29,7 @@
             @Html.DisplayNameFor(model => model.Internship.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Student.FirstName)
+            @Html.DisplayNameFor(model => model.Employer.FirstName)
         </th>
         <th></th>
     </tr>
@@ -59,12 +59,12 @@
                 @Html.DisplayFor(modelItem => item.Internship.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName)
+                @Html.DisplayFor(modelItem => item.Employer.FirstName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Delete", "Delete/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null)
+                @Html.ActionLink("Edit", "Edit/" + item.EmployerInternshipId, "Employer_Internship", new { area = "Employer_InternshipSection" }, null) |
+                @Html.ActionLink("Details", "Details/" + item.EmployerInternshipId, "Employer_Internship", new { area = "Employer_InternshipSection" }, null) |
+                @Html.ActionLink("Delete", "Delete/" + item.EmployerInternshipId, "Employer_Internship", new { area = "Employer_InternshipSection" }, null)
             </td>
         </tr>
     }
