@@ -24,11 +24,11 @@ namespace mongoose.Areas.StudentSection.Controllers
 
             var profileDetails = loggedIn.StudentId;
 
-            ViewBag.LoggedIn = loggedIn.ContactName;
+            ViewBag.LoggedIn = loggedIn.FirstName;
             ViewBag.EditProfile = profileDetails;
 
-            var internships = db.Internships.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
-            return View(internships.ToList());
+            //var internships = db.Internships.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
+            return View();
 
         }
 
@@ -36,14 +36,15 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             ViewBag.StudentId = db.Students.Where(e => e.Id == userId);
-            var internships = db.Internships.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
-            return View(internships.ToList());
+            //var internships = db.Internships.Where(i => i.Student.Id == userId);   //studentId is not a property in the internship table MB
+            var internships = db.Internships.ToList(); //List of all internships MB
+            return View(internships);
         }
         public ActionResult ActiveInternships()
         {
             var userId = User.Identity.GetUserId();
-            var internships = db.Student_Internship.Where(i => i.Internship.Student.Id == userId);   //List of internships created by logged in Student
-            return View(internships.ToList());
+           // var internships = db.Student_Internship.Where(i => i.Internship.Student.Id == userId);   //List of internships created by logged in Student
+            return View();
         }
 
         // GET: StudentSection/Students/Details/5
