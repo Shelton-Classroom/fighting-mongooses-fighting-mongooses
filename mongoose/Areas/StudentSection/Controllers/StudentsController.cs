@@ -17,17 +17,33 @@ namespace mongoose.Areas.StudentSection.Controllers
 
         // GET: StudentSection/Students
         [Authorize(Roles = "Student")]
-        public ActionResult Index()
+        public ActionResult Home()
         {
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Students.FirstOrDefault(e => e.Id == userId);
 
             var profileDetails = loggedIn.StudentId;
 
-            ViewBag.LoggedIn = loggedIn.FirstName;
+            ViewBag.LoggedIn = loggedIn.ContactName;
             ViewBag.EditProfile = profileDetails;
 
-            return View();
+            var internships = db.Internships.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
+            return View(internships.ToList());
+
+        }
+
+        public ActionResult OpenInternships()
+        {
+            var userId = User.Identity.GetUserId();
+            ViewBag.StudentId = db.Students.Where(e => e.Id == userId);
+            var internships = db.Internships.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
+            return View(internships.ToList());
+        }
+        public ActionResult ActiveInternships()
+        {
+            var userId = User.Identity.GetUserId();
+            var internships = db.Student_Internship.Where(i => i.Internship.Student.Id == userId);   //List of internships created by logged in Student
+            return View(internships.ToList());
         }
 
         // GET: StudentSection/Students/Details/5
@@ -37,18 +53,17 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Student Student = db.Students.Find(id);
+            if (Student == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(Student);
         }
 
         // GET: StudentSection/Students/Create
         public ActionResult Create()
         {
-            
             return View();
         }
 
@@ -57,18 +72,20 @@ namespace mongoose.Areas.StudentSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentId,FirstName,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student student)
+        public ActionResult Create([Bind(Include = "StudentId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Student Student)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
-                student.Id = User.Identity.GetUserId();
+                db.Students.Add(Student);
+                Student.Id = User.Identity.GetUserId();
                 db.SaveChanges();
+
+
+
                 return RedirectToAction("Index");
             }
 
-           
-            return View(student);
+            return View(Student);
         }
 
         // GET: StudentSection/Students/Edit/5
@@ -78,13 +95,12 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Student Student = db.Students.Find(id);
+            if (Student == null)
             {
                 return HttpNotFound();
             }
-            
-            return View(student);
+            return View(Student);
         }
 
         // POST: StudentSection/Students/Edit/5
@@ -92,17 +108,16 @@ namespace mongoose.Areas.StudentSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentId,FirstName,SemesterId,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Student Student)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
-                student.Id = User.Identity.GetUserId();
+                db.Entry(Student).State = EntityState.Modified;
+                Student.Id = User.Identity?.GetUserId();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
-            return View(student);
+            return View(Student);
         }
 
         // GET: StudentSection/Students/Delete/5
@@ -112,12 +127,12 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Student Student = db.Students.Find(id);
+            if (Student == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(Student);
         }
 
         // POST: StudentSection/Students/Delete/5
@@ -125,8 +140,8 @@ namespace mongoose.Areas.StudentSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
+            Student Student = db.Students.Find(id);
+            db.Students.Remove(Student);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

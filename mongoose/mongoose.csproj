@@ -375,6 +375,7 @@
     <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Details.cshtml" />
     <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Edit.cshtml" />
     <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Index.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Shared\_studentNav.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
