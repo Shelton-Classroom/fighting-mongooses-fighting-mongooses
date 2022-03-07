@@ -26,7 +26,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.LoggedIn = loggedIn.ContactName;
             ViewBag.EditProfile = profileDetails;
 
-            var internships = db.Internships.Where(i => i.Employer.Id == userId );   //List of internships created by logged in employer
+            var internships = db.Internships.Where(i => i.Employer.Id == userId );   //List of internships created by logged in employer m.b.
             return View(internships.ToList());
             
         }
@@ -35,13 +35,13 @@ namespace mongoose.Areas.EmployerSection.Controllers
         {   
             var userId = User.Identity.GetUserId();
             ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
-            var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer
+            var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer m.b.
             return View(internships.ToList());
         }
         public ActionResult ActiveInternships()
         {
             var userId = User.Identity.GetUserId();
-            var internships = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId);   //List of internships created by logged in employer
+            var internships = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId);   //List of "active" student_internships created by logged in employer
             return View(internships.ToList());
         }
 
@@ -76,12 +76,12 @@ namespace mongoose.Areas.EmployerSection.Controllers
             if (ModelState.IsValid)
             {
                 db.Employers.Add(employer);
-                employer.Id = User.Identity.GetUserId();
+                employer.Id = User.Identity.GetUserId(); //binds employer with logged in user m.b.
                 db.SaveChanges();
                 
                 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
 
             return View(employer);
