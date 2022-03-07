@@ -37,10 +37,11 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
         }
 
         // GET: Internship_MajorSection/Internship_Major/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name");
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
+            ViewBag.instId = id;
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
             {
                 db.Internship_Major.Add(internship_Major);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
             }
 
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name", internship_Major.InternshipId);

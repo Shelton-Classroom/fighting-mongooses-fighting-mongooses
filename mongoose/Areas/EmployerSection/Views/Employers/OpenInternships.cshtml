@@ -81,7 +81,7 @@
             }
             else
             {
-                @Html.ActionLink("Add Major +", "Create", "Internship_Major", new { area = "Internship_MajorSection" }, null)
+                @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
             }
         }
     </td>
