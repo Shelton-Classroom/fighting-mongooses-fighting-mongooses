@@ -64,17 +64,15 @@
     @RenderSection("scripts", required: false)
     <script>
         (function () {
-            var current = location.pathname.split('/')[4];
+            var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
             console.log(current);
             if (current === "") return;
             var menuItems = document.querySelectorAll('.menu-item a');
             console.log(menuItems);
-            if (current === "Home") {
-                menuItems[0].parentElement.className += " active";
-            } else if (current === "OpenInternships") {
-                menuItems[1].parentElement.className += " active";
-            } else if (current === "ActiveInternships") {
-                menuItems[2].parentElement.className += " active";
+            for (var i = 0, len = menuItems.length; i < len; i++) {
+                if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
+                    menuItems[i].parentElement.className += " active";
+                }
             }
         })();
     </script>
