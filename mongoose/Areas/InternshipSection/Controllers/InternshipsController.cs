@@ -41,7 +41,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
         public ActionResult Create()
         {
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name");
-            var majors = db.Internship_Major.Where(i => i.InternshipMajorId == i.Internship.InternshipId);
+            ViewBag.Majors = db.Majors.Select(rr => new SelectListItem { Value = rr.MajorId.ToString(), Text = rr.Name }).ToList(); //SelectList of majors so employers can add major(s) to internship on creation
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InternshipId,Name,Description,Length,Rate,Location,StartDate,Paid")] Internship internship)
+        public ActionResult Create([Bind(Include = "InternshipId,Name,Description,Length,Rate,Location,StartDate,Paid")] Internship internship,int majors) 
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +60,14 @@ namespace mongoose.Areas.InternshipSection.Controllers
                 internship.EmployerId = user.EmployerId; //assigns logged in employer
                 internship.PostDate = DateTime.Now; // assigns current date to post date
                 db.SaveChanges();
+       
+                var internship_major = new Internship_Major(); //new instance of internship_major
+                db.Internship_Major.Add(internship_major); // add to database
+                internship_major.MajorId = majors;// add selected majorId
+                internship_major.InternshipId = internship.InternshipId; // add newly created internship id
+                db.SaveChanges(); //saves to database
+                
+    
                 return RedirectToAction("OpenInternships", "Employers", new {area= "EmployerSection"});
             }
 
