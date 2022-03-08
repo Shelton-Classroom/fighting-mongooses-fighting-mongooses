@@ -434,6 +434,7 @@
     <Folder Include="Areas\MajorSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
     <Folder Include="Areas\Student_InternshipSection\Data\" />
+    <Folder Include="Content\Images\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -2,12 +2,36 @@
 
 
 
-    @Html.Partial("_employerNav")
-    @{
-        ViewBag.Title = "HOME";
-    }
-    <h2>WELCOME</h2>
-    <h1>@ViewBag.LoggedIn</h1>
-    @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+@Html.Partial("_employerNav")
+@{
+    ViewBag.Title = "HOME";
+}
+<h2>WELCOME</h2>
+<h1>@ViewBag.LoggedIn</h1>
+@Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+
+@*@if (File.Exists(Server.MapPath("~/Content/Images/Profile" + ViewBag.UserId + ".tiff")))*@
+@if (File.Exists("~/Content/Images/Profile" + ViewBag.UserId + ".tiff"))
+{
+
+    <img src="@Url.Content(String.Format("~/Content/Images/Profile" + ViewBag.UserId + ".tiff"))" />
+}
+else
+{
+    <h2>HAHA NOPE</h2>
+    @*<img src="~/img/avatar-sign.png" />*@
+}
+
+@using (Html.BeginForm("Home", "Employers", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Upload Image:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+
+    <input type="submit" value="Upload" class="submit" />
+
+}
+<img src="@Url.Content(String.Format("~/Content/Images/Profile/0804d071-d461-4877-8ae4-bd01727e2436.tiff"))" />
 
 
+@*https://stackoverflow.com/questions/46946497/how-to-check-if-the-image-file-existed-in-mvc*@

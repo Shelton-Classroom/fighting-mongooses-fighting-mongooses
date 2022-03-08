@@ -20,16 +20,46 @@ namespace mongoose.Areas.EmployerSection.Controllers
         public ActionResult Home()
         {   var userId = User.Identity.GetUserId();
             var loggedIn = db.Employers.FirstOrDefault(e => e.Id == userId);
-
             var profileDetails = loggedIn.EmployerId;
-
             ViewBag.LoggedIn = loggedIn.ContactName;
+            ViewBag.UserId = userId;
             ViewBag.EditProfile = profileDetails;
 
-            var internships = db.Internships.Where(i => i.Employer.Id == userId );   //List of internships created by logged in employer m.b.
-            return View(internships.ToList());
+         /*   var internships = db.Internships.Where(i => i.Employer.Id == userId ); */  //List of internships created by logged in employer m.b.
+            return View();
             
         }
+        [HttpPost]
+        
+        public ActionResult Home(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                //string pic = System.IO.Path.GetFileName(file.FileName);
+
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".tiff");
+                // file is uploaded
+                file.SaveAs(path);
+
+                // save the image path path to the database or you can send image 
+                // directly to database
+                // in-case if you want to store byte[] ie. for DB
+
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Home");
+        }
+
+
+
+
+
+
+
+
+
 
         public ActionResult OpenInternships()
         {   
