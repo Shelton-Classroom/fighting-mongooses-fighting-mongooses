@@ -29,38 +29,52 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View();
             
         }
-        [HttpPost]
+        //[HttpPost]
         
-        public ActionResult Home(HttpPostedFileBase file)
+        //public ActionResult Home(HttpPostedFileBase file)
+        //{
+        //    if (file != null)
+        //    {
+        //        //string path = path to profile folder + logged in users id;
+
+        //        string path = System.IO.Path.Combine(
+        //                               Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg");
+        //        // file is uploaded 
+        //        file.SaveAs(path);
+
+
+
+
+        //    }
+        //    // after successfully uploading redirect the user
+        //    return RedirectToAction("Home");
+        //}
+        public ActionResult ProfilePicture()
+        {
+            var userId = User.Identity.GetUserId();
+            ViewBag.UserId = userId;
+            return View();
+        }
+        [HttpPost]
+
+        public ActionResult ProfilePicture(HttpPostedFileBase file)
         {
             if (file != null)
             {
-                //string pic = System.IO.Path.GetFileName(file.FileName);
+                //string path = path to profile folder + logged in users id;
 
                 string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg");
-                // file is uploaded
+                                       Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
+                // file is uploaded 
                 file.SaveAs(path);
 
-                // save the image path path to the database or you can send image 
-                // directly to database
-                // in-case if you want to store byte[] ie. for DB
+
 
 
             }
             // after successfully uploading redirect the user
             return RedirectToAction("Home");
         }
-
-
-
-
-
-
-
-
-
-
         public ActionResult OpenInternships()
         {   
             var userId = User.Identity.GetUserId();

@@ -1,7 +1,6 @@
 ﻿@*@model IEnumerable<mongoose.Models.Employer>*@
 
 
-
 @Html.Partial("_employerNav")
 @{
     ViewBag.Title = "HOME";
@@ -10,25 +9,19 @@
 <h3>You have @ViewBag.InternshipCount open internships</h3>
 
 
-@*@if (File.Exists(Server.MapPath("~/Content/Images/Profile" + ViewBag.UserId + ".tiff")))*@
-@if (File.Exists("C:/Users/micha/source/repos/mongoose/mongoose/Content/Images/Profile/" + ViewBag.UserId + ".jpg")) //will need to change path for file server
+
+@if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))) //will probably need to change path for file server
 {
-<div class="profile-image_container">
-    <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
-</div>
-    
+    <div class="profile-image_container">
+        <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+    </div>
+
 }
 else
 {
-    using (Html.BeginForm("Home", "Employers", FormMethod.Post,
-                            new { enctype = "multipart/form-data" }))
-    {
-        <label class="custom-upload" for="file">Choose Image</label>
-        <input type="file" name="file" id="file" style="width: 100%;" />
-        <br/>
-        <input  type="submit" value="Upload" class="submit btn btn-default" />
+    @Html.ActionLink("Add Photo", "ProfilePicture")
+    <img src="@Url.Content(String.Format("~/Content/Images/Profile/no-image.jpg"))" class="profile-image" />
 
-    }
 }
 @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
 
