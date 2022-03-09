@@ -5,27 +5,37 @@
 @{
     ViewBag.Title = "HOME";
 }
-<h2>WELCOME: @ViewBag.LoggedIn</h2>
-<h3>You have @ViewBag.InternshipCount open internships</h3>
-
-
-
-@if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))) //will probably need to change path for file server
-{
-    <div class="profile-image_container">
-        <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+<section class="console_container">
+    <div class="console_info">
+        <h1>@ViewBag.BusinessName</h1>
+        <h3>WELCOME: @ViewBag.LoggedIn</h3>
+        <p>You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships") Active Internship(s).</p>
+        @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
     </div>
+    @*eventually add a count of students who have saved internships and link to list of those students?*@
+   
+<div class="console_image">
+    @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))) //will probably need to change path for file server
+    {
+        <div class="profile-image_container">
+            <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+        </div>
 
-}
-else
-{
-    @Html.ActionLink("Add Photo", "ProfilePicture")
-    <img src="@Url.Content(String.Format("~/Content/Images/Profile/no-image.jpg"))" class="profile-image" />
+    }
+    else
+    {
 
-}
-@Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+        <img src="@Url.Content(String.Format("~/Content/Images/Profile/no-image.jpg"))" class="profile-image" />
+        <br/>
+        @Html.ActionLink("Add Photo", "ProfilePicture")
+    }
+
+</div>
+</section>
 
 
 
 
-@*https://stackoverflow.com/questions/46946497/how-to-check-if-the-image-file-existed-in-mvc*@
+
+
+

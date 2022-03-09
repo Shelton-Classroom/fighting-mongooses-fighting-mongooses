@@ -24,31 +24,16 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.LoggedIn = loggedIn.ContactName;
             ViewBag.UserId = userId;
             ViewBag.EditProfile = profileDetails;
+            ViewBag.BusinessName = loggedIn.Name;
 
-          ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count();// number of employers open internships
+            ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count().ToString();// number of employers open internships
+
+            var activeInternships = 
+
+            ViewBag.ActiveIntershipCount = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId).Count().ToString();
             return View();
             
         }
-        //[HttpPost]
-        
-        //public ActionResult Home(HttpPostedFileBase file)
-        //{
-        //    if (file != null)
-        //    {
-        //        //string path = path to profile folder + logged in users id;
-
-        //        string path = System.IO.Path.Combine(
-        //                               Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg");
-        //        // file is uploaded 
-        //        file.SaveAs(path);
-
-
-
-
-        //    }
-        //    // after successfully uploading redirect the user
-        //    return RedirectToAction("Home");
-        //}
         public ActionResult ProfilePicture()
         {
             var userId = User.Identity.GetUserId();
@@ -62,13 +47,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
             if (file != null)
             {
                 //string path = path to profile folder + logged in users id;
-
+              
                 string path = System.IO.Path.Combine(
                                        Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
+                
                 // file is uploaded 
                 file.SaveAs(path);
 
-
+                Console.WriteLine(path);
 
 
             }
@@ -158,7 +144,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 db.Entry(employer).State = EntityState.Modified;
                 employer.Id = User.Identity?.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
             return View(employer);
         }

@@ -100,7 +100,9 @@ namespace mongoose.Areas.InternshipSection.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(internship).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
             }
