@@ -27,3 +27,24 @@ textarea {
     margin-top: 3rem;
     background: linear-gradient(#e66465, #9198e5);
 }
+
+
+
+/*please do not remove, michaels test css*/
+.profile-image {
+    max-width:300px;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-upload {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+    .custom-upload:hover {
+        background-color: #e0e0e0;
+        background-position: 0 -15px;
+    }

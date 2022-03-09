@@ -25,7 +25,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.UserId = userId;
             ViewBag.EditProfile = profileDetails;
 
-         /*   var internships = db.Internships.Where(i => i.Employer.Id == userId ); */  //List of internships created by logged in employer m.b.
+          ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count();// number of employers open internships
             return View();
             
         }
@@ -38,7 +38,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 //string pic = System.IO.Path.GetFileName(file.FileName);
 
                 string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".tiff");
+                                       Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg");
                 // file is uploaded
                 file.SaveAs(path);
 

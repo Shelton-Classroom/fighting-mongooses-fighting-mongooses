@@ -6,32 +6,33 @@
 @{
     ViewBag.Title = "HOME";
 }
-<h2>WELCOME</h2>
-<h1>@ViewBag.LoggedIn</h1>
-@Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+<h2>WELCOME: @ViewBag.LoggedIn</h2>
+<h3>You have @ViewBag.InternshipCount open internships</h3>
+
 
 @*@if (File.Exists(Server.MapPath("~/Content/Images/Profile" + ViewBag.UserId + ".tiff")))*@
-@if (File.Exists("~/Content/Images/Profile" + ViewBag.UserId + ".tiff"))
+@if (File.Exists("C:/Users/micha/source/repos/mongoose/mongoose/Content/Images/Profile/" + ViewBag.UserId + ".jpg")) //will need to change path for file server
 {
-
-    <img src="@Url.Content(String.Format("~/Content/Images/Profile" + ViewBag.UserId + ".tiff"))" />
+<div class="profile-image_container">
+    <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+</div>
+    
 }
 else
 {
-    <h2>HAHA NOPE</h2>
-    @*<img src="~/img/avatar-sign.png" />*@
-}
-
-@using (Html.BeginForm("Home", "Employers", FormMethod.Post,
+    using (Html.BeginForm("Home", "Employers", FormMethod.Post,
                             new { enctype = "multipart/form-data" }))
-{
-    <label for="file">Upload Image:</label>
-    <input type="file" name="file" id="file" style="width: 100%;" />
+    {
+        <label class="custom-upload" for="file">Choose Image</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+        <br/>
+        <input  type="submit" value="Upload" class="submit btn btn-default" />
 
-    <input type="submit" value="Upload" class="submit" />
-
+    }
 }
-<img src="@Url.Content(String.Format("~/Content/Images/Profile/0804d071-d461-4877-8ae4-bd01727e2436.tiff"))" />
+@Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+
+
 
 
 @*https://stackoverflow.com/questions/46946497/how-to-check-if-the-image-file-existed-in-mvc*@

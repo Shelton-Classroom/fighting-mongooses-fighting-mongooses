@@ -9,6 +9,16 @@
 <div>
     <h4>Employer</h4>
     <hr />
+    <div>
+        @if (File.Exists("C:/Users/micha/source/repos/mongoose/mongoose/Content/Images/Profile/" + Model.Id + ".jpg")) //will need to change path for file server
+        {
+            <div class="profile-image_container">
+                <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + Model.Id + ".jpg"))" class="profile-image" />
+            </div>
+
+
+        }
+    </div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -84,6 +94,8 @@
 
     </dl>
 </div>
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.EmployerId }) |
     @Html.ActionLink("Back", "Home")

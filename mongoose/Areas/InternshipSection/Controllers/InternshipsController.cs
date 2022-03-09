@@ -127,7 +127,13 @@ namespace mongoose.Areas.InternshipSection.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
+        {   
+            var intMajId = db.Internship_Major.Where(i => i.InternshipId == id); //list of all internshipMajors that are tied to internship
+            foreach (var i in intMajId) //loops through list above
+            {
+                Internship_Major deleteMajor = db.Internship_Major.Find(i.InternshipMajorId); //selects internship major 
+                db.Internship_Major.Remove(deleteMajor);//deletes each internship major tied to internship!     
+            }
             Internship internship = db.Internships.Find(id);
             db.Internships.Remove(internship);
             db.SaveChanges();
