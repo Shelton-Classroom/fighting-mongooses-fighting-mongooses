@@ -20,14 +20,13 @@ namespace mongoose.Areas.StudentSection.Controllers
         public ActionResult Home()
         {
             var userId = User.Identity.GetUserId();
-            var loggedIn = db.Students.FirstOrDefault(e => e.Id == userId);
+            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            ViewBag.Name = loggedIn.FirstName;
 
-            var profileDetails = loggedIn.StudentId;
+            ViewBag.EditProfile = loggedIn.StudentId;
 
-            ViewBag.LoggedIn = loggedIn.FirstName;
-            ViewBag.EditProfile = profileDetails;
+            
 
-            //var internships = db.Internships.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
             return View();
 
         }
@@ -73,7 +72,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Student Student)
+        public ActionResult Create([Bind(Include = "StudentId,FirstName,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student Student) //do not change m.b.
         {
             if (ModelState.IsValid)
             {
@@ -109,14 +108,14 @@ namespace mongoose.Areas.StudentSection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentId,Name,ContactName,Phone,Email,Address1,Address2,City,State,Zipcode")] Student Student)
+        public ActionResult Edit([Bind(Include = "StudentId,FirstName,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student Student) //do not change m.b.
         {
             if (ModelState.IsValid)
             {
                 db.Entry(Student).State = EntityState.Modified;
                 Student.Id = User.Identity?.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
             return View(Student);
         }

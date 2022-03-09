@@ -1,11 +1,11 @@
-﻿@model IEnumerable<mongoose.Models.Student>
+﻿@*@model IEnumerable<mongoose.Models.Student>*@
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>WELCOME</h2>
-<h1>@ViewBag.LoggedIn</h1>
+<h1>@ViewBag.Name</h1>
 @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
 
 

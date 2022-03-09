@@ -318,7 +318,7 @@
     <Content Include="Areas\StudentSection\Views\Students\Delete.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\Details.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\Edit.cshtml" />
-    <Content Include="Areas\StudentSection\Views\Students\Index.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\Home.cshtml" />
     <Content Include="Areas\InstructorSection\Views\web.config" />
     <Content Include="Areas\InstructorSection\Views\_ViewStart.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Shared\_Layout.cshtml" />

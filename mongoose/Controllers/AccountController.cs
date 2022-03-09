@@ -87,11 +87,11 @@ namespace mongoose.Controllers
                         
                     } else if (await UserManager.IsInRoleAsync(user.Id, "Student"))
                     {
-                        return RedirectToAction("Index", "StudentSection/Students");
+                        return RedirectToAction("Home", "StudentSection/Students");
                     }
                     else if (await UserManager.IsInRoleAsync(user.Id, "Instructor"))
                     {
-                        return RedirectToAction("Index", "InstructorSection/Instructors");
+                        return RedirectToAction("Home", "InstructorSection/Instructors");
                     }
 
                     return RedirectToAction("Index", "Home");
