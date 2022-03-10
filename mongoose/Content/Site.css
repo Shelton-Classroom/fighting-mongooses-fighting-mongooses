@@ -30,7 +30,7 @@ textarea {
 
 
 
-/*please do not remove, michaels test css*/
+/*please do not remove, michaels styling*/
 .profile-image {
     max-width:300px;
 }
@@ -58,3 +58,15 @@ textarea {
     align-items: stretch;
     background-image: -webkit-linear-gradient(bottom, #ffffff 0%, #f8f8f8 100%)
 }
+.login_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.login_container .list{
+    margin: 2rem
+}
+
+
+/*end michaels sytling*/
