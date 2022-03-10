@@ -49,7 +49,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 //string path = path to profile folder + logged in users id;
               
                 string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/Content/Images/Profile"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
+                                       Server.MapPath("~/Images/"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
                 
                 // file is uploaded 
                 file.SaveAs(path);

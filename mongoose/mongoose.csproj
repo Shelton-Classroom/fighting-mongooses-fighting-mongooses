@@ -35,6 +35,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +46,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -378,7 +382,6 @@
     <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Index.cshtml" />
     <Content Include="Areas\StudentSection\Views\Shared\_studentNav.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Employers\ProfilePicture.cshtml" />
-    <Content Include="Areas\EmployerSection\Views\Shared\_PicturePath.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -436,7 +439,8 @@
     <Folder Include="Areas\MajorSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
     <Folder Include="Areas\Student_InternshipSection\Data\" />
-    <Folder Include="Content\Images\Profile\" />
+    <Folder Include="Content\Image\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

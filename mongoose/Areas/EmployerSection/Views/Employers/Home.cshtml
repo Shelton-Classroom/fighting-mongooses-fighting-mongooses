@@ -15,17 +15,17 @@
     @*eventually add a count of students who have saved internships and link to list of those students?*@
    
 <div class="console_image">
-    @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))) //will probably need to change path for file server
+    @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg"))) 
     {
         <div class="profile-image_container">
-            <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+            <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
         </div>
 
     }
     else
     {
 
-        <img src="@Url.Content(String.Format("~/Content/Images/Profile/no-image.jpg"))" class="profile-image" />
+        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
         <br/>
         @Html.ActionLink("Add Photo", "ProfilePicture")
     }

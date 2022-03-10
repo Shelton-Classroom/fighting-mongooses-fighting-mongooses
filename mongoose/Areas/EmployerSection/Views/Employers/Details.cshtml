@@ -11,16 +11,21 @@
     <hr />
    
     <div>
-        @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/Profile/" + Model.Id + ".jpg"))) //will need to change path for file server
-            {
-                <div class="profile-image_container">
-                    <img src="@Url.Content(String.Format("~/Content/Images/Profile/" + Model.Id + ".jpg"))" class="profile-image" />
-                </div>
+        @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
+        {
+            <div class="profile-image_container">
+                <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="profile-image" />
+            </div>
 
 
-            }
-            @Html.ActionLink("Add/Change Photo", "ProfilePicture")
-        </div>
+        } else {
+
+        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+        <br />
+        
+        }
+        @Html.ActionLink("Add/Change Photo", "ProfilePicture")
+    </div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
