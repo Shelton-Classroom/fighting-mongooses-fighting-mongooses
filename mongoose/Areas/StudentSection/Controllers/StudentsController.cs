@@ -24,13 +24,42 @@ namespace mongoose.Areas.StudentSection.Controllers
             ViewBag.Name = loggedIn.FirstName;
 
             ViewBag.EditProfile = loggedIn.StudentId;
-
+            ViewBag.UserId = userId;
             
 
             return View();
 
         }
 
+
+
+        public ActionResult ProfilePicture() 
+        {
+            var userId = User.Identity.GetUserId();
+            ViewBag.UserId = userId;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ProfilePicture(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                //string path = path to profile folder + logged in users id;
+
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Images/"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
+
+                // file is uploaded 
+                file.SaveAs(path);
+
+                Console.WriteLine(path);
+
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Home");
+
+        }
         public ActionResult OpenInternships()
         {
             var userId = User.Identity.GetUserId();
@@ -39,15 +68,16 @@ namespace mongoose.Areas.StudentSection.Controllers
             var internships = db.Internships.ToList(); //List of all internships MB
             return View(internships);
         }
-        public ActionResult ActiveInternships()
+        public ActionResult ActiveInternships()   //This will be setup once instructor section has view for adding student to internship creating a student_intership
         {
             var userId = User.Identity.GetUserId();
-           // var internships = db.Student_Internship.Where(i => i.Internship.Student.Id == userId);   //List of internships created by logged in Student
-            return View();
+            var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
+            return View(internships);
         }
 
-        // GET: StudentSection/Students/Details/5
-        public ActionResult Details(int? id)
+       
+            // GET: StudentSection/Students/Details/5
+            public ActionResult Details(int? id)
         {
             if (id == null)
             {

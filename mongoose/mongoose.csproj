@@ -174,6 +174,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\CourseSection\Controllers\CoursController.cs" />
+    <Compile Include="Areas\CourseSection\CourseSectionAreaRegistration.cs" />
     <Compile Include="Areas\EmployerSection\Controllers\EmployersController.cs" />
     <Compile Include="Areas\EmployerSection\EmployerSectionAreaRegistration.cs" />
     <Compile Include="Areas\InstructorSection\Controllers\InstructorsController.cs" />
@@ -382,6 +384,15 @@
     <Content Include="Areas\Internship_MajorSection\Views\Internship_Major\Index.cshtml" />
     <Content Include="Areas\StudentSection\Views\Shared\_studentNav.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Employers\ProfilePicture.cshtml" />
+    <Content Include="Areas\CourseSection\Views\web.config" />
+    <Content Include="Areas\CourseSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CourseSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CourseSection\Views\Cours\Create.cshtml" />
+    <Content Include="Areas\CourseSection\Views\Cours\Delete.cshtml" />
+    <Content Include="Areas\CourseSection\Views\Cours\Details.cshtml" />
+    <Content Include="Areas\CourseSection\Views\Cours\Edit.cshtml" />
+    <Content Include="Areas\CourseSection\Views\Cours\Index.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\ProfilePicture.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -431,6 +442,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CourseSection\Data\" />
     <Folder Include="Areas\EmployerSection\Data\" />
     <Folder Include="Areas\InstructorSection\Data\" />
     <Folder Include="Areas\InternshipSection\Data\" />

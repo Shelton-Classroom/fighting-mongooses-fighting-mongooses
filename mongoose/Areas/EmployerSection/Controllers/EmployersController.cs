@@ -40,8 +40,8 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.UserId = userId;
             return View();
         }
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult ProfilePicture(HttpPostedFileBase file)
         {
             if (file != null)

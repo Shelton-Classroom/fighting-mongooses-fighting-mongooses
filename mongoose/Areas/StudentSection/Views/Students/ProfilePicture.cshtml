@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ProfilePicture";
+}
+
+<h2>ProfilePicture</h2>
+@if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+{
+    <div class="profile-image_container">
+        <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+    </div>
+
+}
+else
+{
+
+    <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+    <br />
+}
+@using (Html.BeginForm("ProfilePicture", "Students", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+{
+    <label class="custom-upload" for="file">Add/Change Image</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    <br />
+    <input type="submit" value="Upload" class="submit btn btn-default" />
+
+}
+@Html.ActionLink("Back", "Home")
+

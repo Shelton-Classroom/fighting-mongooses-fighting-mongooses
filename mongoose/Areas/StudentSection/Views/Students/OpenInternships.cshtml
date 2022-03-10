@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "OpenInterships";
 }
-@*@Html.Partial("")*@
+@Html.Partial("_studentNav")
 <h2>OPEN INTERNSHIPS</h2>
 
 <table class="table">
@@ -85,7 +85,7 @@
             </td>
             <td>
                 
-                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null) |
+                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null) 
                 
             </td>
         </tr>
