@@ -82,7 +82,7 @@ namespace mongoose.Areas.StudentSection.Controllers
 
 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
 
             return View(Student);
