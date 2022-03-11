@@ -95,7 +95,11 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId })
         @Html.Partial("_backToEmp")
     }
-   
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.ActionLink("Back", "OpenInternships", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })
+    }
+
 }
 
 
