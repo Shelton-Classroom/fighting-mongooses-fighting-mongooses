@@ -14,7 +14,7 @@
         <p>
             For students in an internship, or interested in one.
         </p>
-        @Html.ActionLink(HttpUtility.HtmlDecode("STUDENT"), "LandingPage", "Students", new { area = "StudentSection" }, new { @class = "btn btn-info btn-lg" })
+        @Html.ActionLink(HttpUtility.HtmlDecode("STUDENT"), "Home", "Students", new { area = "StudentSection" }, new { @class = "btn btn-info btn-lg" })
     </div>
     <div class="col-md-4 text-center">
         <h2>Employer</h2>
@@ -24,6 +24,6 @@
     <div class="col-md-4 text-center">
         <h2>Instructor</h2>
         <p>For instructors with a student involved in an internship</p>
-        @Html.ActionLink(HttpUtility.HtmlDecode("INSTRUCTOR"), "Index", "Instructors", new { area = "InstructorSection" }, new { @class = "btn btn-info btn-lg" })
+        @Html.ActionLink(HttpUtility.HtmlDecode("INSTRUCTOR"), "Home", "Instructors", new { area = "InstructorSection" }, new { @class = "btn btn-info btn-lg" })
     </div>
 </div>

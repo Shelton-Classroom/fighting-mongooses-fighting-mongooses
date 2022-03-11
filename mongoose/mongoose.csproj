@@ -398,6 +398,7 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\ActiveInternships.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\OpenInternships.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Majors.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\ProfilePicture.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -26,8 +26,36 @@ namespace mongoose.Areas.InstructorSection.Controllers
 
             ViewBag.LoggedIn = loggedIn.FirstName;
             ViewBag.EditProfile = profileDetails;
-
+            ViewBag.UserId = userId;
             return View();
+        }
+
+        public ActionResult ProfilePicture()
+        {
+            var userId = User.Identity.GetUserId();
+            ViewBag.UserId = userId;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ProfilePicture(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                //string path = path to profile folder + logged in users id;
+
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Images/"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
+
+                // file is uploaded 
+                file.SaveAs(path);
+
+                Console.WriteLine(path);
+
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Home");
+
         }
         public ActionResult OpenInternships()
         {
