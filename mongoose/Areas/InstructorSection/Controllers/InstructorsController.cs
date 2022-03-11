@@ -17,7 +17,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
 
         // GET: InstructorSection/Instructors
         [Authorize(Roles = "Instructor")]
-        public ActionResult Index()
+        public ActionResult Home()
         {
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Instructors.FirstOrDefault(e => e.Id == userId);
@@ -28,6 +28,27 @@ namespace mongoose.Areas.InstructorSection.Controllers
             ViewBag.EditProfile = profileDetails;
 
             return View();
+        }
+        public ActionResult OpenInternships()
+        {
+            var internships = db.Internships.ToList(); //List of all internships MB
+            return View(internships);
+        }
+        public ActionResult ActiveInternships()
+        {
+            var userId = User.Identity.GetUserId();
+            var internships = db.Student_Internship.Where(i => i.Instructor.Id == userId);   //List of internships Instructor is assigned to mb
+            return View(internships);
+        }
+        public ActionResult Classes()
+        {
+            var classes = db.Courses.ToList();//List of all courses MB
+            return View(classes);
+        }
+        public ActionResult Majors()
+        {
+            var majors = db.Majors.ToList();//List of all majors MB
+            return View(majors);
         }
 
         // GET: InstructorSection/Instructors/Details/5
@@ -63,7 +84,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
                 db.Instructors.Add(instructor);
                 instructor.Id = User.Identity.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
 
             return View(instructor);
@@ -96,7 +117,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
                 db.Entry(instructor).State = EntityState.Modified;
                 instructor.Id = User.Identity.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
             return View(instructor);
         }

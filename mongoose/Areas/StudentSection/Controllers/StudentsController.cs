@@ -71,7 +71,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         public ActionResult ActiveInternships()   //This will be setup once instructor section has view for adding student to internship creating a student_intership
         {
             var userId = User.Identity.GetUserId();
-            var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships created by logged in Student
+            var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
             return View(internships);
         }
 

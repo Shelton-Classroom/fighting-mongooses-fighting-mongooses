@@ -52,7 +52,7 @@ namespace mongoose.Areas.MajorSection
             {
                 db.Majors.Add(major);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Majors", "Instructors", new { area = "InstructorSection" });
             }
 
             return View(major);
@@ -84,7 +84,7 @@ namespace mongoose.Areas.MajorSection
             {
                 db.Entry(major).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Majors", "Instructors", new { area = "InstructorSection" });
             }
             return View(major);
         }
@@ -112,7 +112,7 @@ namespace mongoose.Areas.MajorSection
             Major major = db.Majors.Find(id);
             db.Majors.Remove(major);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Majors", "Instructors", new { area = "InstructorSection" });
         }
 
         protected override void Dispose(bool disposing)

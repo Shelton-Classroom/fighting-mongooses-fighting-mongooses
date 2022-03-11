@@ -33,7 +33,7 @@
                         }
                         if (User.IsInRole("Instructor"))
                         {
-                            <li>@Html.ActionLink("Instructor Page", "Index", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Instructor Page", "Home", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
                         }
                     }
                     else

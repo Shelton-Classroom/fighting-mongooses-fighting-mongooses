@@ -332,7 +332,7 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\Delete.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Details.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Edit.cshtml" />
-    <Content Include="Areas\InstructorSection\Views\Instructors\Index.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\Home.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Shared\View.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\test.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\OpenInternships.cshtml" />
@@ -393,6 +393,11 @@
     <Content Include="Areas\CourseSection\Views\Cours\Edit.cshtml" />
     <Content Include="Areas\CourseSection\Views\Cours\Index.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\ProfilePicture.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Shared\_instructorNav.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\Classes.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\ActiveInternships.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\OpenInternships.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\Majors.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

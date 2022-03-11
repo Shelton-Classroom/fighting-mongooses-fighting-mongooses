@@ -1,0 +1,11 @@
+﻿@model IEnumerable<mongoose.Models.Instructor>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Html.Partial("_instructorNav")
+<h2>WELCOME</h2>
+<h1>@ViewBag.LoggedIn</h1>
+@Html.ActionLink("Profile Details", "Details", new { id = ViewBag.EditProfile })
+
+
