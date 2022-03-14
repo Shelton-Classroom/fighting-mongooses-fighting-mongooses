@@ -37,6 +37,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Internship_Major)
         </th>
+        <th>Save</th>
         <th></th>
     </tr>
 
@@ -85,8 +86,13 @@
             </td>
             <td>
                 
-                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null) 
+                <p><i class="fas fa-heart" id="save" value="@item.InternshipId" onclick="saveFunction(@item.InternshipId);"></i></p>
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null)
                 
+
             </td>
         </tr>
     }

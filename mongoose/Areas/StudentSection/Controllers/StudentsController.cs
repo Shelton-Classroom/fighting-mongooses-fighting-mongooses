@@ -64,7 +64,13 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             ViewBag.StudentId = db.Students.Where(e => e.Id == userId);
-            //var internships = db.Internships.Where(i => i.Student.Id == userId);   //studentId is not a property in the internship table MB
+            var studentId = db.Students.FirstOrDefault(s => s.Id == userId);
+            var savedInternships = db.Saved_Internship.Include(s => s.Student).Where(s => s.Student.StudentId.Equals(studentId)).ToArray();
+            foreach (var x in savedInternships)
+            {
+                
+            }
+            
             var internships = db.Internships.ToList(); //List of all internships MB
             return View(internships);
         }
@@ -175,6 +181,29 @@ namespace mongoose.Areas.StudentSection.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public void InternshipSave(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var student = db.Students.FirstOrDefault(s => s.Id == userId);
+            var stuId = student.StudentId;
+            var intId = id;
+
+            var saved_Internship = new Saved_Internship(); //new instance of saved_internship
+            db.Saved_Internship.Add(saved_Internship); // add to database
+            saved_Internship.InternshipId = intId;// add selected Internship Id
+            saved_Internship.StudentId = stuId; // add add current student Id
+            db.SaveChanges(); //saves to database
+        }
+
+
+
+
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

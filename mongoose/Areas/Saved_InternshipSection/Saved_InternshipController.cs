@@ -37,8 +37,9 @@ namespace mongoose.Areas.Saved_InternshipSection
         }
 
         // GET: Saved_InternshipSection/Saved_Internship/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
             return View();

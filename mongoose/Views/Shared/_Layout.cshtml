@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/fc725e5524.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -62,7 +63,20 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
+<script>
+        const hearts = document.querySelectorAll('i');
+        Array.from(hearts).forEach(div => {
+            div.addEventListener('click', changeColor);
+        });
+
+        function changeColor() {
+            if ($(this).hasClass('red')) {
+                $(this).removeClass('red');
+            } else {
+                $(this).addClass('red');
+            }
+    }
+
         (function () {
             var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
             console.log(current);
@@ -75,6 +89,15 @@
                 }
             }
         })();
-    </script>
+        function saveFunction(id) {
+            $.ajax({
+                url: 'InternshipSave',
+                data: { id: id }
+            }).done(function () {
+                alert('Added');
+            });
+        }
+</script>
+    
 </body>
 </html>
