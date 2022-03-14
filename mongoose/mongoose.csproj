@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\CourseSection\Controllers\CoursController.cs" />
+    <Compile Include="Areas\CourseSection\Controllers\InstructorInternshipController.cs" />
     <Compile Include="Areas\CourseSection\CourseSectionAreaRegistration.cs" />
     <Compile Include="Areas\EmployerSection\Controllers\EmployersController.cs" />
     <Compile Include="Areas\EmployerSection\EmployerSectionAreaRegistration.cs" />
@@ -399,6 +400,7 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\OpenInternships.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Majors.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\ProfilePicture.cshtml" />
+    <Content Include="Areas\CourseSection\Views\InstructorInternship\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

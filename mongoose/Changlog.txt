@@ -1,2 +1,5 @@
 ﻿< 01/30/2022 - Michael >
 ----Initial Commit----
+
+Added InstructorIndex page 3/6/22
+--Alex
