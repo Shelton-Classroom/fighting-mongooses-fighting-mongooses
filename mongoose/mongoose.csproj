@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -50,10 +51,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -185,6 +186,8 @@
     <Compile Include="Areas\Internship_MajorSection\Internship_MajorSectionAreaRegistration.cs" />
     <Compile Include="Areas\MajorSection\MajorsController.cs" />
     <Compile Include="Areas\MajorSection\MajorSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Saved_InternshipSection\Saved_InternshipController.cs" />
+    <Compile Include="Areas\Saved_InternshipSection\Saved_InternshipSectionAreaRegistration.cs" />
     <Compile Include="Areas\StudentSection\Controllers\StudentsController.cs" />
     <Compile Include="Areas\StudentSection\StudentSectionAreaRegistration.cs" />
     <Compile Include="Areas\Student_CourseSection\Controllers\Student_CourseController.cs" />
@@ -421,6 +424,14 @@
     <Content Include="Areas\Student_CourseSection\Views\Student_Course\Details.cshtml" />
     <Content Include="Areas\Student_CourseSection\Views\Student_Course\Edit.cshtml" />
     <Content Include="Areas\Student_CourseSection\Views\Student_Course\Index.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\web.config" />
+    <Content Include="Areas\Saved_InternshipSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Create.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Delete.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Details.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Edit.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -477,6 +488,8 @@
     <Folder Include="Areas\Internship_MajorSection\Data\" />
     <Folder Include="Areas\MajorSection\Controllers\" />
     <Folder Include="Areas\MajorSection\Data\" />
+    <Folder Include="Areas\Saved_InternshipSection\Controllers\" />
+    <Folder Include="Areas\Saved_InternshipSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
     <Folder Include="Areas\Student_CourseSection\Data\" />
     <Folder Include="Areas\Student_InternshipSection\Data\" />
@@ -533,7 +546,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
