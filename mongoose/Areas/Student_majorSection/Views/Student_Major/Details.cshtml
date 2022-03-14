@@ -28,6 +28,22 @@
 
     </dl>
 </div>
+@*@{
+        if (User.IsInRole("Student")) //If student they can view details only links back to student/OpenInterships (All Interships) mb
+        {
+            @Html.ActionLink("Back", "OpenInternships", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })
+        }
+        if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId })
+            @Html.Partial("_backToEmp")
+        }
+        if (User.IsInRole("Instructor"))
+        {
+            @Html.ActionLink("Back", "OpenInternships", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })
+        }
+
+    }*@ //code copied to navigate/adapt to this section
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.StudentMajorId }) |
     @Html.ActionLink("Back to List", "Index")
