@@ -190,6 +190,8 @@
     <Compile Include="Areas\StudentSection\StudentSectionAreaRegistration.cs" />
     <Compile Include="Areas\Student_InternshipSection\Controllers\Student_InternshipController.cs" />
     <Compile Include="Areas\Student_InternshipSection\Student_InternshipSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Student_majorSection\Student_MajorController.cs" />
+    <Compile Include="Areas\Student_majorSection\Student_majorSectionAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
@@ -297,6 +299,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\employer.jpg" />
+    <Content Include="Images\puzzle.jpg" />
+    <Content Include="Images\students.jpg" />
     <Content Include="Models\InternshipApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InternshipApp.edmx</DependentUpon>
@@ -399,6 +404,14 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\OpenInternships.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Majors.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\ProfilePicture.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\web.config" />
+    <Content Include="Areas\Student_majorSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Create.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Delete.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Details.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Edit.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -457,8 +470,9 @@
     <Folder Include="Areas\MajorSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
     <Folder Include="Areas\Student_InternshipSection\Data\" />
+    <Folder Include="Areas\Student_majorSection\Controllers\" />
+    <Folder Include="Areas\Student_majorSection\Data\" />
     <Folder Include="Content\Image\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
