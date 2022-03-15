@@ -26,5 +26,6 @@ else
     <input type="submit" value="Upload" class="submit btn btn-default" />
 
 }
-@Html.ActionLink("Back", "Home")
+@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+
 

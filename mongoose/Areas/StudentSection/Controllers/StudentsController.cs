@@ -62,6 +62,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         }
         public ActionResult OpenInternships()
         {
+            ViewBag.EmployerList = new SelectList(db.Employers.OrderBy(e => e.Name), "EmployerId", "Name");
             var userId = User.Identity.GetUserId(); //gets logged in users id
             var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId; //gets logged in users studentId
             var studentSaved = db.Saved_Internship.Where(s => s.StudentId == studentId); //gets students saved internships
@@ -210,6 +211,15 @@ namespace mongoose.Areas.StudentSection.Controllers
             
 
            
+        }
+        
+        public ActionResult OpenByEmployer(int id)
+        {
+            
+             db.Configuration.ProxyCreationEnabled = false;
+            var empInt = db.Internships.Where( i => i.EmployerId == id);
+
+            return PartialView("_Open", empInt.ToList());
         }
 
 

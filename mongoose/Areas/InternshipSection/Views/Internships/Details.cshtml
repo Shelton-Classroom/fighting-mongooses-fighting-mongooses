@@ -88,7 +88,7 @@
 @{
     if (User.IsInRole("Student")) //If student they can view details only links back to student/OpenInterships (All Interships) mb
     {
-        @Html.ActionLink("Back", "OpenInternships", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })
+        @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer }) //takes user back to previous page
     }
     if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
     {

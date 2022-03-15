@@ -433,6 +433,7 @@
     <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Edit.cshtml" />
     <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Index.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\SavedInternships.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\_Open.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -1,112 +1,29 @@
 ﻿@model IEnumerable<mongoose.Models.Internship>
 
 @{
-    ViewBag.Title = "OpenInterships";
+    ViewBag.Title = "Open Interships";
 }
 @Html.Partial("_studentNav")
 <h2>OPEN INTERNSHIPS</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Length)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employer.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Internship_Major)
-        </th>
-        <th>Save</th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paid)
-            </td>
-            <td>
-                @Html.ActionLink(item.Employer.Name, "Details/" + item.EmployerId, "Employers", new { area = "EmployerSection" }, null)
-            </td>
-            <td>
-                @{
-                    var major = item.Internship_Major.FirstOrDefault();
-                    if (major != null)
-                    {
-                        @Html.DisplayFor(m => major.Major.Name);
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
-                    }
-                }
-            </td>
-            <td>
-                @{
-                    var saved = ViewBag.saved;
-                    if (saved.Contains(item.InternshipId))
-                    {
-                        <p><i class="fas fa-heart red" id="save" value="@item.InternshipId" onclick="saveFunction(@item.InternshipId);"></i></p>
-                    }
-                    else
-                    {
-                        <p><i class="fas fa-heart" id="save" value="@item.InternshipId" onclick="saveFunction(@item.InternshipId);"></i></p>
-                    }
-                }
+
+&nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Format</label>&nbsp;&nbsp;&nbsp;
+@Html.DropDownList("EmployerList", null, htmlAttributes: new { @class = "filter", @onchange = "openByEmployer()" })
+<div id="openInternshipContainer">
+    @Html.Partial("_Open", Model)
+</div>
 
 
 
+@section Scripts {
+    <script type="text/javascript">
+        function openByEmployer() {
+            var employerId = $('#EmployerList').val();
+            var container = $('#openInternshipContainer');
+            container.load('@Url.Action("OpenByEmployer")?id=' + employerId);
+            console.log(employerId);
 
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null)
-            </td>
-        </tr>
-    }
-
-
-</table>
+        }
+    </script>
+}
