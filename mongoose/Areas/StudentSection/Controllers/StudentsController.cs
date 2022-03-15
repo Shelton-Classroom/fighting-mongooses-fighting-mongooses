@@ -62,15 +62,11 @@ namespace mongoose.Areas.StudentSection.Controllers
         }
         public ActionResult OpenInternships()
         {
-            var userId = User.Identity.GetUserId();
-            ViewBag.StudentId = db.Students.Where(e => e.Id == userId);
-            var studentId = db.Students.FirstOrDefault(s => s.Id == userId);
-            var savedInternships = db.Saved_Internship.Include(s => s.Student).Where(s => s.Student.StudentId.Equals(studentId)).ToArray();
-            foreach (var x in savedInternships)
-            {
-                
-            }
-            
+            var userId = User.Identity.GetUserId(); //gets logged in users id
+            var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId; //gets logged in users studentId
+            var studentSaved = db.Saved_Internship.Where(s => s.StudentId == studentId); //gets students saved internships
+            ViewBag.Saved = studentSaved.Select(x => x.InternshipId).ToList(); // list of just internshipId's from above saved_interships, to display hearts in red in view
+          
             var internships = db.Internships.ToList(); //List of all internships MB
             return View(internships);
         }
@@ -78,6 +74,14 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
+            return View(internships);
+        }
+        public ActionResult SavedInternships()
+        {
+            var userId = User.Identity.GetUserId(); //gets logged in users id
+            var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId; //gets logged in users studentId
+            var internships = db.Saved_Internship.Where(s => s.StudentId == studentId);
+
             return View(internships);
         }
 
@@ -182,18 +186,30 @@ namespace mongoose.Areas.StudentSection.Controllers
             return RedirectToAction("Index");
         }
 
-        public void InternshipSave(int id)
+        public void InternshipSave(int id)  //on heart click will create saved internship for that internship/student or remove if it exists, hopefully!
         {
+            var intId = id;
             var userId = User.Identity.GetUserId();
             var student = db.Students.FirstOrDefault(s => s.Id == userId);
             var stuId = student.StudentId;
-            var intId = id;
+            var studentSaved = db.Saved_Internship.FirstOrDefault(s => s.StudentId == stuId & s.InternshipId == id); 
+            if (studentSaved != null) 
+            {
+                
+                    db.Saved_Internship.Remove(studentSaved);   
+                    db.SaveChanges();
+                
+            } else
+            {
+                var saved_Internship = new Saved_Internship(); //new instance of saved_internship
+                db.Saved_Internship.Add(saved_Internship); // add to database
+                saved_Internship.InternshipId = intId;// add selected Internship Id
+                saved_Internship.StudentId = stuId; // add add current student Id
+                db.SaveChanges(); //saves to database
+            }
+            
 
-            var saved_Internship = new Saved_Internship(); //new instance of saved_internship
-            db.Saved_Internship.Add(saved_Internship); // add to database
-            saved_Internship.InternshipId = intId;// add selected Internship Id
-            saved_Internship.StudentId = stuId; // add add current student Id
-            db.SaveChanges(); //saves to database
+           
         }
 
 

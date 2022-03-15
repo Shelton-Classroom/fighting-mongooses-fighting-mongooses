@@ -1,0 +1,83 @@
+﻿@model IEnumerable<mongoose.Models.Saved_Internship>
+@{
+    ViewBag.Title = "SavedInternships";
+}
+@Html.Partial("_studentNav")
+<h2>SavedInternships</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.PostDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Paid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Employer.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Internship_Major)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.PostDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Paid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Employer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Internship_Major.FirstOrDefault().Major.Name)
+            </td>
+
+            <td>
+                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null)
+            </td>
+        </tr>
+    }
+
+</table>
