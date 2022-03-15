@@ -68,7 +68,7 @@
                 @Html.DisplayFor(modelItem => item.Internship.Paid)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Internship.Employer.Name)
+                @Html.ActionLink(item.Internship.Employer.Name, "Details/" + item.Internship.EmployerId, "Employers", new { area = "EmployerSection" }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Internship.Internship_Major.FirstOrDefault().Major.Name)
