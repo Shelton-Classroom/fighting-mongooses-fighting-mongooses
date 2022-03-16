@@ -68,7 +68,8 @@ namespace mongoose.Areas.StudentSection.Controllers
             var studentSaved = db.Saved_Internship.Where(s => s.StudentId == studentId); //gets students saved internships
             ViewBag.Saved = studentSaved.Select(x => x.InternshipId).ToList(); // list of just internshipId's from above saved_interships, to display hearts in red in view
           
-            var internships = db.Internships.ToList(); //List of all internships MB
+            var internships = db.Internships.ToList(); //List of all internships MB9ik 
+
             return View(internships);
         }
         //public ActionResult StuMajor()
@@ -222,11 +223,16 @@ namespace mongoose.Areas.StudentSection.Controllers
         
         public ActionResult OpenByEmployer(int id)
         {
-            
-             db.Configuration.ProxyCreationEnabled = false;
-            var empInt = db.Internships.Where( i => i.EmployerId == id);
+           
 
-            return PartialView("_Open", empInt.ToList());
+            var userId = User.Identity.GetUserId(); //gets logged in users id
+            var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId; //gets logged in users studentId
+            var studentSaved = db.Saved_Internship.Where(s => s.StudentId == studentId); //gets students saved internships
+            ViewBag.Saved = studentSaved.Select(x => x.InternshipId).ToList(); // list of just internshipId's from above saved_interships, to display hearts in red in view
+
+            var internships = db.Internships.Where( i => i.EmployerId == id).ToList();
+
+            return PartialView("_Open", internships);
         }
 
 

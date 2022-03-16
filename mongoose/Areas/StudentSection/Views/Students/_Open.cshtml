@@ -63,7 +63,7 @@
                 @Html.DisplayFor(modelItem => item.Paid)
             </td>
             <td>
-                @Html.ActionLink(item.Employer.Name, "Details/" + item.EmployerId, "Employers", new { area = "EmployerSection" }, null)
+                @Html.ActionLink(item.Name, "Details", "Employers", new { area = "EmployerSection", id = item.EmployerId }, null)
             </td>
             <td>
                 @{
