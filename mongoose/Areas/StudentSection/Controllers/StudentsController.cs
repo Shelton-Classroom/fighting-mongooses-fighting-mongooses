@@ -71,6 +71,13 @@ namespace mongoose.Areas.StudentSection.Controllers
             var internships = db.Internships.ToList(); //List of all internships MB
             return View(internships);
         }
+        //public ActionResult StuMajor()
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    ViewBag.StudentId = db.Students.Where(s => s.Id == userId);
+        //    var studentMajors = db.Majors.Where(o => o.Student.Id == userId);   //Get to coursemajor by logged in student
+        //    return View(Majors.ToList());
+        //}
         public ActionResult ActiveInternships()   //This will be setup once instructor section has view for adding student to internship creating a student_intership
         {
             var userId = User.Identity.GetUserId();
