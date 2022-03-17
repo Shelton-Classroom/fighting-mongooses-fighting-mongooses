@@ -32,8 +32,10 @@ namespace mongoose.Models
         public Nullable<decimal> Rate { get; set; }
         public string Location { get; set; }
         [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> StartDate { get; set; }
         [Display(Name = "Date Posted")]
+        [DataType(DataType.Date)]
         public System.DateTime PostDate { get; set; }
         [Display(Name = "Paid/Unpaid")]
         public payMe Paid { get; set; }

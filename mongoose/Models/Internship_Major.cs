@@ -19,7 +19,6 @@ namespace mongoose.Models
         public int InternshipMajorId { get; set; }
         public int MajorId { get; set; }
         public int InternshipId { get; set; }
-    
         public virtual Internship Internship { get; set; }
         public virtual Major Major { get; set; }
     }
