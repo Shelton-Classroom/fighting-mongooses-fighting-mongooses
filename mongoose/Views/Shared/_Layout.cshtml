@@ -69,15 +69,7 @@
             div.addEventListener('click', changeColor);
         });
 
-        function changeColor() {
-            if ($(this).hasClass('red')) {
-                $(this).removeClass('red');
-                console.log(this);
-            } else {
-                $(this).addClass('red');
-                console.log(this);
-            }
-    }
+     
 
         (function () {
             var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
@@ -96,9 +88,25 @@
                 url: 'InternshipSave',
                 data: { id: id }
             }).done(function () {
-                console.log('Added/Deleted');
+                console.log(id);
             });
         }
+         function openByEmployer() {
+            var employerId = $('#EmployerList').val();
+            var container = $('#openInternshipContainer');
+            container.load('@Url.Action("OpenByEmployer")?id=' + employerId);
+             console.log(employerId);
+
+    }
+    function changeColor() {
+        if ($(this).hasClass('red')) {
+            $(this).removeClass('red');
+            console.log(this);
+        } else {
+            $(this).addClass('red');
+            console.log(this);
+        }
+    }
 </script>
     
 </body>

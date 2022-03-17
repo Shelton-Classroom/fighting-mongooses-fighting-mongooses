@@ -8,8 +8,8 @@
 
 
 
-&nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Format</label>&nbsp;&nbsp;&nbsp;
-@Html.DropDownList("EmployerList", null, htmlAttributes: new { @class = "filter", @onchange = "openByEmployer()" })
+&nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Employer</label>&nbsp;&nbsp;&nbsp;
+@Html.DropDownList("EmployerList", null, htmlAttributes: new { @class = "filter", @onchange = "openByEmployer();" })
 <div id="openInternshipContainer">
     @Html.Partial("_Open", Model)
 </div>
@@ -17,14 +17,3 @@
 
 
 
-@section Scripts {
-    <script type="text/javascript">
-        function openByEmployer() {
-            var employerId = $('#EmployerList').val();
-            var container = $('#openInternshipContainer');
-            container.load('@Url.Action("OpenByEmployer")?id=' + employerId);
-            console.log(employerId);
-
-        }
-    </script>
-}
