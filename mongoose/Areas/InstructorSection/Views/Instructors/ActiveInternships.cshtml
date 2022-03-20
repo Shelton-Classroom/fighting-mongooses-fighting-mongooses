@@ -8,7 +8,6 @@
 <p>
     @Html.ActionLink("Create New", "Create", "Cours", new { area = "CourseSection" }, null)
 </p>
-
 <table class="table">
     <tr>
         <th>
@@ -68,7 +67,8 @@
             <td>
                 @Html.ActionLink("Edit", "Edit/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
                 @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Delete", "Delete/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null)
+                @Html.ActionLink("Delete", "Delete/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
+                @Html.ActionLink("Create", "Create/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection"}, null) |
             </td>
         </tr>
     }
