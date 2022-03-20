@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/fc725e5524.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -54,7 +55,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - FIGHTING MONGOOSES</p>
         </footer>
     </div>
 
@@ -62,7 +63,25 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
+<script>
+
+    $(function () {
+        $('#MajorList').change(function () {
+            var id = $(this).val();
+            console.log($(this).val());
+            if (id != null && id != '') {
+                window.location.href = "OpenInternships?majorId=" + id;
+            }
+        });
+    });
+
+        const hearts = document.querySelectorAll('i');
+        Array.from(hearts).forEach(div => {
+            div.addEventListener('click', changeColor);
+        });
+
+     
+
         (function () {
             var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
             console.log(current);
@@ -75,6 +94,25 @@
                 }
             }
         })();
-    </script>
+        function saveFunction(id) {
+            $.ajax({
+                url: 'InternshipSave',
+                data: { id: id }
+            }).done(function () {
+                console.log(id);
+            });
+        }
+   
+        function changeColor() {
+            if ($(this).hasClass('red')) {
+                $(this).removeClass('red');
+                console.log(this);
+            } else {
+                $(this).addClass('red');
+                console.log(this);
+            }
+        }
+</script>
+    
 </body>
 </html>

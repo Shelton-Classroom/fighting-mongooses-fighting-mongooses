@@ -175,7 +175,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\CourseSection\Controllers\CoursController.cs" />
-    <Compile Include="Areas\CourseSection\Controllers\InstructorInternshipController.cs" />
     <Compile Include="Areas\CourseSection\CourseSectionAreaRegistration.cs" />
     <Compile Include="Areas\EmployerSection\Controllers\EmployersController.cs" />
     <Compile Include="Areas\EmployerSection\EmployerSectionAreaRegistration.cs" />
@@ -187,10 +186,16 @@
     <Compile Include="Areas\Internship_MajorSection\Internship_MajorSectionAreaRegistration.cs" />
     <Compile Include="Areas\MajorSection\MajorsController.cs" />
     <Compile Include="Areas\MajorSection\MajorSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Saved_InternshipSection\Saved_InternshipController.cs" />
+    <Compile Include="Areas\Saved_InternshipSection\Saved_InternshipSectionAreaRegistration.cs" />
     <Compile Include="Areas\StudentSection\Controllers\StudentsController.cs" />
     <Compile Include="Areas\StudentSection\StudentSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Student_CourseSection\Controllers\Student_CourseController.cs" />
+    <Compile Include="Areas\Student_CourseSection\Student_CourseSectionAreaRegistration.cs" />
     <Compile Include="Areas\Student_InternshipSection\Controllers\Student_InternshipController.cs" />
     <Compile Include="Areas\Student_InternshipSection\Student_InternshipSectionAreaRegistration.cs" />
+    <Compile Include="Areas\Student_majorSection\Student_MajorController.cs" />
+    <Compile Include="Areas\Student_majorSection\Student_majorSectionAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
@@ -298,6 +303,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\employer.jpg" />
+    <Content Include="Images\puzzle.jpg" />
+    <Content Include="Images\students.jpg" />
     <Content Include="Models\InternshipApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InternshipApp.edmx</DependentUpon>
@@ -400,7 +408,31 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\OpenInternships.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Majors.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\ProfilePicture.cshtml" />
-    <Content Include="Areas\CourseSection\Views\InstructorInternship\Create.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\web.config" />
+    <Content Include="Areas\Student_majorSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Create.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Delete.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Details.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Edit.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Student_Major\Index.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\web.config" />
+    <Content Include="Areas\Student_CourseSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Student_Course\Create.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Student_Course\Delete.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Student_Course\Details.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Student_Course\Edit.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Student_Course\Index.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\web.config" />
+    <Content Include="Areas\Saved_InternshipSection\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Create.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Delete.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Details.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Edit.cshtml" />
+    <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Index.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\SavedInternships.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -457,10 +489,14 @@
     <Folder Include="Areas\Internship_MajorSection\Data\" />
     <Folder Include="Areas\MajorSection\Controllers\" />
     <Folder Include="Areas\MajorSection\Data\" />
+    <Folder Include="Areas\Saved_InternshipSection\Controllers\" />
+    <Folder Include="Areas\Saved_InternshipSection\Data\" />
     <Folder Include="Areas\StudentSection\Data\" />
+    <Folder Include="Areas\Student_CourseSection\Data\" />
     <Folder Include="Areas\Student_InternshipSection\Data\" />
+    <Folder Include="Areas\Student_majorSection\Controllers\" />
+    <Folder Include="Areas\Student_majorSection\Data\" />
     <Folder Include="Content\Image\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

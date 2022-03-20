@@ -111,6 +111,18 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployerId }) |
-    @Html.ActionLink("Back", "Home")
+    @{
+        if (User.IsInRole("Student"))
+        {
+            @Html.ActionLink("Back", "OpenInternships", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })
+        }
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.EmployerId }) 
+            @Html.ActionLink("Back", "Home")
+        }
+
+    }
+
+    
 </p>

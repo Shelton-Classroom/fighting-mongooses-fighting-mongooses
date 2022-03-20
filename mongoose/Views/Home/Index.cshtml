@@ -2,17 +2,29 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron test">
-    <h1>CONNECT</h1>
-    <p class="lead">The world's leading internship application application</p>
-    <p><a href="Home/About" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="jumbotron learn_more">
+    <div class="learn_more_text">
+        <h1>CONNECT</h1>
+        <p class="">The world's leading internship application application</p>
+    </div>
+    
+    <p><a href="Home/About" class="btn btn-info btn-lg">Learn more &raquo;</a></p>
 </div>
+@*<div class="link_container">
+    <div class="link student">
+
+    </div>
+    <div class="link employer">
+
+    </div>
+</div>*@
+
 
 <div class="row">
-    <div class="col-md-4 text-center border">
+    <div class="col-md-4 text-center home_link">
         <h2>Student</h2>
         <p>
-            For students in an internship, or interested in finding one.
+            For students in an internship, or interested in one.
         </p>
         @Html.ActionLink(HttpUtility.HtmlDecode("STUDENT"), "Home", "Students", new { area = "StudentSection" }, new { @class = "btn btn-info btn-lg" })
     </div>
