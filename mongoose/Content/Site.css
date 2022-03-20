@@ -28,7 +28,7 @@ textarea {
 /*please do not remove, michaels styling*/
 .learn_more {
     margin-top: 6rem;
-    background-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%), url(../Images/puzzle.jpg);
+    background-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%), url(Image/puzzle.jpg);
     background-size: cover;
     color: white;
     text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
