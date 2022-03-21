@@ -41,6 +41,9 @@ namespace mongoose.Areas.Student_majorSection
         {
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
+            //var userId = User.Identity.GetUserId();
+            //var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            //ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); Getting user ID is not working for the bridge table at this juncture
             return View();
         }
 
@@ -77,6 +80,9 @@ namespace mongoose.Areas.Student_majorSection
             }
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name", student_Major.MajorId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Major.StudentId);
+            //var userId = User.Identity.GetUserId();
+            //var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            //ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); Getting user ID is not working for the bridge table at this juncture
             return View(student_Major);
         }
 

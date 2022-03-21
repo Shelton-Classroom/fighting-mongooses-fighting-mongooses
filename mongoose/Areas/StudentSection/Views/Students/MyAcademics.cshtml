@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "My Academics";
+}
+@Html.Partial("_studentNav")
+
+
+    <section class="console_container">
+        <div class="console_info">
+            <h1>@ViewBag.Name's academics</h1>
+            <div>
+                @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
+            </div>
+
+            <div>
+                @Html.ActionLink("Edit Major", "Edit", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
+            </div>
+
+            <div>
+                @Html.ActionLink("Add Course", "Create", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
+            </div>
+            <div>
+                @Html.ActionLink("Edit Course", "Edit", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
+            </div>
+
+        </div>
+        <div class="console_image">
+            @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+            {
+                <div class="profile-image_container">
+                    <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+                </div>
+
+            }
+            else
+            {
+
+                <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+                <br />
+                @Html.ActionLink("Add Photo", "ProfilePicture")
+            }
+        </div>
+    </section>
+

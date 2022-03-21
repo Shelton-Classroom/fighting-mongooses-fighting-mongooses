@@ -173,9 +173,24 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
+            var userId = User.Identity.GetUserId();
+            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == loggedIn.StudentId).ToList();
+            ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList();
             return View(Student);
         }
+        public ActionResult MyAcademics(int? id)
+        {
+            var userId = User.Identity.GetUserId();
+            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            ViewBag.Name = loggedIn.FirstName;
 
+            ViewBag.EditProfile = loggedIn.StudentId;
+            ViewBag.UserId = userId;
+            ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == loggedIn.StudentId).ToList();
+            ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList();
+            return View();
+        }
         // GET: StudentSection/Students/Create
         public ActionResult Create()
         {
