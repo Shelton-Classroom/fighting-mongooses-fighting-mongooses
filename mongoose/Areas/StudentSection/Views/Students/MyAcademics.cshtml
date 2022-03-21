@@ -7,10 +7,11 @@
     <section class="console_container">
         <div class="console_info">
             <h1>@ViewBag.Name's academics</h1>
+            <h2>UNDER CONSTRUCTION</h2>
             <div>
                 @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
             </div>
-
+            @*//Viewbag for logged in student major(s) will go here with the edit button for any and each existing major*@
             <div>
                 @Html.ActionLink("Edit Major", "Edit", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
             </div>
@@ -18,6 +19,7 @@
             <div>
                 @Html.ActionLink("Add Course", "Create", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
             </div>
+            @*//Viewbag for logged in student courses with edit buttons for any and each existing course*@
             <div>
                 @Html.ActionLink("Edit Course", "Edit", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
             </div>
