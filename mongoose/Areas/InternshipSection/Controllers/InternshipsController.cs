@@ -130,11 +130,23 @@ namespace mongoose.Areas.InternshipSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {   
-            var intMajId = db.Internship_Major.Where(i => i.InternshipId == id); //list of all internshipMajors that are tied to internship
-            foreach (var i in intMajId) //loops through list above
+            var intMaj = db.Internship_Major.Where(i => i.InternshipId == id); //list of all internshipMajors that are tied to internship
+            var stuInt = db.Student_Internship.Where(i => i.InternshipId == id);
+            var saveInt =db.Saved_Internship.Where(i => i.InternshipId == id);
+            foreach (var i in intMaj) //loops through list above
             {
                 Internship_Major deleteMajor = db.Internship_Major.Find(i.InternshipMajorId); //selects internship major 
-                db.Internship_Major.Remove(deleteMajor);//deletes each internship major tied to internship!     
+                db.Internship_Major.Remove(deleteMajor);//deletes the internship major tied to internship being deleted!     
+            }
+            foreach (var i in stuInt) // same for student internships
+            {
+                Student_Internship deleteStuInt = db.Student_Internship.Find(i.StudentInternshipId);
+                db.Student_Internship.Remove(deleteStuInt);
+            }
+            foreach (var i in saveInt) // same for saved internships
+            {
+                Saved_Internship deleteSaveInt = db.Saved_Internship.Find(i.Saved_InternshipId);
+                db.Saved_Internship.Remove(deleteSaveInt);
             }
             Internship internship = db.Internships.Find(id);
             db.Internships.Remove(internship);

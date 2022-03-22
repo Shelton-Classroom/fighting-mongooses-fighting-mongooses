@@ -1,31 +1,53 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "My Academics";
 }
 @Html.Partial("_studentNav")
 
 
-    <section class="console_container">
-        <div class="console_info">
-            <h3>@ViewBag.Name's academics</h3>
-            <h1>UNDER CONSTRUCTION</h1>
-            <div>
-                @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
-            </div>
-            @*//Viewbag for logged in student major(s) will go here with the edit button for any and each existing major*@
-            <div>
-                @Html.ActionLink("Edit Major", "Edit", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
-            </div>
-
-            <div>
-                @Html.ActionLink("Add Course", "Create", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
-            </div>
-            @*//Viewbag for logged in student courses with edit buttons for any and each existing course*@
-            <div>
-                @Html.ActionLink("Edit Course", "Edit", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
-            </div>
-
+<section class="console_container">
+    <div class="console_info">
+        <h3>@ViewBag.Name's academics</h3>
+        <h1>UNDER CONSTRUCTION</h1>
+        <div>
+            @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
         </div>
-        <div class="console_image">
+        @*//Viewbag for logged in student major(s) will go here with the edit button for any and each existing major*@
+    <div>
+        <table class="table">
+            <tr>
+                <th>Major</th>
+            </tr>
+            @foreach (var m in ViewBag.studentmajor)
+            {
+                <tr>
+                    <td>
+                    <p>@m.Major.Name</p>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Student_Major", new { area = "Student_majorSection", id = m.StudentMajorId }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Student_Major", new { area = "Student_majorSection", id = m.StudentMajorId }, null)
+
+                    </td>
+                </tr>
+                
+
+                
+            }
+        </table>
+        
+    </div>
+
+        <div>
+            @Html.ActionLink("Add Course", "Create", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
+        </div>
+        @*//Viewbag for logged in student courses with edit buttons for any and each existing course*@
+        <div>
+            @Html.ActionLink("Edit Course", "Edit", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
+        </div>
+
+    </div>
+    @*<div class="console_image">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
             {
                 <div class="profile-image_container">
@@ -40,6 +62,6 @@
                 <br />
                 @Html.ActionLink("Add Photo", "ProfilePicture")
             }
-        </div>
-    </section>
+        </div>*@
+</section>
 

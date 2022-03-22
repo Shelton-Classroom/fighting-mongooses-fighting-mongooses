@@ -179,7 +179,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList();
             return View(Student);
         }
-        public ActionResult MyAcademics(int? id)
+        public ActionResult MyAcademics()
         {
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);

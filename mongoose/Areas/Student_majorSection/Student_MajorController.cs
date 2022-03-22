@@ -58,7 +58,7 @@ namespace mongoose.Areas.Student_majorSection
             {
                 db.Student_Major.Add(student_Major);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
             }
 
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name", student_Major.MajorId);
@@ -97,7 +97,7 @@ namespace mongoose.Areas.Student_majorSection
             {
                 db.Entry(student_Major).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
             }
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name", student_Major.MajorId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Major.StudentId);
@@ -127,7 +127,7 @@ namespace mongoose.Areas.Student_majorSection
             Student_Major student_Major = db.Student_Major.Find(id);
             db.Student_Major.Remove(student_Major);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
         }
 
         protected override void Dispose(bool disposing)

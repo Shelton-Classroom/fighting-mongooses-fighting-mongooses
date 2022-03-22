@@ -39,7 +39,7 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                         <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     }
@@ -83,7 +83,7 @@
      
 
         (function () {
-            var current = location.pathname.split('/')[4]; //Change to [4] when pushing to server, file path is slightly different
+            var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
             console.log(current);
             if (current === "") return;
             var menuItems = document.querySelectorAll('.menu-item a');

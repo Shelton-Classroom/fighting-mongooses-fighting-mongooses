@@ -438,6 +438,7 @@
     <Content Include="Areas\StudentSection\Views\Students\MyAcademics.cshtml" />
     <Content Include="Areas\Student_majorSection\Views\Shared\_backToStu.cshtml" />
     <Content Include="Areas\Student_CourseSection\Views\Shared\_backToStu.cshtml" />
+    <Content Include="Areas\InternshipSection\Views\Shared\_backToEmp.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
