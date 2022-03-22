@@ -109,6 +109,20 @@ namespace mongoose.Areas.MajorSection
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
+            var intMaj = db.Internship_Major.Where(i => i.MajorId == id);
+            var stuMaj = db.Student_Major.Where(s => s.MajorId == id);
+            foreach (var m in intMaj) //deletes all internship majors related to Major being deleted
+            {
+                Internship_Major deleteIntMaj = db.Internship_Major.Find(m.InternshipMajorId);
+                db.Internship_Major.Remove(deleteIntMaj);
+            }
+            foreach (var m in stuMaj) //deletes all student majors related to Major being deleted
+            {
+                Student_Major deleteStuMaj = db.Student_Major.Find(m.StudentMajorId);
+                db.Student_Major.Remove(deleteStuMaj);
+            }
+
             Major major = db.Majors.Find(id);
             db.Majors.Remove(major);
             db.SaveChanges();
