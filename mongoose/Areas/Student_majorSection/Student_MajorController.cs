@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
+using Microsoft.AspNet.Identity; //This is needed when using User.Identity.GetUserId
+
 
 namespace mongoose.Areas.Student_majorSection
 {
@@ -41,9 +43,12 @@ namespace mongoose.Areas.Student_majorSection
         {
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
-            //var userId = User.Identity.GetUserId();
-            //var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            var userId = User.Identity.GetUserId();
+            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            ViewBag.StudentId = loggedIn.StudentId;
             //ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); Getting user ID is not working for the bridge table at this juncture
+
+                            
             return View();
         }
 

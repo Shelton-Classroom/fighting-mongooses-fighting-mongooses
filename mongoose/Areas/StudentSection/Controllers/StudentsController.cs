@@ -185,7 +185,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
             ViewBag.Name = loggedIn.FirstName;
 
-            ViewBag.EditProfile = loggedIn.StudentId;
+            ViewBag.StudentId = loggedIn.StudentId;
             ViewBag.UserId = userId;
             ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == loggedIn.StudentId).ToList();
             ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList();

@@ -37,7 +37,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
         public ActionResult ProfilePicture()
         {
             var userId = User.Identity.GetUserId();
-            ViewBag.UserId = userId;
+            ViewBag.User = userId;
             return View();
         }
 
@@ -64,6 +64,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
         public ActionResult OpenInternships()
         {   
             var userId = User.Identity.GetUserId();
+            ViewBag.User = userId;
             ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
             var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer m.b.
             return View(internships.ToList());
@@ -129,6 +130,8 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
+            var UserId = User.Identity.GetUserId();
+            ViewBag.UserEmpId = db.Employers.FirstOrDefault(e => e.Id == UserId).EmployerId;
             return View(employer);
         }
 
@@ -148,7 +151,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             }
             return View(employer);
         }
-
+        [Authorize(Roles = "Instructor")]
         // GET: EmployerSection/Employers/Delete/5
         public ActionResult Delete(int? id)
         {
