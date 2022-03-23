@@ -75,7 +75,23 @@
     </td>
     <td>
         @{
-            var major = item.Internship_Major.FirstOrDefault();
+            {
+
+                var major = item.Internship_Major.ToList();
+                if (major != null)
+                {
+                    foreach (var m in major)
+                    {
+                        <p>@m.Major.Name</p>
+                    }
+
+                }
+                else
+                {
+
+                }
+            }
+            @*var major = item.Internship_Major.FirstOrDefault();
             if (major != null)
             {
                 @Html.DisplayFor(m => major.Major.Name);
@@ -83,7 +99,7 @@
             else
             {
                 @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
-            }
+            }*@
         }
     </td>
     <td>

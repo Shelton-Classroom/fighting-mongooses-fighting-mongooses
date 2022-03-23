@@ -7,6 +7,10 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://kit.fontawesome.com/fc725e5524.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap Multiselect CSS -->
+    <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" />
+
+
 
 </head>
 <body>
@@ -62,34 +66,36 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <!-- Bootstrap Multiselect JS -->
+    <script type="text/javascript" src="~/Scripts/bootstrap-multiselect.js"></script>
     @RenderSection("scripts", required: false)
-<script>
+    <script>
 
-    $(function () {
-        $('#MajorList').change(function () {
-            var id = $(this).val();
-            console.log($(this).val());
-            if (id != null && id != '') {
-                window.location.href = "OpenInternships?majorId=" + id;
-            }
+        $(function () {
+            $('#MajorList').change(function () {
+                var id = $(this).val();
+                console.log($(this).val());
+                if (id != null && id != '') {
+                    window.location.href = "OpenInternships?majorId=" + id;
+                }
+            });
         });
-    });
-    $(function () {
-        $('#StudentMajorList').change(function () {
-            var id = $(this).val();
-            console.log($(this).val());
-            if (id != null && id != '') {
-                window.location.href = "StudentSearch?majorId=" + id;
-            }
+        $(function () {
+            $('#StudentMajorList').change(function () {
+                var id = $(this).val();
+                console.log($(this).val());
+                if (id != null && id != '') {
+                    window.location.href = "StudentSearch?majorId=" + id;
+                }
+            });
         });
-    });
 
         const hearts = document.querySelectorAll('i');
         Array.from(hearts).forEach(div => {
             div.addEventListener('click', changeColor);
         });
 
-     
+
 
         (function () {
             var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
@@ -111,7 +117,7 @@
                 console.log(id);
             });
         }
-   
+
         function changeColor() {
             if ($(this).hasClass('red')) {
                 $(this).removeClass('red');
@@ -121,7 +127,13 @@
                 console.log(this);
             }
         }
-</script>
-    
+
+        $(document).ready(function () {
+            $('#IntMajors').multiselect();
+        });
+
+
+    </script>
+
 </body>
 </html>
