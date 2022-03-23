@@ -74,6 +74,15 @@
             }
         });
     });
+    $(function () {
+        $('#StudentMajorList').change(function () {
+            var id = $(this).val();
+            console.log($(this).val());
+            if (id != null && id != '') {
+                window.location.href = "StudentSearch?majorId=" + id;
+            }
+        });
+    });
 
         const hearts = document.querySelectorAll('i');
         Array.from(hearts).forEach(div => {

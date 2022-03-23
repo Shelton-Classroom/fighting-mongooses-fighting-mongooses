@@ -4,26 +4,32 @@
     ViewBag.Title = "StudentSearch";
 }
 @Html.Partial("_employerNav")
-<h2>StudentSearch</h2>
+<h2>Student Search</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Search Students: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.ActionLink("STUDENT", "StudentSearch", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GraduationDate)
+            @Html.ActionLink("GRADUATION DATE", "StudentSearch", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EnrollmentStatus)
+            @Html.ActionLink("ENROLLMENT", "StudentSearch", new { sortOrder = ViewBag.EnrollmentSortParm })
         </th>
         <th>
-            Location
+            @Html.ActionLink("LOCATION", "StudentSearch", new { sortOrder = ViewBag.LocationSortParm })
         </th>
-        <th>Major</th>
+        <th>
+            @Html.DropDownList("Majors", null, "MAJOR", htmlAttributes: new { @class = "form-control", id = "StudentMajorList" })
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -56,12 +62,12 @@
                     }
                     else
                     {
-                        
+
                     }
                 }
             </td>
             <td>
-                @Html.ActionLink("Details", "Details","Students", new {area="StudentSection", id = item.StudentId }, null)
+                @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId }, null)
             </td>
         </tr>
     }
