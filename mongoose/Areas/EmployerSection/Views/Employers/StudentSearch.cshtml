@@ -7,10 +7,11 @@
 <h2>Student Search</h2>
 @using (Html.BeginForm())
 {
-    <p>
-        Search Students: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+<p>
+    Search Students: @Html.TextBox("SearchString")
+    <input class="btn btn-sm btn-primary" type="submit" value="Search" />
+    @Html.ActionLink("Clear All", "StudentSearch", "", new { @class = "btn btn-sm btn-info clear" })
+</p>
 }
 
 <table class="table">
