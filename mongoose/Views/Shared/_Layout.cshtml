@@ -71,7 +71,7 @@
     @RenderSection("scripts", required: false)
     <script>
 
-        $(function () {
+        $(function () { //Sends selected major id to controller to filter openInternships view mb
             $('#MajorList').change(function () {
                 var id = $(this).val();
                 console.log($(this).val());
@@ -80,7 +80,7 @@
                 }
             });
         });
-        $(function () {
+        $(function () {  //Sends selected major id to controller to filter StudentSearch view mb
             $('#StudentMajorList').change(function () {
                 var id = $(this).val();
                 console.log($(this).val());
@@ -90,46 +90,59 @@
             });
         });
 
-        const hearts = document.querySelectorAll('i');
+        const hearts = document.querySelectorAll('i');// adds click event listener to all heart favicons, triggers changeColor() on click mb
         Array.from(hearts).forEach(div => {
             div.addEventListener('click', changeColor);
         });
 
 
 
-        (function () {
-            var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different
-            console.log(current);
+        (function () {                                   //changes link background color for current page mb
+            var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different mb
             if (current === "") return;
             var menuItems = document.querySelectorAll('.menu-item a');
-            console.log(menuItems);
             for (var i = 0, len = menuItems.length; i < len; i++) {
                 if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
                     menuItems[i].parentElement.className += " active";
                 }
             }
         })();
-        function saveFunction(id) {
+        function saveFunction(id) {     //sends internship id to InternshipSave controller - triggered by I element onclick mb
             $.ajax({
                 url: 'InternshipSave',
                 data: { id: id }
             }).done(function () {
-                console.log(id);
+               
             });
         }
 
-        function changeColor() {
+        function changeColor() {     //when heart favicon is clicked, toggles red class for that heart element mb
             if ($(this).hasClass('red')) {
                 $(this).removeClass('red');
-                console.log(this);
             } else {
                 $(this).addClass('red');
-                console.log(this);
             }
         }
 
-        $(document).ready(function () {
+        $(document).ready(function () { // script for dropdown multi-select plugin mb
             $('#IntMajors').multiselect();
+        });
+
+        $('#IntMajors').change(function (e) {
+            var optionsVal = [];
+            $("#IntMajors option").each(function () {
+                optionsVal.push($(this).val());
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'Create',
+                traditional: true,
+                dataType: "json",
+                data: { SelectedSortOrderOptions: optionsVal },
+                success: function () {
+                    console.log(optionsVal);
+                },
+            });
         });
 
 

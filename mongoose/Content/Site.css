@@ -57,6 +57,9 @@ i:hover{
 .clear {
     float: right;
 }
+.table tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
 
 /*.link_container {
     display: flex;
