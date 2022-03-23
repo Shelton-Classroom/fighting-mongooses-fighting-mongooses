@@ -28,6 +28,7 @@ namespace mongoose.Models
         [Display(Name = "Student Name")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> GraduationDate { get; set; }
         public status EnrollmentStatus { get; set; }
         public string Email { get; set; }

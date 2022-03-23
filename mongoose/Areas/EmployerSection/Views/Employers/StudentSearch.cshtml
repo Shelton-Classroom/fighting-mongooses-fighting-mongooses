@@ -1,0 +1,69 @@
+﻿@model IEnumerable<mongoose.Models.Student>
+
+@{
+    ViewBag.Title = "StudentSearch";
+}
+@Html.Partial("_employerNav")
+<h2>StudentSearch</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GraduationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentStatus)
+        </th>
+        <th>
+            Location
+        </th>
+        <th>Major</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.FirstName @item.LastName
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GraduationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentStatus)
+            </td>
+            <td>
+                @item.City ,@item.State
+            </td>
+            <td>
+                @{
+
+                    var major = item.Student_Major.ToList();
+                    if (major != null)
+                    {
+                        foreach (var m in major)
+                        {
+                            <p>@m.Major.Name</p>
+                        }
+
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details","Students", new {area="StudentSection", id = item.StudentId }, null)
+            </td>
+        </tr>
+    }
+
+</table>

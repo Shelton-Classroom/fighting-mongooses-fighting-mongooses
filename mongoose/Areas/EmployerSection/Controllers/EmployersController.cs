@@ -75,7 +75,11 @@ namespace mongoose.Areas.EmployerSection.Controllers
             var internships = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId);   //List of "active" student_internships created by logged in employer
             return View(internships.ToList());
         }
-
+        public ActionResult StudentSearch()
+        {
+            var students = db.Students.ToList();
+            return View(students);
+        }
         // GET: EmployerSection/Employers/Details/5
         public ActionResult Details(int? id)
         {

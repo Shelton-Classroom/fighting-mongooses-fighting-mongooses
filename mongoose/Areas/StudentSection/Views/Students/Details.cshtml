@@ -100,26 +100,12 @@
                     @Html.DisplayFor(model => model.Zipcode)
 
                 </dd>
-
-                @*<dd>
-            @Html.DisplayNameFor(model => model.Student_Major.Where(studentID = )
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student_Major.Where(studentID = )
-        </dd>*@
-
-
-                @*<dd>
-            @Html.DisplayNameFor(model => model.Student_Course.Where(studentID = )
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student_Course.Where(studentID = )
-        </dd>*@
-
-
             </dl>
+            <h4>Major(s)</h4>
+            @foreach(var m in ViewBag.studentmajor)
+            {
+                <p>@m.Major.Name</p>
+            }
         </div>
         <div class="photo-container">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
