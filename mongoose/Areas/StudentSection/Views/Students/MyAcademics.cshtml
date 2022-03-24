@@ -8,21 +8,19 @@
 <section class="console_container">
     <div class="console_info">
         <h3>@ViewBag.Name's academics</h3>
-        <h1>UNDER CONSTRUCTION</h1>
-        <div>
-            @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection"}, new { @class = "nav-link" })
-        </div>
+     
         @*//Viewbag for logged in student major(s) will go here with the edit button for any and each existing major*@
     <div>
         <table class="table">
             <tr>
-                <th>Major</th>
+                <th><h1><b>Major(s)</b></h1></th>
             </tr>
+
             @foreach (var m in ViewBag.studentmajor)
             {
                 <tr>
                     <td>
-                    <p>@m.Major.Name</p>
+                        <p>@m.Major.Name</p>
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", "Student_Major", new { area = "Student_majorSection", id = m.StudentMajorId }, null) |
@@ -30,21 +28,50 @@
 
                     </td>
                 </tr>
-                
 
-                
+
+
             }
+
         </table>
-        
+        <div>
+            @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
+        </div>
+
     </div>
 
+       
+        @*//Viewbag for logged in student courses with edit buttons for any and each existing course*@
+    <div>
+        <table class="table">
+            <tr>
+                <th><h1><b>Course(s)</b></h1></th>
+            </tr>
+
+            @foreach (var c in ViewBag.studentcourse)
+            {
+                <tr>
+                    <td>
+                        <p>@c.Cours.Name    -    @c.SemesterCompleted</p> @*//Do we want to include more info here?*@
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Student_Course", new { area = "Student_CourseSection", id = c.StudentCourseid }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Student_Course", new { area = "Student_CourseSection", id = c.StudentCourseid }, null)
+
+                    </td>
+                </tr>
+
+
+
+            }
+
+        </table>
         <div>
             @Html.ActionLink("Add Course", "Create", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
         </div>
-        @*//Viewbag for logged in student courses with edit buttons for any and each existing course*@
-        <div>
-            @Html.ActionLink("Edit Course", "Edit", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
-        </div>
+
+    </div>
+    
 
     </div>
 
