@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mongoose.Models;
+using Microsoft.AspNet.Identity;
 
 namespace mongoose.Areas.Student_CourseSection.Controllers
 {
@@ -41,15 +42,9 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
         {
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
-            //var userId = User.Identity.GetUserId(); 
-            //var user = db.Employers.FirstOrDefault(e => e.Id == userId); //employer that matches logged in user
-            //db.Student_Courses.Add(studentcourse);
-            //Student_course.StudentId = user.StudentId;
-
-
-            //var userId = User.Identity.GetUserId();
-            //var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
-            //ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == loggedIn.StudentId).ToList(); Getting user ID is not working for the bridge table at this juncture
+            var userId = User.Identity.GetUserId();
+            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            ViewBag.StudentId = loggedIn.StudentId;
             return View();
         }
 

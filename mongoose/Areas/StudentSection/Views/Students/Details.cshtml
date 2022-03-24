@@ -106,6 +106,10 @@
             {
                 <p>@m.Major.Name</p>
             }
+            @foreach(var c in ViewBag.studentcourse)
+            {
+                <p>@c.Cours.Name</p>
+            }
         </div>
         <div class="photo-container">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
