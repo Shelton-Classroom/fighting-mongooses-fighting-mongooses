@@ -59,7 +59,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             {
                 db.Student_Course.Add(student_Course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
@@ -98,7 +98,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             {
                 db.Entry(student_Course).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Course.StudentId);
