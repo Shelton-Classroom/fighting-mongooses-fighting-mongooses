@@ -78,7 +78,7 @@
             {
 
                 var major = item.Internship_Major.ToList();
-                if (major != null)
+                if (major.Count != 0)
                 {
                     foreach (var m in major)
                     {
@@ -88,18 +88,10 @@
                 }
                 else
                 {
-
+                    @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
                 }
             }
-            @*var major = item.Internship_Major.FirstOrDefault();
-            if (major != null)
-            {
-                @Html.DisplayFor(m => major.Major.Name);
-            }
-            else
-            {
-                @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
-            }*@
+            
         }
     </td>
     <td>

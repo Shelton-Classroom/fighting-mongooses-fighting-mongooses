@@ -126,23 +126,25 @@
 
         $(document).ready(function () { // script for dropdown multi-select plugin mb
             $('#IntMajors').multiselect();
+            
         });
 
         $('#IntMajors').change(function (e) {
             var optionsVal = [];
-            $("#IntMajors option").each(function () {
-                optionsVal.push($(this).val());
+            $("#IntMajors").each(function () {
+                var test = optionsVal.push($(this).val());
+                console.log(this);
             });
-            $.ajax({
-                type: 'POST',
-                url: 'Create',
-                traditional: true,
-                dataType: "json",
-                data: { SelectedSortOrderOptions: optionsVal },
-                success: function () {
-                    console.log(optionsVal);
-                },
-            });
+            //$.ajax({
+            //    type: 'POST',
+            //    url: 'Create',
+            //    traditional: true,
+            //    dataType: "json",
+            //    data: { SelectedSortOrderOptions: optionsVal },
+            //    success: function () {
+            //        console.log(optionsVal);
+            //    },
+            //});
         });
 
 
