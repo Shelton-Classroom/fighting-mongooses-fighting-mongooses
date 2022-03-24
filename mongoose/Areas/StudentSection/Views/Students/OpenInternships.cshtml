@@ -92,10 +92,13 @@
     <td>
         @{
 
-            var major = item.Internship_Major.FirstOrDefault();
+            var major = item.Internship_Major.ToList();
             if (major != null)
             {
-                @Html.DisplayFor(m => major.Major.Name);
+                foreach (var m in major)
+                {
+                    <p>@m.Major.Name</p>
+                }
             }
             else
             {
