@@ -68,7 +68,7 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId }, null)
+                @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId}, new {@class = "btn btn-sm btn-info"})
             </td>
         </tr>
     }

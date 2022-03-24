@@ -26,6 +26,10 @@ textarea {
 
 
 /*please do not remove, michaels styling*/
+a {
+    text-decoration: none;
+}
+
 .learn_more {
     margin-top: 6rem;
     background-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%), url(Image/puzzle.jpg);
@@ -58,42 +62,10 @@ i:hover{
     float: right;
 }
 .table tr:nth-child(even) {
-    background-color: #f8f8f8;
+    /*background-color: dark;*/
 }
 
-/*.link_container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-    justify-content: space-between;
-    width:100%;
 
-}
-
-.link {
-    height: 400px;
-    background: grey;
-    border: 5px solid black;
-    border-radius: 5px;
-    
-}
-*/
-
-
-/*input[type="file"] {
-    display: none;
-}
-.custom-upload {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-    .custom-upload:hover {
-        background-color: #e0e0e0;
-        background-position: 0 -15px;
-    }*/
 .console_container {
     display: flex;
     flex-direction: row;
@@ -102,17 +74,52 @@ i:hover{
     height: 50vh;
     align-content: center;
     align-items: stretch;
-    background-image: -webkit-linear-gradient(bottom, #ffffff 0%, #f8f8f8 100%)
+    
 }
+
+
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+.dashboard_info_panel{
+    flex: 1 1 0px;
+}
+.dashboard_image_panel {
+    flex: 1 1 0px;
+}
+
+.dashboard_info_content{
+    padding: 2rem;
+}
+.dashboard_image_content{
+    
+}
+dashboard_image_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.dashboard-image {
+    height: 100%;
+    width: 100%;
+    min-width:200px;
+    object-fit: cover;
+}
+
+
+
 .login_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.login_container .list{
-    margin: 2rem
-}
 
+    .login_container .list {
+        margin: 2rem
+    }
 
 /*end michaels sytling*/

@@ -99,15 +99,15 @@
             var count = item.Saved_Internship.ToList().Count();
             if (count != 0)
             {
-                @Html.ActionLink("Saved by " + count + "Students", "StudentSaved", "Employers", new { area = "EmployerSection", id =item.InternshipId }, null)
+                @Html.ActionLink("Saved by " + count + " Students", "StudentSaved", "Employers", new { area = "EmployerSection", id =item.InternshipId }, null)
             }
 
         }
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null) |
-        @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null) |
-        @Html.ActionLink("Delete", "Delete/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null)
+        @Html.ActionLink("Edit", "Edit/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new {@class = "label label-success"}) 
+        @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-info" })
+        @Html.ActionLink("Delete", "Delete/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-warning" })
     </td>
 </tr>
     }

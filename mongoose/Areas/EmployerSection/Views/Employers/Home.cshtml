@@ -5,32 +5,48 @@
 @{
     ViewBag.Title = "HOME";
 }
-<section class="console_container">
-    <div class="console_info">
-        <h1>@ViewBag.BusinessName</h1>
-        <h3>WELCOME: @ViewBag.LoggedIn</h3>
-        <p>You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships") Active Internship(s).</p>
-        @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+<section class="dashboard">
+    <div class="dashboard_info_panel panel panel-info">
+        <div class="panel-heading">
+            <h1 class="panel-title">@ViewBag.BusinessName</h1>
+        </div>
+        <div class="panel-content dashboard_info_content">
+            <h3 style="font-size: 4rem;">WELCOME: @ViewBag.LoggedIn</h3>
+            @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+            <br/>
+        <p style="font-size:3rem;">You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships") Active Internship(s).</p>
+
+        </div>
+        
+        
+    </div>
+    <div class="dashboard_image_panel panel panel-success">
+        <div class="panel-heading">
+            <h1 class="panel-title">Profile Image</h1>
+        </div>
+        <div class="panel-content dashboard_image_content">
+            <div class="dashboard_image_container">
+                @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+                {
+                    
+                        <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))"/>
+                    
+
+                }
+                else
+                {
+
+                    <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+                    <br />
+                    @Html.ActionLink("Add Photo", "ProfilePicture")
+                }
+
+            </div>
+        </div>
     </div>
     @*eventually add a count of students who have saved internships and link to list of those students?*@
-   
-<div class="console_image">
-    @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg"))) 
-    {
-        <div class="profile-image_container">
-            <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
-        </div>
 
-    }
-    else
-    {
-
-        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
-        <br/>
-        @Html.ActionLink("Add Photo", "ProfilePicture")
-    }
-
-</div>
+ 
 </section>
 
 
