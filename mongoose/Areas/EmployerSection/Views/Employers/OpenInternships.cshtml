@@ -91,7 +91,17 @@
                     @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
                 }
             }
-            
+
+        }
+    </td>
+    <td>
+        @{
+            var count = item.Saved_Internship.ToList().Count();
+            if (count != 0)
+            {
+                @Html.ActionLink("Saved by " + count + "Students", "StudentSaved", "Employers", new { area = "EmployerSection", id =item.InternshipId }, null)
+            }
+
         }
     </td>
     <td>

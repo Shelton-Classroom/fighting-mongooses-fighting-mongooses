@@ -67,6 +67,8 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.User = userId;
             ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
             var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer m.b.
+            ViewBag.Saved = db.Saved_Internship.ToList();
+
             return View(internships.ToList());
         }
         public ActionResult ActiveInternships()
@@ -135,6 +137,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
 
             
             return View(students);
+        }
+
+        public ActionResult StudentSaved(int? id)
+        {
+            ViewBag.InternshipId = id;
+            var saved = db.Saved_Internship.Where(s => s.InternshipId == id).ToList();
+            var student = saved.Select(x => x.Student).ToList();
+            return View(student);
         }
         // GET: EmployerSection/Employers/Details/5
         public ActionResult Details(int? id)
