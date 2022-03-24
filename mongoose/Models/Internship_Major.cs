@@ -12,13 +12,12 @@ namespace mongoose.Models
     using System;
     using System.Collections.Generic;
     
-
     public partial class Internship_Major
     {
-        
         public int InternshipMajorId { get; set; }
         public int MajorId { get; set; }
         public int InternshipId { get; set; }
+    
         public virtual Internship Internship { get; set; }
         public virtual Major Major { get; set; }
     }

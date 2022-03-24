@@ -52,7 +52,7 @@
             {
                 <tr>
                     <td>
-                        <p>@c.Cours.Name</p>
+                        <p>@c.Cours.Name    -    @c.SemesterCompleted</p> @*//Do we want to include more info here?*@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", "Student_Course", new { area = "Student_CourseSection", id = c.StudentCourseid }, null) |
