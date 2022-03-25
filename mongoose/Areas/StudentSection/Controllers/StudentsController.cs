@@ -159,7 +159,12 @@ namespace mongoose.Areas.StudentSection.Controllers
 
             return View(internships);
         }
-        //public ActionResult RecommendedInternshipss()   
+        public ActionResult ActiveInternships()   //This will be setup once instructor section has view for adding student to internship creating a student_intership
+        {
+            var userId = User.Identity.GetUserId();
+            var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
+            return View(internships);
+        }        //public ActionResult RecommendedInternshipss()   
         //{
         //    var userId = User.Identity.GetUserId();
         //    var studentmajor = db.Student_Major where (i => i.Student.Id == userId);   //List of internships student is assigned to
