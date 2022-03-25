@@ -159,10 +159,16 @@ namespace mongoose.Areas.StudentSection.Controllers
 
             return View(internships);
         }
+        //public ActionResult RecommendedInternshipss()   
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    var studentmajor = db.Student_Major where (i => i.Student.Id == userId);   //List of internships student is assigned to
+        //    var recommewndedinternships = db.Internshp
+        //    return View(recommendedinternships);
+        //}
 
-       
-            // GET: StudentSection/Students/Details/5
-            public ActionResult Details(int? id)
+        // GET: StudentSection/Students/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {

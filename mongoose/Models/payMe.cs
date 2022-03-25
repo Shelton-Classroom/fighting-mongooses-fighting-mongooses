@@ -6,16 +6,14 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace mongoose.Models
 {
     using System;
     
     public enum payMe : int
     {
-        [Display(Name = "Paid")]
         Payed = 0,
-        [Display(Name = "Unpaid")]
         NotPayed = 1
     }
 }
