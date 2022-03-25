@@ -1,0 +1,50 @@
+Team,Task,Status,Activity,GoalDueDate,GoalCompletionDate,ActivityDate,Student,Hours,Minutes,Sprint,Pig
+Fighting Mongooses,Build ERD (Shared),Completed,added student attributes and a few more tables,1/25/2022,1/23/2022,1/12/2022,Michael Bourlotos,1,0,1,1
+Fighting Mongooses,Upload Database ,Completed,Uploaded Model To Server,2/5/2022,1/30/2022,1/30/2022,Michael Bourlotos,1,0,1,2
+Fighting Mongooses,Develop Pseudocode,Completed,Created minimum functionality list,2/7/2022,2/6/2022,1/12/2022,Michael Bourlotos,1,0,1,1
+Fighting Mongooses,Employer Area,In Progress,Linked employer table to aspuser table,3/7/2022,,2/20/2022,Michael Bourlotos,4,0,2,5
+Fighting Mongooses,Employer Area,In Progress,role assigned on registration,3/7/2022,,2/21/2022,Michael Bourlotos,1,0,2,5
+Fighting Mongooses,Employer Area,In Progress,fixed git mess up,3/7/2022,,2/22/2022,Michael Bourlotos,1,0,2,5
+Fighting Mongooses,Employer Area,In Progress,Added role option for registration,3/7/2022,,2/23/2022,Michael Bourlotos,2,0,2,5
+Fighting Mongooses,Employer Area,In Progress,home page displays info based on logged in user,3/7/2022,,2/23/2022,Michael Bourlotos,2,0,2,5
+Fighting Mongooses,Update Instructor/Student in database to have relationship with aspuser table,Completed,Finished,3/5/2022,2/23/2022,2/23/2022,Michael Bourlotos,1,0,2,5
+Fighting Mongooses,Employer Area,In Progress,added functionality to student/instructor to match employer,3/7/2022,,2/23/2022,Michael Bourlotos,1,0,2,5
+Fighting Mongooses,Employer Area,In Progress,Dynamic Navbar - all areas -,3/7/2022,,2/25/2022,Michael Bourlotos,1,0,2,5
+Fighting Mongooses,Sprint 2 - Presentation,In Progress,Start minimum functionality list for User Interface,3/21/2022,,2/28/2022,Michael Bourlotos,0,30,2,6
+Fighting Mongooses,Employer Area,In Progress,Did final changes to database,3/7/2022,,3/1/2022,Michael Bourlotos,2,0,2,6
+Fighting Mongooses,Employer Area,In Progress,Started adding dummy employer data,3/7/2022,,3/1/2022,Michael Bourlotos,1,0,2,6
+Fighting Mongooses,Employer Area,In Progress,Employer Section Nav partial / display user created  internships,3/7/2022,,3/2/2022,Michael Bourlotos,4,0,2,6
+Fighting Mongooses,Employer Area,In Progress,Completed Employer Navigation,3/7/2022,,3/3/2022,Michael Bourlotos,3,0,2,6
+Fighting Mongooses,Employer Area,In Progress,added internship major into the mix,3/7/2022,,3/4/2022,Michael Bourlotos,2,0,2,6
+Fighting Mongooses,Sprint 2 - Presentation,In Progress,Started set-up,3/21/2022,,3/4/2022,Michael Bourlotos,0,30,2,6
+Fighting Mongooses,Employer Area,In Progress,Functionality nearly done,3/7/2022,,3/6/2022,Michael Bourlotos,3,0,2,6
+Fighting Mongooses,Employer Area,In Progress,Fixed most recent changes,3/7/2022,,3/7/2022,Michael Bourlotos,1,0,2,7
+Fighting Mongooses,Build ERD (Shared),Completed,Added more attributes to the existing entities,1/25/2022,1/23/2022,1/23/2022,Gaelan Rose Geronimo,2,0,1,1
+Fighting Mongooses,Develop Pseudocode,Completed,Initial pseudocodes for student and employer drafted up to be discussed with team,2/7/2022,2/6/2022,1/30/2022,Gaelan Rose Geronimo,2,0,1,2
+Fighting Mongooses,Develop Pseudocode,Completed,Finished charts of all 3 roles,2/7/2022,2/6/2022,2/6/2022,Gaelan Rose Geronimo,3,0,1,3
+Fighting Mongooses,Creating MVC Application ,Pipeline,Troubleshooted directory issues and did a test push,2/7/2022,,2/7/2022,Gaelan Rose Geronimo,0,15,1,4
+Fighting Mongooses,Creating MVC Application ,Pipeline,Did some initial editing on content for landing/non-sectioned pages,2/7/2022,,2/9/2022,Gaelan Rose Geronimo,1,0,1,4
+Fighting Mongooses,Build student area functionality,In Progress,View areas added for student landing and subsequent internship pages,4/4/2022,,2/20/2022,Gaelan Rose Geronimo,2,15,2,5
+Fighting Mongooses,Build student area functionality,In Progress,Housekeeping on reg and student landing and rebuilding scaffolding and base pages,4/4/2022,,2/27/2022,Gaelan Rose Geronimo,3,0,2,5
+Fighting Mongooses,Build student area functionality,In Progress,navbar added; controller updated to include views and scaffolding; references updated to accomodate,4/4/2022,,3/6/2022,Gaelan Rose Geronimo,2,0,2,6
+Fighting Mongooses,Build ERD (Shared),Completed,PIG Report,1/25/2022,1/23/2022,1/17/2022,Alex Moore,1,0,1,1
+Fighting Mongooses,Develop Pseudocode,Completed,Looked at Psuedocode,2/7/2022,2/6/2022,1/30/2022,Alex Moore,0,15,1,2
+Fighting Mongooses,Creating MVC Application ,Pipeline,Made web application,2/7/2022,,1/30/2022,Alex Moore,0,45,1,2
+Fighting Mongooses,Creating Live Chatroom/Email Functionality within the mvc application,Pipeline,Created Psuedocode,2/14/2022,,2/6/2022,Alex Moore,1,0,1,3
+Fighting Mongooses,Creating Live Chatroom/Email Functionality within the mvc application,Pipeline,Redid code still running into issues,2/14/2022,,2/21/2022,Alex Moore,2,0,2,5
+Fighting Mongooses,Creating Live Chatroom/Email Functionality within the mvc application,Pipeline,Created Chat App,2/14/2022,,2/13/2022,Alex Moore,2,0,1,4
+Fighting Mongooses,Create internships,Pipeline,Created Draft for Internships,3/7/2022,,2/27/2022,Alex Moore,0,30,2,5
+Fighting Mongooses,Instructor Functionality,Pipeline,Added InstructorIndex page ,3/7/2022,,3/6/2022,Alex Moore,2,0,2,6
+Fighting Mongooses,Color Theme,Completed,Color Theme Selected for the Web and the Brochure.,2/21/2022,1/24/2022,1/24/2022,Ramu Bista,1,0,1,2
+Fighting Mongooses,"Storyboard, Layout and Logo",Completed,Layout Done/ Wireframe,2/21/2022,2/6/2022,1/28/2022,Ramu Bista,1,0,1,2
+Fighting Mongooses,"Storyboard, Layout and Logo",Completed,Logo Completion/ Front Page Started,2/21/2022,2/6/2022,2/6/2022,Ramu Bista,2,0,1,3
+Fighting Mongooses,Front Page Layout,In Progress,"Working on Nav bars, logo and the first page Setup.",2/21/2022,,2/6/2022,Ramu Bista,1,0,1,3
+Fighting Mongooses,Front Page Layout,In Progress,Completed front page layout.,2/21/2022,,2/15/2022,Ramu Bista,2,0,2,5
+Fighting Mongooses,Front Page Layout,In Progress,Landing Page Layout,2/21/2022,,2/21/2022,Ramu Bista,1,0,2,5
+Fighting Mongooses,Site Overview,Pipeline,Page on server.,3/15/2022,,2/21/2022,Ramu Bista,1,0,2,5
+Fighting Mongooses,The brochure,Completed,The brochure,2/7/2022,,2/7/2022,Claudia Butler,1,0,1,4
+Fighting Mongooses,The brochure,Completed,The brochure,3/3/2022,3/3/2022,3/3/2022,Claudia Butler,3,0,2,6
+Fighting Mongooses,The brochure,Completed,The brochure,2/7/2022,,2/7/2022,Claudia Butler,1,0,1,4
+Fighting Mongooses,The brochure,Completed,The brochure,2/14/2022,,2/14/2022,Claudia Butler,1,0,2,5
+Fighting Mongooses,Team reporting,In Progress,Team reporting,2/21/2022,,2/21/2022,Claudia Butler,2,0,2,5
+Fighting Mongooses,Website,In Progress,Website,1/31/2022,,1/31/2022,Claudia Butler,2,0,1,3
