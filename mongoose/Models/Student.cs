@@ -23,7 +23,7 @@ namespace mongoose.Models
             this.Student_Major = new HashSet<Student_Major>();
             this.Saved_Internship = new HashSet<Saved_Internship>();
         }
-    
+        [Display(Name = "Student Id")]
         public int StudentId { get; set; }
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -32,6 +32,7 @@ namespace mongoose.Models
         [Display(Name = "Graduation Date")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> GraduationDate { get; set; }
+        [Display(Name = "Enrolled")]
         public status EnrollmentStatus { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
