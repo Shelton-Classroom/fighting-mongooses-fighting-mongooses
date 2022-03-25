@@ -25,7 +25,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.UserId = userId;
             ViewBag.EditProfile = profileDetails;
             ViewBag.BusinessName = loggedIn.Name;
-
+            ViewBag.Developer = "MB";
             ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count().ToString();// number of employers open internships
 
             var activeInternships = 
@@ -38,6 +38,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             ViewBag.User = userId;
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -68,13 +69,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
             var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer m.b.
             ViewBag.Saved = db.Saved_Internship.ToList();
-
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
         public ActionResult ActiveInternships()
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId);   //List of "active" student_internships created by logged in employer
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
         public ActionResult StudentSearch(string sortOrder, string searchString, int? majorId)
@@ -135,7 +137,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
                     break;
             }
 
-            
+            ViewBag.Developer = "MB";
             return View(students);
         }
 
@@ -144,6 +146,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.InternshipId = id;
             var saved = db.Saved_Internship.Where(s => s.InternshipId == id).ToList();
             var student = saved.Select(x => x.Student).ToList();
+            ViewBag.Developer = "MB";
             return View(student);
         }
         // GET: EmployerSection/Employers/Details/5
@@ -158,12 +161,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(employer);
         }
 
         // GET: EmployerSection/Employers/Create
         public ActionResult Create()
         {
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -202,6 +207,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             }
             var UserId = User.Identity.GetUserId();
             ViewBag.UserEmpId = db.Employers.FirstOrDefault(e => e.Id == UserId).EmployerId;
+            ViewBag.Developer = "MB";
             return View(employer);
         }
 
@@ -242,6 +248,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            ViewBag.Developer = "MB";
             Employer employer = db.Employers.Find(id);
             db.Employers.Remove(employer);
             db.SaveChanges();

@@ -25,6 +25,7 @@ namespace mongoose.Areas.StudentSection.Controllers
 
             ViewBag.EditProfile = loggedIn.StudentId;
             ViewBag.UserId = userId;
+            ViewBag.Developer = "MB";
 
 
             return View();
@@ -37,6 +38,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             ViewBag.UserId = userId;
+            ViewBag.Developer = "MB";
             return View();
         }
         [HttpPost]
@@ -136,6 +138,7 @@ namespace mongoose.Areas.StudentSection.Controllers
                     internships = internships.OrderByDescending(i => i.PostDate);
                     break;
             }
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
         //public ActionResult StuMajor()
@@ -149,6 +152,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
+            ViewBag.Developer = "MB";
             return View(internships);
         }
         public ActionResult SavedInternships()
@@ -156,7 +160,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             var userId = User.Identity.GetUserId(); //gets logged in users id
             var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId; //gets logged in users studentId
             var internships = db.Saved_Internship.Where(s => s.StudentId == studentId);
-
+            ViewBag.Developer = "MB";
             return View(internships);
         }
         //public ActionResult ActiveInternships()   //This will be setup once instructor section has view for adding student to internship creating a student_intership
@@ -188,6 +192,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             }
             ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == id).ToList();
             ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == id).ToList();
+            ViewBag.Developer = "MB";
             return View(Student);
         }
         public ActionResult MyAcademics()
@@ -205,6 +210,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         // GET: StudentSection/Students/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -241,6 +247,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
+           
             return View(Student);
         }
 
@@ -273,6 +280,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(Student);
         }
 

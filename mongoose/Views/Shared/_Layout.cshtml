@@ -59,7 +59,25 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - FIGHTING MONGOOSES</p>
+            <p style="display: inline-block;">&copy; @DateTime.Now.Year - FIGHTING MONGOOSES</p>
+            <span class="developer">
+                @switch (ViewBag.Developer)
+                {
+                    case "MB":
+                        @Html.Raw("Software Engineer: Michael Bourlotos")
+                        break;
+                    case "AM":
+                        @Html.Raw("Software Engineer: Alex More")
+                        break;
+                    case "GG":
+                        @Html.Raw("Software Engineer: Gaelan Geronimo")
+                        break;
+                    default:
+                        @Html.Raw("Software Engineer: All Programmers")
+                        break;
+                }
+            </span>
+    
         </footer>
     </div>
 
@@ -73,79 +91,79 @@
 
         $(function () { //Sends selected major id to controller to filter openInternships view mb
             $('#MajorList').change(function () {
-                var id = $(this).val();
-                console.log($(this).val());
-                if (id != null && id != '') {
-                    window.location.href = "OpenInternships?majorId=" + id;
-                }
-            });
-        });
+                        var id = $(this).val();
+                        console.log($(this).val());
+                        if (id != null && id != '') {
+                            window.location.href = "OpenInternships?majorId=" + id;
+                        }
+                    });
+                });
         $(function () {  //Sends selected major id to controller to filter StudentSearch view mb
             $('#StudentMajorList').change(function () {
-                var id = $(this).val();
-                console.log($(this).val());
-                if (id != null && id != '') {
-                    window.location.href = "StudentSearch?majorId=" + id;
-                }
-            });
-        });
+                        var id = $(this).val();
+                        console.log($(this).val());
+                        if (id != null && id != '') {
+                            window.location.href = "StudentSearch?majorId=" + id;
+                        }
+                    });
+                });
 
-        const hearts = document.querySelectorAll('i');// adds click event listener to all heart favicons, triggers changeColor() on click mb
-        Array.from(hearts).forEach(div => {
-            div.addEventListener('click', changeColor);
-        });
+                const hearts = document.querySelectorAll('i');// adds click event listener to all heart favicons, triggers changeColor() on click mb
+                Array.from(hearts).forEach(div => {
+                    div.addEventListener('click', changeColor);
+                });
 
 
 
-        (function () {                                   //changes link background color for current page mb
-            var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different mb
-            if (current === "") return;
-            var menuItems = document.querySelectorAll('.menu-item a');
-            for (var i = 0, len = menuItems.length; i < len; i++) {
-                if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
-                    menuItems[i].parentElement.className += " active";
-                }
-            }
-        })();
-        function saveFunction(id) {     //sends internship id to InternshipSave controller - triggered by I element onclick mb
+                (function () {                                   //changes link background color for current page mb
+                    var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different mb
+                    if (current === "") return;
+                    var menuItems = document.querySelectorAll('.menu-item a');
+                    for (var i = 0, len = menuItems.length; i < len; i++) {
+                        if (menuItems[i].getAttribute("href").indexOf(current) !== -1) {
+                            menuItems[i].parentElement.className += " active";
+                        }
+                    }
+                })();
+                function saveFunction(id) {     //sends internship id to InternshipSave controller - triggered by I element onclick mb
             $.ajax({
-                url: 'InternshipSave',
+                    url: 'InternshipSave',
                 data: { id: id }
-            }).done(function () {
-               
-            });
-        }
+                    }).done(function () {
 
-        function changeColor() {     //when heart favicon is clicked, toggles red class for that heart element mb
-            if ($(this).hasClass('red')) {
-                $(this).removeClass('red');
-            } else {
-                $(this).addClass('red');
+                });
             }
-        }
+
+            function changeColor() {     //when heart favicon is clicked, toggles red class for that heart element mb
+                if ($(this).hasClass('red')) {
+                $(this).removeClass('red');
+                } else {
+                $(this).addClass('red');
+                }
+            }
 
         $(document).ready(function () { // script for dropdown multi-select plugin mb
             $('#IntMajors').multiselect();
-            
-        });
+
+            });
 
         $('#IntMajors').change(function (e) {
-            var optionsVal = [];
+                var optionsVal = [];
             $("#IntMajors").each(function () {
-                var test = optionsVal.push($(this).val());
-                console.log(this);
+                    var test = optionsVal.push($(this).val());
+                    console.log(this);
+                });
+                //$.ajax({
+                //    type: 'POST',
+                //    url: 'Create',
+                //    traditional: true,
+                //    dataType: "json",
+                //    data: { SelectedSortOrderOptions: optionsVal },
+                //    success: function () {
+                //        console.log(optionsVal);
+                //    },
+                //});
             });
-            //$.ajax({
-            //    type: 'POST',
-            //    url: 'Create',
-            //    traditional: true,
-            //    dataType: "json",
-            //    data: { SelectedSortOrderOptions: optionsVal },
-            //    success: function () {
-            //        console.log(optionsVal);
-            //    },
-            //});
-        });
 
 
     </script>

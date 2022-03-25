@@ -60,6 +60,7 @@ i:hover{
 }
 .red {
     color: red;
+    transition: 200ms ease-in-out;
 }
 
 .clear {
@@ -126,4 +127,8 @@ dashboard_image_container {
         margin: 2rem
     }
 
+    span.developer {
+        float: right;
+        display: inline-block;
+    }
 /*end michaels sytling*/
