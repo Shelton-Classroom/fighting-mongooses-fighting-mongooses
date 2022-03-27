@@ -25,7 +25,7 @@ textarea {
 
 
 
-/*please do not remove, michaels styling*/
+/*please do not remove --------------------------------------------------------------------------- michaels styling*/
 /*.navbar-brand {
     background-image: url(Image/LOGO.svg);
     background-repeat: no-repeat;
@@ -131,4 +131,52 @@ dashboard_image_container {
         float: right;
         display: inline-block;
     }
-/*end michaels sytling*/
+
+
+.internship_container{
+    flex-direction: column;
+    display: flex;
+    gap: 2rem;
+}
+.internship_block{
+    
+    width:100%;
+}
+.internship_panel_heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.internship_panel_heading > * {
+    
+}
+.internship_panel_body{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    overflow: hidden;
+    
+}
+.internship_panel_body:before, .internship_panel_body::after{
+        content: none;
+}
+.internship_panel_major{
+    width:200px;
+}
+.internship_panel_body_description {
+    max-height: 4vh;
+    max-width: 600px;
+}
+.internship_buttons{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-self: center;
+}
+.internship_button{
+   
+}
+
+
+/*end ---------------------------- michaels ---------------------------------------------- sytling*/

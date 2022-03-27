@@ -8,7 +8,91 @@
 <p>
     @Html.ActionLink("Create New", "Create","Internships", new {area = "InternshipSection"}, null)
 </p>
-<table class="table">
+
+<div class="internship_container">
+    @foreach (var item in Model)
+    {
+        @*<div class="internship_block alert alert-dismissible alert-success">
+
+            </div>*@
+        <div class="panel panel-default internship_block">
+            <div class="panel-heading internship_panel_heading">
+                # @Html.DisplayFor(modelItem => item.InternshipId) - @Html.DisplayFor(modelItem => item.Name)
+                @{
+
+                                <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
+                    <div class="student_count">
+                        @{ 
+                            var count = item.Saved_Internship.ToList().Count();
+                            if (count != 0)
+                            {
+                                @Html.ActionLink("Saved by ", "StudentSaved", "Employers", new { area = "EmployerSection", id = item.InternshipId }, null)
+                                <span class="badge">@count</span>
+                            }
+                    
+                        }
+                    </div>
+                    
+
+                }
+            </div>
+            <div class="panel-body internship_panel_body">
+                <div class="internship_panel_major">
+                    <p  class="text-success">Major(s):</p>
+                    @{
+                        {
+
+                            var major = item.Internship_Major.ToList();
+                            if (major.Count != 0)
+                            {
+                                foreach (var m in major)
+                                {
+                                    <p>@m.Major.Name</p>
+                                }
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
+                            }
+                        }
+
+                    }
+                </div>
+                <div class="internship_panel_body_description">
+                    <p class="text-success ">Description:</p>
+                    @item.Description
+                </div>
+                <div class="internship_buttons">
+                    @Html.ActionLink("Edit", "Edit/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-success internship_button" })
+                    @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-info" })
+                    @Html.ActionLink("Delete", "Delete/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-warning" })
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.InternshipId)
@@ -83,4 +167,4 @@
 </tr>
     }
 
-</table>
+</table>*@
