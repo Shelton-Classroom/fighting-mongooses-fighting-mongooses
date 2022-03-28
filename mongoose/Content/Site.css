@@ -30,6 +30,9 @@ textarea {
 a {
     text-decoration: none;
 }
+a:hover{
+    text-decoration: none;
+}
 
 .learn_more {
     margin-top: 6rem;
@@ -46,8 +49,8 @@ a {
     font-weight: 600;
 }
 
-.profile-image {
-    max-width: 300px;
+.dashboard-image {
+    max-height: 300px;
 }
 .fas.fa-heart{
     margin-left: 10px;
@@ -68,51 +71,43 @@ i:hover{
 }
 
 
-.console_container {
+/*.console_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     height: 50vh;
     align-content: center;
     align-items: stretch;
     
+    
+}*/
+
+/*-----------------User Dashboard--------------------------------- */
+.dashboard_info_panel{
+    min-height: 70vh;
 }
-
-
-.dashboard{
+.dashboard_info_content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 4rem;
+    justify-content: space-around;
+    padding: 6rem;
+    gap: 2rem;
 }
-.dashboard_info_panel{
-    flex: 1 1 0px;
-}
-.dashboard_image_panel {
-    flex: 1 1 0px;
-}
-
-.dashboard_info_content{
-    padding: 2rem;
-}
-.dashboard_image_content{
-    
-}
-dashboard_image_container {
+.dashboard_info_heading{
     display: flex;
-    flex-direction: row;
-    width: 100%;
+    justify-content: space-between;
 }
-.dashboard-image {
-    height: 100%;
-    width: 100%;
-    min-width:200px;
-    object-fit: cover;
+.dashboard_view_profile{
+    color: white;
 }
+.dashboard_view_profile:hover {
+    color: white;
+}
+/*----------------------------end user dashboard---------------------------------*/
 
-
-
+/*------------------------------login styling--------------------------------------------*/
 .login_container {
     display: flex;
     flex-direction: row;
@@ -128,7 +123,7 @@ dashboard_image_container {
         float: right;
         display: inline-block;
     }
-
+/*------------------------------End login styling--------------------------------------------*/
 
 .internship_container{
     flex-direction: column;

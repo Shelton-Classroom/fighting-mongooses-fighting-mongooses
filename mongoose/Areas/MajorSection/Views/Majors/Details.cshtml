@@ -37,6 +37,19 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MajorId }) |
-    @Html.ActionLink("Back to Majors", "Majors", "Instructors", new { area = "InstructorSection" }, null)
+    @{
+        if (User.IsInRole("Student"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+        }
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+        }
+        if (User.IsInRole("Instructor"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.MajorId })
+            @Html.ActionLink("Back to Majors", "Classes", "Instructors", new { area = "InstructorSection" }, null)
+        }
+    }
 </p>

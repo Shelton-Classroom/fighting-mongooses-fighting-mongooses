@@ -6,21 +6,39 @@
     ViewBag.Title = "HOME";
 }
 <section class="dashboard">
-    <div class="dashboard_info_panel panel panel-info">
-        <div class="panel-heading">
+    <div class="dashboard_info_panel panel panel-success">
+        <div class="panel-heading dashboard_info_heading">
             <h1 class="panel-title">@ViewBag.BusinessName</h1>
+            @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile}, new {@class = "dashboard_view_profile"})
         </div>
         <div class="panel-content dashboard_info_content">
-            <h3 style="font-size: 4rem;">WELCOME: @ViewBag.LoggedIn</h3>
-            @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
-            <br/>
-        <p style="font-size:3rem;">You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships") Active Internship(s).</p>
+            <div>
+                <h3 style="font-size: 4rem;">WELCOME: @ViewBag.LoggedIn</h3>
+                <p style="font-size:3rem;">You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) <br/>and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships") Active Internship(s).</p>
+            </div>
+            <div>
+                @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+                {
+
+                    <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" />
+
+
+                }
+                else
+                {
+
+                    <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/no-image.jpg"))"  />
+                    <br />
+                    @Html.ActionLink("Add Photo", "ProfilePicture")
+                }
+            </div>
+        
 
         </div>
         
         
     </div>
-    <div class="dashboard_image_panel panel panel-success">
+    @*<div class="dashboard_image_panel panel panel-success">
         <div class="panel-heading">
             <h1 class="panel-title">Profile Image</h1>
         </div>
@@ -43,8 +61,7 @@
 
             </div>
         </div>
-    </div>
-    @*eventually add a count of students who have saved internships and link to list of those students?*@
+    </div>*@
 
  
 </section>

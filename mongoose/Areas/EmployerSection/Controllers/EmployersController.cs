@@ -67,9 +67,10 @@ namespace mongoose.Areas.EmployerSection.Controllers
             var userId = User.Identity.GetUserId();
             ViewBag.User = userId;
             ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
+
             /*var internships = db.Internships.Where(i => i.Employer.Id == userId);*/   //List of internships created by logged in employer m.b.
 
-            // List of internships created by logged in employer, excluding Internships that have a matching studen_internship
+            // List of internships created by logged in employer, excluding Internships that have a matching student_internship
             var internships = db.Internships.Where(i => !db.Student_Internship.Any(s => s.InternshipId == i.InternshipId)); 
 
 
