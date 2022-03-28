@@ -17,6 +17,7 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
         // GET: Internship_MajorSection/Internship_Major
         public ActionResult Index()
         {
+            ViewBag.DepartmentId = new SelectList(db.Majors.OrderBy(d => d.MajorId), "Major", "MajorId");
             var internship_Major = db.Internship_Major.Include(i => i.Internship).Include(i => i.Major);
             return View(internship_Major.ToList());
         }
@@ -124,6 +125,17 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult _IndexByTag(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var course = db.Courses
+                .Include(m => m.CourseId)
+                .Where(m => m.Department.Length.Equals(id))
+                .ToArray();
+            return PartialView("_Index", id);
+        }
+
 
         protected override void Dispose(bool disposing)
         {
