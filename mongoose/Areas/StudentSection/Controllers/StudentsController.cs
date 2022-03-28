@@ -205,6 +205,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             ViewBag.UserId = userId;
             ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == loggedIn.StudentId).ToList();
             ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList();
+            ViewBag.Developer = "GG";
             return View();
         }
         // GET: StudentSection/Students/Create

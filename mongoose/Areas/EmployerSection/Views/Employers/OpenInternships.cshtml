@@ -6,7 +6,7 @@
 @Html.Partial("_employerNav")
 <h2>OPEN INTERNSHIPS</h2>
 <p>
-    @Html.ActionLink("Create New", "Create","Internships", new {area = "InternshipSection"}, null)
+    @Html.ActionLink("Create New", "Create","Internships", new {area = "InternshipSection"}, new {@class = "btn btn-success" })
 </p>
 
 <div class="internship_container">
@@ -15,13 +15,13 @@
         @*<div class="internship_block alert alert-dismissible alert-success">
 
             </div>*@
-        <div class="panel panel-default internship_block">
+        <div class="panel panel-primary internship_block">
             <div class="panel-heading internship_panel_heading">
                 # @Html.DisplayFor(modelItem => item.InternshipId) - @Html.DisplayFor(modelItem => item.Name)
                 @{
 
                                 <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
-                    <div class="student_count">
+                    <div class="student_count last">
                         @{ 
                             var count = item.Saved_Internship.ToList().Count();
                             if (count != 0)

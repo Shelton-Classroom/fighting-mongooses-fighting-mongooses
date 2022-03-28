@@ -26,10 +26,7 @@ textarea {
 
 
 /*please do not remove --------------------------------------------------------------------------- michaels styling*/
-/*.navbar-brand {
-    background-image: url(Image/LOGO.svg);
-    background-repeat: no-repeat;
-}*/
+
 a {
     text-decoration: none;
 }
@@ -138,35 +135,43 @@ dashboard_image_container {
     display: flex;
     gap: 2rem;
 }
-.internship_block{
-    
-    width:100%;
+.internship_block {
+    width: 100%;
+    transition: all .2s ease-in-out;
+}
+.internship_block:hover {
+    /*transform: scale(1.05);*/
 }
 .internship_panel_heading{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-}
-.internship_panel_heading > * {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap:2rem;
     
 }
-.internship_panel_body{
+.internship_panel_heading > .last {
+    justify-self: end;
+}
+.internship_panel_body {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
     overflow: hidden;
-    
+    max-height: 100px;
+    transition: all .4s ease-in-out;
+}
+.internship_panel_body:hover{
+    max-height: 300px;
 }
 .internship_panel_body:before, .internship_panel_body::after{
         content: none;
 }
-.internship_panel_major{
-    width:200px;
+.internship_panel_major {
+    width: 200px;
+    
 }
 .internship_panel_body_description {
-    max-height: 4vh;
     max-width: 600px;
+    
 }
 .internship_buttons{
     display: flex;

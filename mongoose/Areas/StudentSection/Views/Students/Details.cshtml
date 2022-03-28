@@ -136,6 +136,18 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }) |
-    @Html.ActionLink("Back", "Home")
+    @{
+        if (User.IsInRole("Student"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId })
+            @Html.ActionLink("Back", "Home")
+        }
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+        }
+    }
+
+
+
 </p>
