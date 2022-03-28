@@ -25,7 +25,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.UserId = userId;
             ViewBag.EditProfile = profileDetails;
             ViewBag.BusinessName = loggedIn.Name;
-
+            ViewBag.Developer = "MB";
             ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count().ToString();// number of employers open internships
 
             var activeInternships = 
@@ -37,7 +37,8 @@ namespace mongoose.Areas.EmployerSection.Controllers
         public ActionResult ProfilePicture()
         {
             var userId = User.Identity.GetUserId();
-            ViewBag.UserId = userId;
+            ViewBag.User = userId;
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -64,17 +65,90 @@ namespace mongoose.Areas.EmployerSection.Controllers
         public ActionResult OpenInternships()
         {   
             var userId = User.Identity.GetUserId();
+            ViewBag.User = userId;
             ViewBag.EmployerId = db.Employers.Where(e => e.Id == userId);
             var internships = db.Internships.Where(i => i.Employer.Id == userId);   //List of internships created by logged in employer m.b.
+            ViewBag.Saved = db.Saved_Internship.ToList();
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
         public ActionResult ActiveInternships()
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId);   //List of "active" student_internships created by logged in employer
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
+        public ActionResult StudentSearch(string sortOrder, string searchString, int? majorId)
+        {
+            var Majors = db.Majors.Select(rr => new SelectListItem { Value = rr.MajorId.ToString(), Text = rr.Name }).ToList();
+            Majors.Insert(0, (new SelectListItem { Text = "All Majors", Value = "0" }));
+            ViewBag.Majors = Majors;
 
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LocationSortParm = sortOrder == "Start" ? "location_desc" : "Location";
+            ViewBag.EnrollmentSortParm = sortOrder == "Enrolled" ? "not_enrolled" : "Enrolled";
+            var students = from s in db.Students
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(i => i.FirstName.Contains(searchString)
+                                       || i.LastName.Contains(searchString));
+            }
+
+            if (majorId > 0)
+            {
+                var intMaj = db.Student_Major.Where(i => i.MajorId == majorId);
+                var stuIds = intMaj.Select(x => x.StudentId).ToList();
+                students = students.Where(i => stuIds.Contains(i.StudentId));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "Enrolled":
+                    students = students.Where(s => s.EnrollmentStatus == 0);
+                    break;
+                case "not_enrolled":
+                    students = students.Where(s => s.EnrollmentStatus != 0);
+                    break;
+                case "Location":
+                    students = students.OrderBy(s => s.State);
+                    break;
+                case "location_desc":
+                    students = students.OrderByDescending(s => s.State);
+                    break;
+                case "Name":
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.GraduationDate);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.GraduationDate);
+                    break;
+                default:
+                    
+                    break;
+            }
+
+            ViewBag.Developer = "MB";
+            return View(students);
+        }
+
+        public ActionResult StudentSaved(int? id)
+        {
+            ViewBag.InternshipId = id;
+            var saved = db.Saved_Internship.Where(s => s.InternshipId == id).ToList();
+            var student = saved.Select(x => x.Student).ToList();
+            ViewBag.Developer = "MB";
+            return View(student);
+        }
         // GET: EmployerSection/Employers/Details/5
         public ActionResult Details(int? id)
         {
@@ -87,12 +161,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(employer);
         }
 
         // GET: EmployerSection/Employers/Create
         public ActionResult Create()
         {
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -129,6 +205,9 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
+            var UserId = User.Identity.GetUserId();
+            ViewBag.UserEmpId = db.Employers.FirstOrDefault(e => e.Id == UserId).EmployerId;
+            ViewBag.Developer = "MB";
             return View(employer);
         }
 
@@ -148,7 +227,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             }
             return View(employer);
         }
-
+        [Authorize(Roles = "Instructor")]
         // GET: EmployerSection/Employers/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -169,6 +248,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            ViewBag.Developer = "MB";
             Employer employer = db.Employers.Find(id);
             db.Employers.Remove(employer);
             db.SaveChanges();

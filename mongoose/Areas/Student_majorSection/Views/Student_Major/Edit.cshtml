@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Student_Major</h4>
         <hr />
@@ -40,6 +40,7 @@
     </div>
 }
 
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.Partial("_backToStu")
 </div>

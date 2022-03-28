@@ -114,15 +114,15 @@
     @{
         if (User.IsInRole("Student"))
         {
-            @Html.ActionLink("Back", "OpenInternships", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
         }
         if (User.IsInRole("Employer"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.EmployerId }) 
+            @Html.ActionLink("Edit ", "Edit", new { id = Model.EmployerId })
             @Html.ActionLink("Back", "Home")
         }
 
     }
 
-    
+
 </p>

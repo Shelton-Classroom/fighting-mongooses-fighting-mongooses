@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -51,10 +50,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -296,11 +295,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Changlog.txt" />
+    <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\LOGO.svg" />
     <Content Include="Content\Image\puzzle.jpg" />
+    <Content Include="Content\Sand.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -318,6 +320,7 @@
       <DependentUpon>InternshipApp.edmx</DependentUpon>
       <LastGenOutput>InternshipApp.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\EmployerSection\Views\web.config" />
@@ -375,7 +378,7 @@
     <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Details.cshtml" />
     <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Edit.cshtml" />
     <Content Include="Areas\Student_InternshipSection\Views\Student_Internship\Index.cshtml" />
-    <Content Include="Areas\InternshipSection\Views\Shared\_backToEmp.cshtml" />
+    <Content Include="Areas\InternshipSection\Views\Shared\_backToStu.cshtml" />
     <Content Include="Areas\Student_InternshipSection\Views\Shared\_backTo.cshtml" />
     <Content Include="Areas\MajorSection\Views\web.config" />
     <Content Include="Areas\MajorSection\Views\_ViewStart.cshtml" />
@@ -435,8 +438,13 @@
     <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Edit.cshtml" />
     <Content Include="Areas\Saved_InternshipSection\Views\Saved_Internship\Index.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\SavedInternships.cshtml" />
-    <Content Include="Areas\InstructorSection\Views\Instructors\View.cshtml" />
-    <Content Include="Areas\MajorSection\Views\Majors\_index.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\MyAcademics.cshtml" />
+    <Content Include="Areas\Student_majorSection\Views\Shared\_backToStu.cshtml" />
+    <Content Include="Areas\Student_CourseSection\Views\Shared\_backToStu.cshtml" />
+    <Content Include="Areas\InternshipSection\Views\Shared\_backToEmp.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\StudentSearch.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\StudentSaved.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\RecommendedInternships.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -550,10 +558,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

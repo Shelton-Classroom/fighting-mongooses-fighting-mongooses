@@ -10,10 +10,11 @@
 
 @using (Html.BeginForm())
 {
-    <p>
-        Search Internships: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+<p>
+    Search Internships: @Html.TextBox("SearchString")
+    <input class="btn btn-sm btn-primary" type="submit" value="Search" />
+    @Html.ActionLink("Clear All", "OpenInternships", "", new { @class = "btn btn-sm btn-info clear" })
+</p>
 }
 
 <table class="table">
@@ -91,15 +92,15 @@
     <td>
         @{
 
-            var major = item.Internship_Major.FirstOrDefault();
+            var major = item.Internship_Major.ToList();
             if (major != null)
             {
-                @Html.DisplayFor(m => major.Major.Name);
+                foreach (var m in major)
+                {
+                    <p>@m.Major.Name</p>
+                }
             }
-            else
-            {
-                @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
-            }
+          
         }
     </td>
     <td>

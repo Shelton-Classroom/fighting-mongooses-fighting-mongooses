@@ -13,8 +13,7 @@ namespace mongoose.Models
     using System.ComponentModel.DataAnnotations;
 
     public enum payMe : int
-    {
-        [Display(Name = "Paid")]
+    {   [Display(Name = "Paid")]
         Payed = 0,
         [Display(Name = "Unpaid")]
         NotPayed = 1

@@ -11,8 +11,7 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Student_Internship
     {
         public int StudentInternshipId { get; set; }

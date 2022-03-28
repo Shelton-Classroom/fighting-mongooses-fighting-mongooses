@@ -109,6 +109,14 @@ namespace mongoose.Areas.CourseSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
+            var stuCor = db.Student_Course.Where(i => i.CourseId == id);
+            foreach (var m in stuCor) //deletes all student courses related to Course being deleted
+            {
+                Student_Course deleteStuCor = db.Student_Course.Find(m.StudentCourseid);
+                db.Student_Course.Remove(deleteStuCor);
+            }
+           
             Cours cours = db.Courses.Find(id);
             db.Courses.Remove(cours);
             db.SaveChanges();

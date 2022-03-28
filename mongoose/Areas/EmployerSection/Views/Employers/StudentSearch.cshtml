@@ -1,0 +1,76 @@
+﻿@model IEnumerable<mongoose.Models.Student>
+
+@{
+    ViewBag.Title = "StudentSearch";
+}
+@Html.Partial("_employerNav")
+<h2>Student Search</h2>
+@using (Html.BeginForm())
+{
+<p>
+    Search Students: @Html.TextBox("SearchString")
+    <input class="btn btn-sm btn-primary" type="submit" value="Search" />
+    @Html.ActionLink("Clear All", "StudentSearch", "", new { @class = "btn btn-sm btn-info clear" })
+</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("STUDENT", "StudentSearch", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("GRADUATION DATE", "StudentSearch", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("ENROLLMENT", "StudentSearch", new { sortOrder = ViewBag.EnrollmentSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("LOCATION", "StudentSearch", new { sortOrder = ViewBag.LocationSortParm })
+        </th>
+        <th>
+            @Html.DropDownList("Majors", null, "MAJOR", htmlAttributes: new { @class = "form-control", id = "StudentMajorList" })
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.FirstName @item.LastName
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GraduationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentStatus)
+            </td>
+            <td>
+                @item.City ,@item.State
+            </td>
+            <td>
+                @{
+
+                    var major = item.Student_Major.ToList();
+                    if (major != null)
+                    {
+                        foreach (var m in major)
+                        {
+                            <p>@m.Major.Name</p>
+                        }
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId}, new {@class = "btn btn-sm btn-info"})
+            </td>
+        </tr>
+    }
+
+</table>

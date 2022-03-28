@@ -25,7 +25,6 @@ namespace mongoose.Models
     
         public int InternshipId { get; set; }
         public int EmployerId { get; set; }
-        [Display(Name = "Internship")]
         public string Name { get; set; }
         public string Description { get; set; }
         public string Length { get; set; }
@@ -37,13 +36,11 @@ namespace mongoose.Models
         [Display(Name = "Date Posted")]
         [DataType(DataType.Date)]
         public System.DateTime PostDate { get; set; }
-        [Display(Name = "Paid/Unpaid")]
         public payMe Paid { get; set; }
-        
     
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [Display(Name = "Major")]
+        
         public virtual ICollection<Internship_Major> Internship_Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }

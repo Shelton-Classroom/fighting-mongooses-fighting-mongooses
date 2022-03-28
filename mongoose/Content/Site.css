@@ -25,7 +25,12 @@ textarea {
 
 
 
-/*please do not remove, michaels styling*/
+/*please do not remove --------------------------------------------------------------------------- michaels styling*/
+
+a {
+    text-decoration: none;
+}
+
 .learn_more {
     margin-top: 6rem;
     background-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%), url(Image/puzzle.jpg);
@@ -52,41 +57,17 @@ i:hover{
 }
 .red {
     color: red;
+    transition: 200ms ease-in-out;
 }
 
-/*.link_container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-    justify-content: space-between;
-    width:100%;
-
+.clear {
+    float: right;
+}
+.table tr:nth-child(even) {
+    /*background-color: dark;*/
 }
 
-.link {
-    height: 400px;
-    background: grey;
-    border: 5px solid black;
-    border-radius: 5px;
-    
-}
-*/
 
-
-/*input[type="file"] {
-    display: none;
-}
-.custom-upload {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-    .custom-upload:hover {
-        background-color: #e0e0e0;
-        background-position: 0 -15px;
-    }*/
 .console_container {
     display: flex;
     flex-direction: row;
@@ -95,17 +76,112 @@ i:hover{
     height: 50vh;
     align-content: center;
     align-items: stretch;
-    background-image: -webkit-linear-gradient(bottom, #ffffff 0%, #f8f8f8 100%)
+    
 }
+
+
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+.dashboard_info_panel{
+    flex: 1 1 0px;
+}
+.dashboard_image_panel {
+    flex: 1 1 0px;
+}
+
+.dashboard_info_content{
+    padding: 2rem;
+}
+.dashboard_image_content{
+    
+}
+dashboard_image_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.dashboard-image {
+    height: 100%;
+    width: 100%;
+    min-width:200px;
+    object-fit: cover;
+}
+
+
+
 .login_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.login_container .list{
-    margin: 2rem
+
+    .login_container .list {
+        margin: 2rem
+    }
+
+    span.developer {
+        float: right;
+        display: inline-block;
+    }
+
+
+.internship_container{
+    flex-direction: column;
+    display: flex;
+    gap: 2rem;
+}
+.internship_block {
+    width: 100%;
+    transition: all .2s ease-in-out;
+}
+.internship_block:hover {
+    /*transform: scale(1.05);*/
+}
+.internship_panel_heading{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap:2rem;
+    
+}
+.internship_panel_heading > .last {
+    justify-self: end;
+}
+.internship_panel_body {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    overflow: hidden;
+    max-height: 100px;
+    transition: all .4s ease-in-out;
+}
+.internship_panel_body:hover{
+    max-height: 300px;
+}
+.internship_panel_body:before, .internship_panel_body::after{
+        content: none;
+}
+.internship_panel_major {
+    width: 200px;
+    
+}
+.internship_panel_body_description {
+    max-width: 600px;
+    
+}
+.internship_buttons{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-self: center;
+}
+.internship_button{
+   
 }
 
 
-/*end michaels sytling*/
+/*end ---------------------------- michaels ---------------------------------------------- sytling*/
