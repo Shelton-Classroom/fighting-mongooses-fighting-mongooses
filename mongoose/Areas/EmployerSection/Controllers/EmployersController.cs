@@ -71,8 +71,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             /*var internships = db.Internships.Where(i => i.Employer.Id == userId);*/   //List of internships created by logged in employer m.b.
 
             // List of internships created by logged in employer, excluding Internships that have a matching student_internship
-            var internships = db.Internships.Where(i => !db.Student_Internship.Any(s => s.InternshipId == i.InternshipId)); 
-
+            var internships = db.Internships.Where(i => !db.Student_Internship.Any(s => s.InternshipId == i.InternshipId)).Where(i => i.Employer.Id == userId); 
 
             ViewBag.Saved = db.Saved_Internship.ToList();
             ViewBag.Developer = "MB";
