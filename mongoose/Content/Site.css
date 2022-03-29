@@ -63,15 +63,13 @@ i:hover{
     transition: 200ms ease-in-out;
 }
 
-.clear {
-    float: right;
-}
+
 .table tr:nth-child(even) {
     /*background-color: dark;*/
 }
 
 
-/*.console_container {
+.console_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -125,6 +123,7 @@ i:hover{
     }
 /*------------------------------End login styling--------------------------------------------*/
 
+/*-------------------Internship list styling--------------------------------------------------------- */
 .internship_container{
     flex-direction: column;
     display: flex;
@@ -152,11 +151,8 @@ i:hover{
     gap: 2rem;
     overflow: hidden;
     max-height: 100px;
-    transition: all .4s ease-in-out;
 }
-.internship_panel_body:hover{
-    max-height: 300px;
-}
+
 .internship_panel_body:before, .internship_panel_body::after{
         content: none;
 }
@@ -165,17 +161,33 @@ i:hover{
     
 }
 .internship_panel_body_description {
+    text-overflow: ellipsis;
     max-width: 600px;
-    
+    overflow: hidden;
+    white-space: nowrap;
 }
 .internship_buttons{
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 1rem;
     align-self: center;
 }
 .internship_button{
    
+}
+
+
+.student_search_nav{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    margin-bottom: 2rem;
+}
+
+.student_search{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
 }
 
 

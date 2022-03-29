@@ -4,7 +4,7 @@
     ViewBag.Title = "ProfilePicture";
 }
 
-    <h2>Current Image</h2>
+<h2>Current Image</h2>
 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
 {
     <div class="profile-image_container">
@@ -14,15 +14,17 @@
 }
 else
 {
-
-    <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+    <div class="profile-image_container">
+        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+    </div>
+    
     <br />
 }
 @using (Html.BeginForm("ProfilePicture", "Employers", FormMethod.Post,
-                            new { enctype = "multipart/form-data" }))
+                            new { enctype = "multipart/form-data", @class ="form-group" }))
 {
-    <label class="custom-upload" for="file">Add/Change Image</label>
-    <input type="file" name="file" id="file" accept="image/jpeg,image/jpg" style="width: 100%;" />
+    <label class="form-label mt-4" for="file">Add/Change Image</label>
+    <input class="form-control" type="file" name="file" id="file" accept="image/jpeg,image/jpg";" />
     <br />
     <input type="submit" value="Upload" class="submit btn btn-default" />
 

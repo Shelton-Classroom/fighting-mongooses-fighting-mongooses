@@ -27,17 +27,14 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.BusinessName = loggedIn.Name;
             ViewBag.Developer = "MB";
             ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count().ToString();// number of employers open internships
-
-            var activeInternships = 
-
-            ViewBag.ActiveIntershipCount = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId).Count().ToString();
+            ViewBag.ActiveIntershipCount = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId).Count().ToString(); // number of employers active internships
             return View();
             
         }
         public ActionResult ProfilePicture()
         {
             var userId = User.Identity.GetUserId();
-            ViewBag.User = userId;
+            ViewBag.UserId = userId;
             ViewBag.Developer = "MB";
             return View();
         }
@@ -72,6 +69,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
 
             // List of internships created by logged in employer, excluding Internships that have a matching student_internship
             var internships = db.Internships.Where(i => !db.Student_Internship.Any(s => s.InternshipId == i.InternshipId)).Where(i => i.Employer.Id == userId); 
+
 
             ViewBag.Saved = db.Saved_Internship.ToList();
             ViewBag.Developer = "MB";
