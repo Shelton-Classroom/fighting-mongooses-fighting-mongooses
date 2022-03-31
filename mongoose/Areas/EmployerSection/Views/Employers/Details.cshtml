@@ -1,5 +1,5 @@
 ﻿@model mongoose.Models.Employer
-
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Details";
 }
@@ -102,11 +102,15 @@
                 <br />
 
             }
-            @Html.ActionLink("Add/Change Photo", "ProfilePicture")
+            @if (Model.Id == User.Identity.GetUserId())
+            {
+                @Html.ActionLink("Add/Change Photo", "ProfilePicture")
+            }
+
         </div>
     </div>
-    
-    
+
+
 </div>
 
 

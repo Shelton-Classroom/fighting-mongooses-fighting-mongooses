@@ -34,6 +34,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EmpId = internship.Employer.Id;
             return View(internship);
         }
 

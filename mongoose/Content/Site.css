@@ -51,6 +51,7 @@ a:hover{
 
 .dashboard-image {
     max-height: 300px;
+    border-radius: 10px;
 }
 .fas.fa-heart{
     margin-left: 10px;
@@ -77,6 +78,7 @@ i:hover{
     height: 50vh;
     align-content: center;
     align-items: stretch;
+    gap: 4rem;
     
     
 }*/
@@ -189,6 +191,18 @@ i:hover{
     flex-direction: row;
     gap: .5rem;
 }
-
-
+/*-------------------Internship Details styling--------------------------------------------------------- */
+.internship_details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+    justify-content: center;
+}
+.internship_details_info{
+     max-width: 600px;
+ }
+ .internship_details_photo{
+     align-self: center;
+ }
 /*end ---------------------------- michaels ---------------------------------------------- sytling*/

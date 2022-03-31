@@ -5,89 +5,99 @@
 }
 
 <h2>Details</h2>
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<hr />
+<div class="internship_details">
+    <div class="internship_details_info">
 
-<div class="internship_info">
-    <h4>Internship</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        <dl class="dl-horizontal">
+       
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Length)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Length)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Length)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Rate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Length)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Rate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Rate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Rate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PostDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Paid)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PostDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Paid)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Paid)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Employer.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Paid)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Employer.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Employer.Name)
-        </dt>
+        </dl>
+    </div>
+    <div class="internship_details_photo">
+        @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.EmpId + ".jpg")))
+        {
 
-        <dd>
-            @Html.DisplayFor(model => model.Employer.Name)
-        </dd>
+            <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/" + ViewBag.EmpId + ".jpg"))" />
 
-    </dl>
+
+        }
+
+    </div>
+
 </div>
 
+
 @{
-    if (User.IsInRole("Student")) //If student they can view details only links back to page they came from mb
+    if (User.IsInRole("Student"))
     {
+        <div class="apply_form">
+            <a class="btn btn-lg btn-primary" href="#">APPLY NOW!</a>
+        </div>
         @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer }) //takes user back to previous page
     }
     if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
