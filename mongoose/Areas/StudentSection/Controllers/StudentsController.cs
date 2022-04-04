@@ -21,12 +21,14 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            //var usermajor = db.Student_Major.FirstOrDefault(s => s.StudentId == userId); //finds the user's major, commented out as while getting errors linking userID to studentID
             ViewBag.Name = loggedIn.FirstName;
 
             ViewBag.EditProfile = loggedIn.StudentId;
             ViewBag.UserId = userId;
             ViewBag.Developer = "MB";
-
+            //ViewBag.RecommendedInternships = db.Internships.Where(i => i.Internship_Major.MajorID == usermajor.Id).Count().ToString();// number of recommended internships, commented out while majorID is not working
+            //ViewBag.ActiveIntershipCount = db.Internships.Where(i => i.Student_Internship.StudentId == userId).Count().ToString(); // number of students active internships, commented out while studentID is throwing an error
 
             return View();
 
