@@ -5,23 +5,21 @@
 @Html.Partial("_instructorNav")
 <h2>ActiveInternships</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-<p>
-    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" }) @*<<<This is our create*@
-    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; @*<<<This is our filter*@
-    @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" }) @*<<<Drop down list*@
+
+@*<p>
+    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" })
+    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; 
+    @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" }) 
     &nbsp;&nbsp;&nbsp;<label class="filter">Search by Major Name</label>&nbsp;&nbsp;&nbsp;
     @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
-</p>
+</p>*@
 
-<div id="courseContainer">
+@*<div id="courseContainer">
     @Html.Partial("_Index", Model)
-</div>
+</div>*@
 
-@section Scripts {
+@*@section Scripts {
     <script type="text/javascript">
         function FillByTag() {
             var departmentId = $('#MajorId').val();
@@ -35,7 +33,7 @@
         }
 
     </script>
-}
+}*@
 
 
 <p>

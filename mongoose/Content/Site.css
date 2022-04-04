@@ -75,13 +75,12 @@ i:hover{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    height: 50vh;
     align-content: center;
     align-items: stretch;
     gap: 4rem;
     
     
-}*/
+}
 
 /*-----------------User Dashboard--------------------------------- */
 .dashboard_info_panel{

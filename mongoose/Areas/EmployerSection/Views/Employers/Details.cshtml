@@ -90,7 +90,7 @@
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
             {
                 <div class="profile-image_container">
-                    <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="profile-image" />
+                    <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="dashboard-image" />
                 </div>
 
 
@@ -98,7 +98,7 @@
             else
             {
 
-                <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+                <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
                 <br />
 
             }
