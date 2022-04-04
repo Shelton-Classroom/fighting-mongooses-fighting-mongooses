@@ -5,14 +5,14 @@
 
 <h2>Index</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
 <p>
-    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" }) @*<<<This is our create*@
-    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; @*<<<This is our filter*@
-    @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" }) @*<<<Drop down list*@
+    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" }) <<<This is our create
+    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; <<<This is our filter
+    @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" }) <<<Drop down list
     &nbsp;&nbsp;&nbsp;<label class="filter">Search by Major Name</label>&nbsp;&nbsp;&nbsp;
     @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
 </p>
@@ -35,9 +35,9 @@
         }
 
     </script>
-}
+}*@
 
-@*<table class="table">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -70,4 +70,4 @@
     </tr>
 }
 
-</table>*@
+</table>

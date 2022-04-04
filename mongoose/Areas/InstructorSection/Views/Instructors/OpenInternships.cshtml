@@ -4,6 +4,39 @@
 }
 @Html.Partial("_instructorNav")
 <h2>OpenInterships</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p>
+    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" }) @*<<<This is our create*@
+    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; @*<<<This is our filter*@
+    @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" }) @*<<<Drop down list*@
+    &nbsp;&nbsp;&nbsp;<label class="filter">Search by Major Name</label>&nbsp;&nbsp;&nbsp;
+    @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
+</p>
+
+<div id="courseContainer">
+    @Html.Partial("_Index", Model)
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function FillByTag() {
+            var departmentId = $('#MajorId').val();
+            var container = $('#courseContainer');
+            container.Load('@Url.Action("_IndexByTag")?id=' + majorId);
+        }
+        function FilterByName() {
+            var parm = $('#Search').val();
+            var container = $('#courseContainer');
+            container.load('@Url.Action("_IndexByName")?parm=' + parm);
+        }
+
+    </script>
+}
+
 <table class="table">
     <tr>
         <th>
