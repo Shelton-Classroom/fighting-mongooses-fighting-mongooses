@@ -445,6 +445,7 @@
     <Content Include="Areas\EmployerSection\Views\Employers\StudentSearch.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Employers\StudentSaved.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\RecommendedInternships.cshtml" />
+    <Content Include="Areas\InstructorSection\Views\Instructors\_Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -1,40 +1,4 @@
 ﻿@model IEnumerable<mongoose.Models.Student_Internship>
-@{
-    ViewBag.Title = "ActiveInternships";
-}
-@Html.Partial("_instructorNav")
-<h2>ActiveInternships</h2>
-
-
-
-<p>
-    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" })
-    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; 
-    @*@Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" })*@ 
-    &nbsp;&nbsp;&nbsp;<label class="filter">Search by Major Name</label>&nbsp;&nbsp;&nbsp;
-    @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
-</p>
-
-<div id="courseContainer">
-    @Html.Partial("_Index", Model)
-</div>
-
-@section Scripts {
-    <script type="text/javascript">
-        function FillByTag() {
-            var departmentId = $('#MajorId').val();
-            var container = $('#courseContainer');
-            container.Load('@Url.Action("_IndexByTag")?id=' + majorId);
-        }
-        function FilterByName() {
-            var parm = $('#Search').val();
-            var container = $('#courseContainer');
-            container.load('@Url.Action("_IndexByName")?parm=' + parm);
-        }
-
-    </script>
-}
-
 
 <p>
     @Html.ActionLink("Create New", "Create", "Student_Internship", new { area = "Student_InternshipSection" }, null)

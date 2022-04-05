@@ -65,6 +65,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
         public ActionResult ActiveInternships()
         {
             var userId = User.Identity.GetUserId();
+            var intructorId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Instructor.Id == userId);   //List of internships Instructor is assigned to mb
             return View(internships);
         }
@@ -176,6 +177,13 @@ namespace mongoose.Areas.InstructorSection.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult _IndexByName(string name)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var internships = from i in db.Student_Internship select i;
+            internships = internships.Where(i => i.Student.LastName.Contains(name) || i.Internship.Employer.Name.Contains(name));
+            return PartialView("_Index", internships);
+        }
         
         protected override void Dispose(bool disposing)
         {
