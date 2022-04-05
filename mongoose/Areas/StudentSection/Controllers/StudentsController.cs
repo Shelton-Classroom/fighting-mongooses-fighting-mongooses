@@ -171,13 +171,14 @@ namespace mongoose.Areas.StudentSection.Controllers
         //    var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
         //    return View(internships);
         //}     
-        
-        //public ActionResult RecommendedInternshipss()   
+
+        //public ActionResult RecommendedInternships()
         //{
         //    var userId = User.Identity.GetUserId();
-        //    var studentmajor = db.Student_Major where (i => i.Student.Id == userId);   //List of internships student is assigned to
-        //    var recommewndedinternships = db.Internshp
-        //    return View(recommendedinternships);
+        //    var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+        //    var studentmajor = db.Student_Major.Where(i => i.Student.Id == userId);
+        //    var recommewndedinternships = db.Internships.Where(s => s.Internship_Major.MajorID == studentmajor).ToList();
+        //    return View(RecommendedInternships);
         //}
 
         // GET: StudentSection/Students/Details/5
