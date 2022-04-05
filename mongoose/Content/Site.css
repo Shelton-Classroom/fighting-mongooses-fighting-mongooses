@@ -53,6 +53,14 @@ a:hover{
     max-height: 300px;
     border-radius: 10px;
 }
+.dashboard-image-stu {
+    position: static;
+    max-height: 300px;
+    border-radius: 10px;
+    padding-bottom: 6cm;
+    float:right;
+    padding: 10px;
+}
 .fas.fa-heart{
     margin-left: 10px;
 }

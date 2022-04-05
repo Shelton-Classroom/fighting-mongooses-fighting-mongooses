@@ -21,12 +21,20 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            //var usermajor = db.Student_Major.FirstOrDefault(s => s.StudentId == userId); //finds the user's major, commented out as while getting errors linking userID to studentID
+            //var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //Gaelan I think this is what you were going for, list of current logged in student majors - MB
+
             ViewBag.Name = loggedIn.FirstName;
 
             ViewBag.EditProfile = loggedIn.StudentId;
             ViewBag.UserId = userId;
             ViewBag.Developer = "MB";
 
+            //ViewBag.RecommendedInternships = db.Internships.Where(i => i.Internship_Major.MajorID == usermajor.Id).Count().ToString();// number of recommended internships, commented out while majorID is not working
+            // @Gaelan, since students can have multiple student_majors the above line will not work, needs to compare all majors in StudentMajors to open internships and display the 5 newest internships that having a matching major maybe?
+
+            //ViewBag.ActiveIntershipCount = db.Internships.Where(i => i.Student_Internship.StudentId == userId).Count().ToString(); // number of students active internships, commented out while studentID is throwing an error
+            //ViewBag.ActiveInternshipCount = db.Student_Internship.Where(s => s.StudentId == loggedIn.StudentId ).Count().ToString();   //@Gaelan, you just needed to uses that loggedIn variable and studnet_internship
 
             return View();
 
@@ -169,13 +177,14 @@ namespace mongoose.Areas.StudentSection.Controllers
         //    var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
         //    return View(internships);
         //}     
-        
-        //public ActionResult RecommendedInternshipss()   
+
+        //public ActionResult RecommendedInternships()
         //{
         //    var userId = User.Identity.GetUserId();
-        //    var studentmajor = db.Student_Major where (i => i.Student.Id == userId);   //List of internships student is assigned to
-        //    var recommewndedinternships = db.Internshp
-        //    return View(recommendedinternships);
+        //    var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+        //    var studentmajor = db.Student_Major.Where(i => i.Student.Id == userId);
+        //    var recommewndedinternships = db.Internships.Where(s => s.Internship_Major.MajorID == studentmajor).ToList();
+        //    return View(RecommendedInternships);
         //}
 
         // GET: StudentSection/Students/Details/5

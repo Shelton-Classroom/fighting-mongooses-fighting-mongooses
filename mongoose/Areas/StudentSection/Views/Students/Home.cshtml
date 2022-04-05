@@ -7,28 +7,37 @@
 
 
 
-<section class="console_container">
-    <div class="console_info">
-        <h2>WELCOME</h2>
-        <h1>@ViewBag.Name</h1>
-        @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
-    </div>
-    <div class="console_image">
-        @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
-        {
-            <div class="profile-image_container">
-                <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+<section class="dashboard">
+    <div class="dashboard_info_panel panel panel-success">
+        <div class="panel-heading dashboard_info_heading">
+            <h1 class="panel-title">@ViewBag.Name</h1>
+            @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile }, new { @class = "dashboard_view_profile" })
+        </div>
+        <div class="panel-content dashboard_info_content">
+            <div>
+                <h3 style="font-size: 4rem;">Welcome @ViewBag.Name,</h3>
+                <p style="font-size:3rem;">There are x @*@Html.ActionLink((string)ViewBag.RecommendedInternships, "RecommendedInternships")*@ internship(s) recommended for you <br />and x @*@Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships")*@ Active Internship(s).</p>
             </div>
+        </div>
+        <div class="dashboard-image-stu">
+            @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+            {
+                <p>
+                    <div class="profile-image_container">
+                        <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+                    </div>
+                </p>
+                    }
+            else
 
-        }
-        else
-        {
+                    {
 
-            <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
-            <br />
-            @Html.ActionLink("Add Photo", "ProfilePicture")
-        }
-    </div>
+                < img src = "@Url.Content(String.Format(" ~ / Images / no - image.jpg"))" class="profile-image" />
+                <br />
+                @Html.ActionLink("Add Photo", "ProfilePicture")
+            }
+        </div>
+        </div>
 </section>
 
 
