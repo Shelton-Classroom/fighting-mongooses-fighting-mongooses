@@ -56,7 +56,7 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             {
                 db.Student_Internship.Add(student_Internship);
                 db.SaveChanges();
-                return RedirectToAction("ActiveInternships", "Employers", new { area = "EmployerSection" });
+                return RedirectToAction("ActiveInternships", "Instructors", new { area = "InstructorSection" });
             }
 
             ViewBag.InstructorId = new SelectList(db.Instructors, "InstructorId", "FirstName", student_Internship.InstructorId);

@@ -177,11 +177,11 @@ namespace mongoose.Areas.InstructorSection.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult _IndexByName(string name)
+        public ActionResult _IndexByName(string parm)
         {
             db.Configuration.ProxyCreationEnabled = false;
             var internships = from i in db.Student_Internship select i;
-            internships = internships.Where(i => i.Student.LastName.Contains(name) || i.Internship.Employer.Name.Contains(name));
+            internships = internships.Where(i => i.Student.LastName.Contains(parm) || i.Internship.Employer.Name.Contains(parm));
             return PartialView("_Index", internships);
         }
         
