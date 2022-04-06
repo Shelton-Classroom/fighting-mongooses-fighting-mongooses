@@ -22,7 +22,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
             //var usermajor = db.Student_Major.FirstOrDefault(s => s.StudentId == userId); //finds the user's major, commented out as while getting errors linking userID to studentID
-            //var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //Gaelan I think this is what you were going for, list of current logged in student majors - MB
+            var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //Gaelan I think this is what you were going for, list of current logged in student majors - MB
 
             ViewBag.Name = loggedIn.FirstName;
 
@@ -30,12 +30,13 @@ namespace mongoose.Areas.StudentSection.Controllers
             ViewBag.UserId = userId;
             ViewBag.Developer = "MB";
 
-            //ViewBag.RecommendedInternships = db.Internships.Where(i => i.Internship_Major.MajorID == usermajor.Id).Count().ToString();// number of recommended internships, commented out while majorID is not working
+            /*ViewBag.RecommendedInternships = db.  ( == studentMajors).Count().ToString();*/// number of recommended internships, commented out while majorID is not working
             // @Gaelan, since students can have multiple student_majors the above line will not work, needs to compare all majors in StudentMajors to open internships and display the 5 newest internships that having a matching major maybe?
-
-            //ViewBag.ActiveIntershipCount = db.Internships.Where(i => i.Student_Internship.StudentId == userId).Count().ToString(); // number of students active internships, commented out while studentID is throwing an error
-            //ViewBag.ActiveInternshipCount = db.Student_Internship.Where(s => s.StudentId == loggedIn.StudentId ).Count().ToString();   //@Gaelan, you just needed to uses that loggedIn variable and studnet_internship
-
+            var activeInternships = db.Student_Internship.Where(s => s.StudentId == loggedIn.StudentId);   
+            if (activeInternships == null)
+            { ViewBag.activeInternshipCount = '0'.ToString(); }
+                else if (activeInternships != null)
+            { ViewBag.activeInternshipCount = db.Student_Internship.Where(s => s.StudentId == loggedIn.StudentId).Count().ToString(); } //This code seems to work but am still getting errors on the home page with the string coming through on the home page
             return View();
 
         }
