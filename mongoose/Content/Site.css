@@ -134,6 +134,7 @@ i:hover{
 
 /*-------------------Internship list styling--------------------------------------------------------- */
 .internship_container{
+    margin-top: 2rem;
     flex-direction: column;
     display: flex;
     gap: 2rem;
@@ -146,20 +147,23 @@ i:hover{
     /*transform: scale(1.05);*/
 }
 .internship_panel_heading{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    /*grid-template-columns: repeat(4, 1fr);*/
     column-gap:2rem;
     
 }
 .internship_panel_heading > .last {
-    justify-self: end;
+    align-self: end;
 }
 .internship_panel_body {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
     overflow: hidden;
-    max-height: 100px;
+    max-height: 150px;
 }
 
 .internship_panel_body:before, .internship_panel_body::after{
@@ -212,4 +216,38 @@ i:hover{
  .internship_details_photo{
      align-self: center;
  }
+
+/*-------------------Student Open Internships--------------------------------------------------------- */
+
+.studentFilterArea{
+    display:  flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+}
+.studentFilterAreaSearch {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap:1rem;
+}
+.studentFilterAreaMajor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+.studentOpenInternshipImage{
+    width:100px;
+}
+.studentOpenInternshipEmployer{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    max-width: 150px;
+}
+
+
+
 /*end ---------------------------- michaels ---------------------------------------------- sytling*/

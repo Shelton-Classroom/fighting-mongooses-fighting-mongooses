@@ -40,7 +40,7 @@ namespace mongoose.Models
     
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        
+        [Display(Name = "MAJOR")]
         public virtual ICollection<Internship_Major> Internship_Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
