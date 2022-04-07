@@ -16,7 +16,7 @@
         <div class="panel-content dashboard_info_content">
             <div>
                 <h3 style="font-size: 4rem;">Welcome @ViewBag.Name,</h3>
-                <p style="font-size:3rem;">There are x @*@Html.ActionLink((string)ViewBag.RecommendedInternships, "RecommendedInternships")*@ internship(s) recommended for you <br />and @*@Html.ActionLink((string)ViewBag.activeIntershipCount, "ActiveInternships")*@ Active Internship(s).</p>
+                <p style="font-size:3rem;">There are @ViewBag.RecIntCount internship(s) recommended for you <br />and @ViewBag.activeInternshipCount Active Internship(s).</p>
             </div>
         </div>
         <div class="dashboard-image-stu">

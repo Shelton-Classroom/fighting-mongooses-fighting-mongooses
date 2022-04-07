@@ -21,23 +21,33 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
-            //var usermajor = db.Student_Major.FirstOrDefault(s => s.StudentId == userId); //finds the user's major, commented out as while getting errors linking userID to studentID
-            var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //Gaelan I think this is what you were going for, list of current logged in student majors - MB
-
             ViewBag.Name = loggedIn.FirstName;
+            //var usermajor = db.Student_Major.FirstOrDefault(s => s.StudentId == userId); //finds the user's major, commented out as while getting errors linking userID to studentID -MB
+            var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //Gaelan I think this is what you were going for, list of current logged in student majors - MB
+            var studentMajorIds = studentMajors.Select(s => s.MajorId).ToList(); //list of the logged in students majors id's -MB
+            var reccomendedIntershipMajors = db.Internship_Major.Where(i => studentMajorIds.Contains(i.MajorId)).ToList(); // list of internship majors that match student major(s) -MB
+
+            var reccomendedInternships = reccomendedIntershipMajors.Select(r => r.Internship).ToList(); //so here would be a list of all of the interships that match with the students major(s)
+            if(reccomendedInternships == null)
+            {
+                ViewBag.RecIntCount = "0";
+            }else
+            {
+                ViewBag.RecIntCount = reccomendedInternships.Count().ToString(); //and this would be the number of reccomended interships, but since we are going to diplay reccomended internships in the home view I dont really see the point in displaying the count here as well, up to you though. -MB
+            }
+            
 
             ViewBag.EditProfile = loggedIn.StudentId;
             ViewBag.UserId = userId;
             ViewBag.Developer = "MB";
 
-            /*ViewBag.RecommendedInternships = db.  ( == studentMajors).Count().ToString();*/// number of recommended internships, commented out while majorID is not working
-            // @Gaelan, since students can have multiple student_majors the above line will not work, needs to compare all majors in StudentMajors to open internships and display the 5 newest internships that having a matching major maybe?
             var activeInternships = db.Student_Internship.Where(s => s.StudentId == loggedIn.StudentId);   
             if (activeInternships == null)
             { ViewBag.activeInternshipCount = '0'.ToString(); }
-                else if (activeInternships != null)
-            { ViewBag.activeInternshipCount = activeInternships.Count().ToString(); } //This code seems to work but am still getting errors on the home page with the string coming through on the home page
-            return View();
+                else { 
+                ViewBag.activeInternshipCount = activeInternships.Count().ToString(); 
+                    } //This code seems to work but am still getting errors on the home page with the string coming through on the home page
+            return View();    
 
         }
 
