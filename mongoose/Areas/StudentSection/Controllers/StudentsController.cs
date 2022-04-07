@@ -36,7 +36,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             if (activeInternships == null)
             { ViewBag.activeInternshipCount = '0'.ToString(); }
                 else if (activeInternships != null)
-            { ViewBag.activeInternshipCount = db.Student_Internship.Where(s => s.StudentId == loggedIn.StudentId).Count().ToString(); } //This code seems to work but am still getting errors on the home page with the string coming through on the home page
+            { ViewBag.activeInternshipCount = activeInternships.Count().ToString(); } //This code seems to work but am still getting errors on the home page with the string coming through on the home page
             return View();
 
         }
