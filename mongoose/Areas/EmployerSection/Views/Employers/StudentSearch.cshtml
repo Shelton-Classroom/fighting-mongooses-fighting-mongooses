@@ -12,7 +12,21 @@
         @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search Students" })
         <input class="btn btn-sm btn-primary" type="submit" value="Search" />
     </div>
-    
+    <div>
+        @Html.DropDownList("Majors", null, "Sort By Major", htmlAttributes: new { @class = "form-control", id = "StudentMajorList" })
+    </div>
+    <div class="btn-group">
+        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Filter
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("STUDENT", "StudentSearch", new { sortOrder = ViewBag.NameSortParm })</li>
+            <li>@Html.ActionLink("GRADUATION DATE", "StudentSearch", new { sortOrder = ViewBag.DateSortParm })</li>
+            <li>@Html.ActionLink("ENROLLMENT", "StudentSearch", new { sortOrder = ViewBag.EnrollmentSortParm })</li>
+            <li>@Html.ActionLink("LOCATION", "StudentSearch", new { sortOrder = ViewBag.LocationSortParm })</li>
+        </ul>
+    </div>
     @Html.ActionLink("Clear All", "StudentSearch", "", new { @class = "btn btn-sm btn-info clear" })
 </div>
     
@@ -21,19 +35,19 @@
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.ActionLink("STUDENT", "StudentSearch", new { sortOrder = ViewBag.NameSortParm })
+            NAME
         </th>
         <th>
-            @Html.ActionLink("GRADUATION DATE", "StudentSearch", new { sortOrder = ViewBag.DateSortParm })
+            GRADUATION DATE
         </th>
         <th>
-            @Html.ActionLink("ENROLLMENT", "StudentSearch", new { sortOrder = ViewBag.EnrollmentSortParm })
+            ENROLLMENT
         </th>
         <th>
-            @Html.ActionLink("LOCATION", "StudentSearch", new { sortOrder = ViewBag.LocationSortParm })
+            LOCATION
         </th>
         <th>
-            @Html.DropDownList("Majors", null, "Sort By Major", htmlAttributes: new { @class = "form-control", id = "StudentMajorList"})
+            MAJOR
         </th>
         <th></th>
     </tr>
