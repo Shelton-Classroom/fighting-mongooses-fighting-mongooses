@@ -189,17 +189,22 @@ namespace mongoose.Areas.StudentSection.Controllers
         //    return View(internships);
         //}     
 
-        //public ActionResult RecommendedInternships()
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
-        //    var studentmajor = db.Student_Major.Where(i => i.Student.Id == userId);
-        //    var recommewndedinternships = db.Internships.Where(s => s.Internship_Major.MajorID == studentmajor).ToList();
-        //    return View(RecommendedInternships);
-        //}
+        public ActionResult RecommendedInternships()
+        { 
+        var userId = User.Identity.GetUserId();
+        var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
+            var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); 
+        var studentMajorIds = studentMajors.Select(s => s.MajorId).ToList(); 
+        var reccomendedIntershipMajors = db.Internship_Major.Where(i => studentMajorIds.Contains(i.MajorId)).ToList();
+            //var actualInternships = reccomendedIntershipMajors.Where(i => loggedIn.Student_Major == reccomendedInternshipMajors.MajorID);
+            var recommendedInternships = (from ri in reccomendedIntershipMajors
+                                          orderby ri.Internship.PostDate
+                                          select ri).Take(5);
+            return View(recommendedInternships);
+        }
 
-        // GET: StudentSection/Students/Details/5
-        public ActionResult Details(int? id)
+    // GET: StudentSection/Students/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
