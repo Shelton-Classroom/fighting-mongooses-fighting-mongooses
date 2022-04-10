@@ -168,6 +168,7 @@ namespace mongoose.Controllers
         
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            
             if (ModelState.IsValid)
             {
                 
@@ -190,6 +191,8 @@ namespace mongoose.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            var allRoles = (new ApplicationDbContext()).Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = allRoles;
             return View(model);
         }
 
