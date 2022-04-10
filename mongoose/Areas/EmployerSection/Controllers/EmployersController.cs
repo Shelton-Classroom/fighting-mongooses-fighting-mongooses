@@ -145,6 +145,8 @@ namespace mongoose.Areas.EmployerSection.Controllers
         public ActionResult StudentSaved(int? id)
         {
             ViewBag.InternshipId = id;
+            var internshipName = db.Internships.FirstOrDefault(i => i.InternshipId == id);
+            ViewBag.InternshipName = internshipName.Name;
             var saved = db.Saved_Internship.Where(s => s.InternshipId == id).ToList();
             var student = saved.Select(x => x.Student).ToList();
             ViewBag.Developer = "MB";

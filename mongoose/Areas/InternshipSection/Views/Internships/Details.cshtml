@@ -102,7 +102,7 @@
     }
     if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId })
+        @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId }, new {@class="btn btn-warning"})
         @Html.Partial("_backToEmp")
     }
     if (User.IsInRole("Instructor"))
