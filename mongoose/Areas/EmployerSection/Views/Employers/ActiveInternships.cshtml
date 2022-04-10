@@ -1,12 +1,86 @@
 ﻿@model IEnumerable<mongoose.Models.Student_Internship>
 @{
-    ViewBag.Title = "ActiveInternships";
+    ViewBag.Title = "Active Interns";
 }
 @Html.Partial("_employerNav")
-<h2>ACTIVE INTERNSHIPS</h2>
+<h2>ACTIVE INTERNS</h2>
+<div class="internship_container">
+    @foreach (var item in Model)
+    {
+        <div class="panel panel-primary internship_block">
+            <div class="panel-heading internship_panel_heading">
+                @item.Student.LastName, @item.Student.FirstName
+                @{
 
-<table class="table">
+                    <p>@Html.DisplayFor(modelItem => item.Internship.Name)</p><p>@item.Semester, @item.Term</p>
+                }
+            </div>
+            <div class="panel-body internship_panel_body">
+                <div>
+                    <h5 class="text-success">Instructor</h5>
+                    @item.Instructor.LastName, @item.Instructor.FirstName
+                </div>
+                <div >
+                    <h5 class="text-success">Midterm</h5>
+                    @Html.DisplayFor(modelItem => item.Midterm)
+                </div>
+                <div>
+                    <h5 class="text-success">Final</h5>
+                    @Html.DisplayFor(modelItem => item.Final)
+                </div>
+                <div>
+                    <h5 class="text-success">Comments</h5>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </div>
+                <div class="internship_buttons">
+                    @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-sm btn-info" })
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table table-striped">
     <tr>
+        <th>
+
+        </th>
+        <th>
+            Internship Title
+        </th>
+        <th>
+            Student
+        </th>
+        <th>
+            Instructor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Term)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Midterm)
         </th>
@@ -16,27 +90,28 @@
         <th>
             @Html.DisplayNameFor(model => model.Comments)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Term)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Semester)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Instructor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Internship.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Student.FirstName)
-        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Name)
+            </td>
+            <td>
+                @item.Student.LastName, @item.Student.FirstName
+            </td>
+            <td>
+                @item.Instructor.LastName, @item.Instructor.FirstName
+            </td>
+            <td>
+                @item.Semester, @item.Term
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Midterm)
             </td>
@@ -47,26 +122,11 @@
                 @Html.DisplayFor(modelItem => item.Comments)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Term)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Semester)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Instructor.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Internship.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Delete", "Delete/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null)
+                @Html.ActionLink("Edit", "Edit/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new {@class = "label label-success" })
+                @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-sm btn-info" }) 
+                @Html.ActionLink("Delete", "Delete/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-warning" })
             </td>
         </tr>
     }
 
-</table>
+</table>*@

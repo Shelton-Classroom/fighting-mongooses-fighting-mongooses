@@ -25,9 +25,11 @@ namespace mongoose.Models
     
         public int InternshipId { get; set; }
         public int EmployerId { get; set; }
+        [Display(Name = "Title")]
         public string Name { get; set; }
         public string Description { get; set; }
         public string Length { get; set; }
+        [Display(Name = "Pay Rate")]
         public Nullable<decimal> Rate { get; set; }
         public string Location { get; set; }
         [Display(Name = "Start Date")]

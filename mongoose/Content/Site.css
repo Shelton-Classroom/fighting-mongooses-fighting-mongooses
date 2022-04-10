@@ -148,7 +148,7 @@ i:hover{
     
 }
 .internship_panel_heading > .last {
-    align-self: end;
+   /* align-self: end;*/
 }
 .internship_panel_body {
     display: flex;
