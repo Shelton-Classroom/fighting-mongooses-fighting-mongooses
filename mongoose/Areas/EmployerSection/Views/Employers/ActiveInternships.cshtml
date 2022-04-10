@@ -9,31 +9,45 @@
     {
         <div class="panel panel-primary internship_block">
             <div class="panel-heading internship_panel_heading">
-                @item.Student.LastName, @item.Student.FirstName
+                <a href="/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
                 @{
 
                     <p>@Html.DisplayFor(modelItem => item.Internship.Name)</p><p>@item.Semester, @item.Term</p>
                 }
             </div>
             <div class="panel-body internship_panel_body">
+                
+                    @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Student.Id + ".jpg")))
+                    {
+                <div class="studentOpenInternshipEmployer">
+                    <a href="/StudentSection/Students/Details/@item.StudentId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Student.Id + ".jpg"))" /></a>
+                    
+                </div>
+                    }
+                    
+
+                
                 <div>
-                    <h5 class="text-success">Instructor</h5>
-                    @item.Instructor.LastName, @item.Instructor.FirstName
+                    <h5 class="text-info">Instructor</h5>
+                    <a href="/InstructorSection/Instructors/Details/@item.InstructorId">@item.Instructor.LastName, @item.Instructor.FirstName</a>
                 </div>
                 <div >
-                    <h5 class="text-success">Midterm</h5>
+                    <h5 class="text-info">Midterm</h5>
                     @Html.DisplayFor(modelItem => item.Midterm)
                 </div>
                 <div>
-                    <h5 class="text-success">Final</h5>
+                    <h5 class="text-info">Final</h5>
                     @Html.DisplayFor(modelItem => item.Final)
                 </div>
                 <div>
-                    <h5 class="text-success">Comments</h5>
+                    <h5 class="text-info">Comments</h5>
                     @Html.DisplayFor(modelItem => item.Comments)
                 </div>
                 <div class="internship_buttons">
-                    @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Student Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-sm btn-success" })
+                    @Html.ActionLink("Instructor Info", "Details/" + item.InstructorId, "Instructors", new { area = "InstructorSection" }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Internship Info", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "btn btn-sm btn-warning" })
+
                 </div>
             </div>
         </div>
