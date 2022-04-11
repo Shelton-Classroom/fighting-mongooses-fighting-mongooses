@@ -2,12 +2,12 @@
 <nav class="navbar " style="margin-top:4rem;">
     <div class="container-fluid">
         <ul class="nav nav-tabs nav-justified menu_items">
-            <li class="menu-item">@Html.ActionLink("Home", "Home", null, new { id = "stuHome" })</li>
-            <li class="menu-item">@Html.ActionLink("Open Internships", "OpenInternships", null, new { id = "stuOpen" })</li>
-            <li class="menu-item">@Html.ActionLink("Saved Internships", "SavedInternships", null, new { id = "stuSaved" })</li>
+            <li class="menu-item">@Html.ActionLink("Home", "Home","Students", new {area = "StudentSection"}, new { id = "stuHome" })</li>
+            <li class="menu-item">@Html.ActionLink("Open Internships", "OpenInternships", "Students", new { area = "StudentSection" }, new { id = "stuOpen" })</li>
+            <li class="menu-item">@Html.ActionLink("Saved Internships", "SavedInternships", "Students", new { area = "StudentSection" }, new { id = "stuSaved" })</li>
             @*<li class="menu-item">@Html.ActionLink("Recommended Internships", "RecommendedInternships", null, new { id = "stuRecommended" })</li>*@
-            <li class="menu-item">@Html.ActionLink("My Internships", "ActiveInternships", null, new { id = "stuActive" })</li>
-            <li class="menu-item">@Html.ActionLink("My Academics", "MyAcademics", null, new { id = "stuAcadem" })</li>
+            <li class="menu-item">@Html.ActionLink("My Internships", "ActiveInternships", "Students", new { area = "StudentSection" }, new { id = "stuActive" })</li>
+            <li class="menu-item">@Html.ActionLink("My Academics", "MyAcademics", "Students", new { area = "StudentSection" }, new { id = "stuAcadem" })</li>
         </ul>
     </div>
 </nav>
