@@ -27,13 +27,13 @@ namespace mongoose.Areas.StudentSection.Controllers
             var studentMajorIds = studentMajors.Select(s => s.MajorId).ToList(); //list of the logged in students majors id's -MB
             var reccomendedIntershipMajors = db.Internship_Major.Where(i => studentMajorIds.Contains(i.MajorId)).ToList(); // list of internship majors that match student major(s) -MB
 
-            var reccomendedInternships = reccomendedIntershipMajors.Select(r => r.Internship).ToList(); //so here would be a list of all of the interships that match with the students major(s)
+            var reccomendedInternships = reccomendedIntershipMajors.Select(r => r.Internship).ToList(); 
             if(reccomendedInternships == null)
             {
                 ViewBag.RecIntCount = "0";
             }else
             {
-                ViewBag.RecIntCount = reccomendedInternships.Count().ToString(); //and this would be the number of reccomended interships, but since we are going to diplay reccomended internships in the home view I dont really see the point in displaying the count here as well, up to you though. -MB
+                ViewBag.RecIntCount = reccomendedInternships.Count().ToString(); 
             }
             
 
