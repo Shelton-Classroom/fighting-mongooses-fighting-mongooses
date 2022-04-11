@@ -184,6 +184,38 @@ namespace mongoose.Areas.InstructorSection.Controllers
             internships = internships.Where(i => i.Student.LastName.Contains(parm) || i.Internship.Employer.Name.Contains(parm));
             return PartialView("_Index", internships);
         }
+
+        public ActionResult ActiveInternships(string sortOrder, int pageNumber=1, int pageSize=1)
+        {
+            ViewBag.InternshipSortParam = String.IsNullOrEmpty(sortOrder) ? "intern_desc" : "";
+            int ExcludeRecords = (pageSize * pageNumber) - pageSize;
+
+            var Internships = from i in db.Internship_Major.Include(m => m.Internship).Include(m => m.InternshipId)
+                              select i;
+
+            switch(sortOrder)
+            {
+                case "intern_desc":
+                    Internships = Internships.OrderByDescending(m => m.Internship);
+                    break;
+                default:
+                    Internships = Internships.OrderBy(m => m.Internship);
+                    break;
+                    
+            }
+
+            Internships = Internships
+                .Skip(ExcludeRecords)
+                .Take(pageSize);
+
+            var result = new PagedResult<Major>
+            {
+                pageNumber = pageNumber,
+                pageSize = pageSize,
+                TotalItems = db.Internships.Count()
+
+            };
+        }
         
         protected override void Dispose(bool disposing)
         {

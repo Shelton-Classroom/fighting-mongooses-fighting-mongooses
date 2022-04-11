@@ -11,11 +11,21 @@
 
 <p>
     @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" })
-    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; 
-    @*@Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" })*@ 
-    &nbsp;&nbsp;&nbsp;<label class="filter">Search By Name</label>&nbsp;&nbsp;&nbsp;
-    @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
+    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by:</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp;
+    @*@Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" })*@
+    &nbsp;&nbsp;&nbsp;<label class="filter">Name</label>&nbsp;&nbsp;&nbsp;
+    @*@Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })*@
+
 </p>
+
+<form asp-controller="Internship" asp-action="Index" method="get">
+    <p>
+        <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table"></table>
+
 
 <div id="courseContainer">
     @Html.Partial("_Index", Model)

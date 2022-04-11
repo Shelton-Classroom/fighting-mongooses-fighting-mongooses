@@ -21,7 +21,11 @@
             @Html.DisplayNameFor(model => model.Instructor.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Internship.Name)
+            <a asp-action="_Index" 
+               asp-route-sortOrder="@ViewBag.InternshipSortParam">
+                @Html.DisplayNameFor(model => model.Internship.Name)
+            </a>
+            
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Student.LastName)
