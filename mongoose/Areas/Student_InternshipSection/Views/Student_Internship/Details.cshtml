@@ -96,12 +96,14 @@
         }
         if (User.IsInRole("Employer"))
         {
-            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+            @Html.ActionLink("Back", "ActiveInternships", "Employers", new {area = "EmployerSection"}, new {@class = "btn btn-success" })
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
         }
         if (User.IsInRole("Instructor"))
         {
-            @Html.ActionLink("Edit Profile", "Edit", new { id = Model.InstructorId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Back", "Home", null, new { @class = " btn btn_success" })
+
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Back", "ActiveInternships", "Instructors",new { area = "InstructorSection"}, new { @class = " btn btn-success" })
         }
     }
 </p>

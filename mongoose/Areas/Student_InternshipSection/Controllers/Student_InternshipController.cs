@@ -94,7 +94,16 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             {
                 db.Entry(student_Internship).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ActiveInternships", "Employers", new { area = "EmployerSection" });
+
+                return RedirectToAction("Details", new {id = student_Internship.StudentInternshipId });
+                //if (User.IsInRole("Employer"))
+                //{
+                //    return RedirectToAction("ActiveInternships", "Employers", new { area = "EmployerSection" });
+                //}
+                //if (User.IsInRole("Instructor"))
+                //{
+                //    return RedirectToAction("ActiveInternships", "Instructors", new { area = "InstructorSection" });
+                //}
             }
             ViewBag.InstructorId = new SelectList(db.Instructors, "InstructorId", "FirstName", student_Internship.InstructorId);
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name", student_Internship.InternshipId);
