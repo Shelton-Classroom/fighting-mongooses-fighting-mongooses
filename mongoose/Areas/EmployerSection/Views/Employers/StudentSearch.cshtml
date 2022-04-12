@@ -10,7 +10,7 @@
 <div class="student_search_nav">
     <div class="student_search">
         @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search Students" })
-        <input class="btn btn-sm btn-primary" type="submit" value="Search" />
+        <input class="btn btn-primary" type="submit" value="Search" />
     </div>
     <div>
         @Html.DropDownList("Majors", null, "Sort By Major", htmlAttributes: new { @class = "form-control", id = "StudentMajorList" })
@@ -27,7 +27,7 @@
             <li>@Html.ActionLink("LOCATION", "StudentSearch", new { sortOrder = ViewBag.LocationSortParm })</li>
         </ul>
     </div>
-    @Html.ActionLink("Clear All", "StudentSearch", "", new { @class = "btn btn-sm btn-info clear" })
+    @Html.ActionLink("Clear All", "StudentSearch", "", new { @class = "btn  btn-info clear" })
 </div>
     
 }

@@ -185,6 +185,8 @@ i:hover{
 .student_search_nav{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: row;
     gap: 1rem;
     margin-bottom: 2rem;
 }

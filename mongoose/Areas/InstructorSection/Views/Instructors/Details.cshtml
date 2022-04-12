@@ -3,6 +3,19 @@
 @{
     ViewBag.Title = "Details";
 }
+@{ if (User.IsInRole("Employer"))
+    {
+        @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
+    }
+    if (User.IsInRole("Student"))
+    {
+        @Html.Partial("~/Areas/StudentSection/Views/Shared/_studentNav.cshtml")
+    }
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
+    }
+}
 <h2>Details</h2>
 <div>
     <h4>Instructor</h4>
@@ -70,6 +83,20 @@
 
 
 <p>
-    @Html.ActionLink("Edit Profile", "Edit", new { id = Model.InstructorId }) |
-    @Html.ActionLink("Back", "Home")
+    @{
+        if (User.IsInRole("Student"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Instructor"))
+        {
+            @Html.ActionLink("Edit Profile", "Edit", new { id = Model.InstructorId }, new {@class = "btn btn-warning"}) 
+            @Html.ActionLink("Back", "Home",null, new {@class =" btn btn_success"})
+        }
+    }
+
 </p>

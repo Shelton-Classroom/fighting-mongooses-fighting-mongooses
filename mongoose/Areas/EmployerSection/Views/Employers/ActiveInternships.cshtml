@@ -44,9 +44,9 @@
                     @Html.DisplayFor(modelItem => item.Comments)
                 </div>
                 <div class="internship_buttons">
-                    @Html.ActionLink("Student Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-success" })
+                    @Html.ActionLink("Student Info", "Details/" + item.StudentId, "Students", new { area = "StudentSection" }, new { @class = "label label-success" })
                     @Html.ActionLink("Instructor Info", "Details/" + item.InstructorId, "Instructors", new { area = "InstructorSection" }, new { @class = "label label-info" })
-                    @Html.ActionLink("Internship Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-warning" })
+                    @Html.ActionLink("Internship Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-primary" })
 
                 </div>
             </div>
