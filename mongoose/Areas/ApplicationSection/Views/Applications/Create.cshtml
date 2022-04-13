@@ -1,0 +1,60 @@
+﻿@model mongoose.Models.Application
+
+@{
+    ViewBag.Title = "Create";
+}
+@{ if (User.IsInRole("Employer"))
+    {
+        @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
+    }
+    if (User.IsInRole("Student"))
+    {
+        @Html.Partial("~/Areas/StudentSection/Views/Shared/_studentNav.cshtml")
+    }
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
+    }
+}
+<h2>Apply</h2>
+@using (Html.BeginForm("Create", "Applications", FormMethod.Post,
+                            new { enctype = "multipart/form-data", @class = "form-group" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@ViewBag.InternshipTitle <br /> At @ViewBag.Employer</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Resume, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Resume, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Resume, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <label class="form-label mt-4" for="file">Upload Resume</label>
+        <input class="form-control" type="file" name="file" id="file" accept=".doc,.rtf,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+        <br />
+
+        @Html.HiddenFor(model => model.Resume, new { Value = "resume uploaded" }) @*remove this property from database, no longer needed , now using applicationId as file path*@
+
+        @Html.HiddenFor(model => model.InternshipId, new { Value = ViewBag.InternshipId })
+
+        @Html.HiddenFor(model => model.StudentId, new { Value = ViewBag.StudentId })
+
+        @Html.HiddenFor(model => model.ApplicationDate, new { Value = ViewBag.CurrentDate })
+
+
+
+    </div>
+    <div class="form-group">
+        <div class="form-label mt-4">
+            <input type="submit" value="Create" class="btn btn-lg btn-success" />
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back", "Home", "Students", new { area = "StudentSection" }, new { @class = "btn btn-info" })
+</div>
+

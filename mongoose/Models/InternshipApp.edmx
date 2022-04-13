@@ -15,6 +15,16 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Resume" Type="varchar(max)" Nullable="false" />
+          <Property Name="InternshipId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -277,6 +287,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_288">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_291">
+          <End Role="Internships" Type="Self.Internships" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internships">
+              <PropertyRef Name="InternshipId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="InternshipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_46">
           <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
           <End Role="Internships" Type="Self.Internships" Multiplicity="*" />
@@ -462,6 +496,7 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -502,6 +537,14 @@
           <AssociationSet Name="FK_274" Association="Self.FK_274">
             <End Role="Internships" EntitySet="Internships" />
             <End Role="Saved_Internship" EntitySet="Saved_Internship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_288" Association="Self.FK_288">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_291" Association="Self.FK_291">
+            <End Role="Internships" EntitySet="Internships" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
           <AssociationSet Name="FK_46" Association="Self.FK_46">
             <End Role="Employers" EntitySet="Employers" />
@@ -636,7 +679,7 @@
           <Property Name="EmployerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -655,7 +698,7 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Instructors__Id__282DF8C2" FromRole="Instructors" ToRole="AspNetUsers" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_262" FromRole="Instructors" ToRole="Student_Internship" />
@@ -688,6 +731,7 @@
           <NavigationProperty Name="Internship_Major" Relationship="Self.FK_163" FromRole="Internships" ToRole="Internship_Major" />
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_79" FromRole="Internships" ToRole="Student_Internship" />
           <NavigationProperty Name="Saved_Internship" Relationship="Model.FK_274" FromRole="Internship" ToRole="Saved_Internship" />
+          <NavigationProperty Name="Applications" Relationship="Model.FK_291" FromRole="Internship" ToRole="Application" />
         </EntityType>
         <EntityType Name="Major">
           <Key>
@@ -750,7 +794,7 @@
           <Property Name="GraduationDate" Type="DateTime" Precision="3" />
           <Property Name="EnrollmentStatus" Type="Model.status" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -761,6 +805,7 @@
           <NavigationProperty Name="Student_Internship" Relationship="Self.FK_84" FromRole="Students" ToRole="Student_Internship" />
           <NavigationProperty Name="Student_Major" Relationship="Self.FK_63" FromRole="Students" ToRole="Student_Major" />
           <NavigationProperty Name="Saved_Internship" Relationship="Model.FK_271" FromRole="Student" ToRole="Saved_Internship" />
+          <NavigationProperty Name="Applications" Relationship="Model.FK_288" FromRole="Student" ToRole="Application" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1064,6 +1109,15 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="Saved_Internship" EntitySet="Saved_Internship" />
           </AssociationSet>
+          <EntitySet Name="Applications" EntityType="Model.Application" />
+          <AssociationSet Name="FK_288" Association="Model.FK_288">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_291" Association="Model.FK_291">
+            <End Role="Internship" EntitySet="Internships" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1129,6 +1183,42 @@
           <Member Name="Summer" Value="1" />
           <Member Name="Fall" Value="2" />
         </EnumType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Resume" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InternshipId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Student" Relationship="Model.FK_288" FromRole="Application" ToRole="Student" />
+          <NavigationProperty Name="Internship" Relationship="Model.FK_291" FromRole="Application" ToRole="Internship" />
+        </EntityType>
+        <Association Name="FK_288">
+          <End Type="Model.Student" Role="Student" Multiplicity="1" />
+          <End Type="Model.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_291">
+          <End Type="Model.Internship" Role="Internship" Multiplicity="1" />
+          <End Type="Model.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="InternshipId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="InternshipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1370,6 +1460,17 @@
                 <ScalarProperty Name="InternshipId" ColumnName="InternshipId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="Saved_InternshipId" ColumnName="Saved_InternshipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="Model.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="InternshipId" ColumnName="InternshipId" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

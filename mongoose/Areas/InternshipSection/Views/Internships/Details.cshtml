@@ -107,10 +107,8 @@
 @{
     if (User.IsInRole("Student"))
     {
-        <div class="apply_form">
-            <a class="btn btn-lg btn-primary" href="#">APPLY NOW!</a>
-        </div>
-        @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" }) //takes user back to previous page
+        @Html.Partial("_backToStu")
+        @Html.ActionLink("APPLY", "Create/" + Model.InternshipId, "Applications", new { area = "ApplicationSection" }, new { @class = "btn btn-success" })
     }
     if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
     {

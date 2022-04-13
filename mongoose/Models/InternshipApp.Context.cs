@@ -44,6 +44,7 @@ namespace mongoose.Models
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Saved_Internship> Saved_Internship { get; set; }
+        public virtual DbSet<Application> Applications { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

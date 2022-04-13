@@ -11,8 +11,7 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,17 +21,13 @@ namespace mongoose.Models
             this.Student_Internship = new HashSet<Student_Internship>();
             this.Student_Major = new HashSet<Student_Major>();
             this.Saved_Internship = new HashSet<Saved_Internship>();
+            this.Applications = new HashSet<Application>();
         }
-        [Display(Name = "Student Id")]
+    
         public int StudentId { get; set; }
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Display(Name = "Graduation Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> GraduationDate { get; set; }
-        [Display(Name = "Enrolled")]
         public status EnrollmentStatus { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -51,5 +46,7 @@ namespace mongoose.Models
         public virtual ICollection<Student_Major> Student_Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Saved_Internship> Saved_Internship { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }
