@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<mongoose.Models.Student>*@
+﻿@model IEnumerable<mongoose.Models.Student>
 
 @{
     ViewBag.Title = "Student Home";
@@ -16,26 +16,27 @@
         <div class="panel-content dashboard_info_content">
             <div>
                 <h3 style="font-size: 4rem;">Welcome @ViewBag.Name,</h3>
-                <p style="font-size:3rem;">There are @ViewBag.RecIntCount internship(s) recommended for you <br />and @ViewBag.activeInternshipCount Active Internship(s).</p>
+                <p style="font-size:3rem;">There are @ViewBag.RecIntCount<br/> recommended internship(s)  <br />and @ViewBag.activeInternshipCount Active Internship(s).</p>
             </div>
-            <div class="">
+            <div>
                 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
                 {
                     <p>
                         <div class="profile-image_container">
-                            <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+                            <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="dashboard-image" />
                         </div>
                     </p>
                 }
                 else
 
                 {
-
-                    < img src = "@Url.Content(String.Format(" ~ / Images / no - image.jpg"))" class="profile-image" />
+                    <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
                     <br />
                     @Html.ActionLink("Add Photo", "ProfilePicture")
                 }
             </div>
+
+
         </div>
     </div>
 </section>
