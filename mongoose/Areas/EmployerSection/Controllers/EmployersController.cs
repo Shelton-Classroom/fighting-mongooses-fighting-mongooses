@@ -168,6 +168,15 @@ namespace mongoose.Areas.EmployerSection.Controllers
             return View(employer);
         }
 
+
+        public ActionResult Applicant()
+        {
+            var loggedIn = User.Identity.GetUserId();
+            var employerId = db.Employers.FirstOrDefault(e => e.Id == loggedIn).EmployerId;
+            var application = db.Applications.Where(a => a.Internship.EmployerId == employerId);
+            return View(application.ToList());
+        }
+
         // GET: EmployerSection/Employers/Create
         public ActionResult Create()
         {

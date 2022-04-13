@@ -64,15 +64,16 @@ namespace mongoose.Areas.ApplicationSection.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
-                {
-                    string path = System.IO.Path.Combine(
-                                           Server.MapPath("~/Resumes/"), application.ApplicationId + ".docx"); 
-                    file.SaveAs(path);
-                }
                 db.Applications.Add(application);
                 db.SaveChanges();
-                return RedirectToAction("Home", "StudentSection/Students");
+                if (file != null)
+                {
+                    
+                    string path = System.IO.Path.Combine(
+                                           Server.MapPath("~/Resumes/"), application.ApplicationId + ".docx");
+                    file.SaveAs(path);
+                }
+                return RedirectToAction("Home", "Students", new {area = "StudentSection"});
             }
 
             

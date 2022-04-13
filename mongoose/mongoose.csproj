@@ -461,6 +461,7 @@
     <Content Include="Areas\ApplicationSection\Views\Applications\Details.cshtml" />
     <Content Include="Areas\ApplicationSection\Views\Applications\Edit.cshtml" />
     <Content Include="Areas\ApplicationSection\Views\Applications\Index.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Applicant.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

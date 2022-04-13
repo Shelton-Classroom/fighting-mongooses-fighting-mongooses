@@ -11,13 +11,15 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Application
     {
         public int ApplicationId { get; set; }
         public string Resume { get; set; }
         public int InternshipId { get; set; }
         public int StudentId { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime ApplicationDate { get; set; }
     
         public virtual Student Student { get; set; }

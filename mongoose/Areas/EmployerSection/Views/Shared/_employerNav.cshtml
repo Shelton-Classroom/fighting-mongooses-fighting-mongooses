@@ -2,8 +2,9 @@
 <nav class="navbar" style="margin-top:4rem;">
     <div class="container-fluid">
         <ul class="nav nav-tabs nav-justified menu_items">
-            <li class="menu-item">@Html.ActionLink("Home", "Home", "Employers", new {area = "EmployerSection"}, new { id = "Home" })</li>
+            <li class="menu-item">@Html.ActionLink("Home", "Home", "Employers", new { area = "EmployerSection" }, new { id = "Home" })</li>
             <li class="menu-item">@Html.ActionLink("Open Internships", "OpenInternships", "Employers", new { area = "EmployerSection" }, new { id = "OpenInternships" })</li>
+            <li class="menu-item">@Html.ActionLink("Applicants", "Applicant", "Employers", new { area = "EmployerSection" }, new { id = "Applicants" })</li>
             <li class="menu-item">@Html.ActionLink("Active Interns", "ActiveInternships", "Employers", new { area = "EmployerSection" }, new { id = "ActiveInternships" })</li>
             <li class="menu-item">@Html.ActionLink("Student Search", "StudentSearch", "Employers", new { area = "EmployerSection" }, new { id = "StudentSearch" })</li>
         </ul>
