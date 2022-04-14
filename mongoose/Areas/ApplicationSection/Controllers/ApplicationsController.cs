@@ -72,6 +72,7 @@ namespace mongoose.Areas.ApplicationSection.Controllers
                     string path = System.IO.Path.Combine(
                                            Server.MapPath("~/Resumes/"), application.ApplicationId + ".docx");
                     file.SaveAs(path);
+                    ViewBag.Success = "Application Sent!";
                 }
                 return RedirectToAction("Home", "Students", new {area = "StudentSection"});
             }
@@ -138,7 +139,7 @@ namespace mongoose.Areas.ApplicationSection.Controllers
             Application application = db.Applications.Find(id);
             db.Applications.Remove(application);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Applicant", "Employers", new {area = "EmployerSection"});
         }
 
         protected override void Dispose(bool disposing)

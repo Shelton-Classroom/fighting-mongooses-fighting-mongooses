@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
+    var message = ViewBag.Success;
 }
 @{ if (User.IsInRole("Employer"))
     {
@@ -58,3 +59,9 @@
     @Html.ActionLink("Back", "Home", "Students", new { area = "StudentSection" }, new { @class = "btn btn-info" })
 </div>
 
+<script type="text/javascript">
+    var message = '@message';
+    if(message){
+        alert(message);
+    }
+</script>

@@ -46,8 +46,8 @@
             <td>
                 <div class="internship_buttons">
                     @Html.ActionLink("Student Info", "Details/" + item.StudentId, "Students", new { area = "StudentSection" }, new { @class = "label label-success" })
-                    @Html.ActionLink("Internship Info", "Details/" + item.InternshipId, "Internship", new { area = "InternshipSection" }, new { @class = "label label-primary" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }, new {@class="label label-danger"})
+                    @Html.ActionLink("Internship Info", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-primary" })
+                    @Html.ActionLink("Delete", "Delete","Applications", new {area = "ApplicationSection", id = item.ApplicationId }, new {@class="label label-danger"})
                 </div>
                 
             </td>

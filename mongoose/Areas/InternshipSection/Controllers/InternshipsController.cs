@@ -34,9 +34,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             {
                 return HttpNotFound();
             }
-            var loggedIn = User.Identity.GetUserId();
-            var student = db.Students.FirstOrDefault(s => s.Id == loggedIn);
-            ViewBag.StudentID = student.StudentId;
+            
             ViewBag.EmpId = internship.Employer.Id;
             return View(internship);
         }
