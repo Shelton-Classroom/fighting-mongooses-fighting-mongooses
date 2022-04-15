@@ -84,6 +84,48 @@ namespace mongoose.Areas.AdminSection.Controllers
             }
             return View("Home");
         }
+
+        [HttpPost]
+        public ActionResult UploadMajor(FormCollection formCollection)
+        {
+
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            Student_Major student_Major = new Student_Major();
+                            student_Major.MajorId = Int32.Parse(workSheet.Cells[rowIterator, 1].Value.ToString());
+                            student_Major.StudentId = Int32.Parse(workSheet.Cells[rowIterator, 2].Value.ToString());
+
+
+                            if (ModelState.IsValid)
+                            {
+                                db.Student_Major.Add(student_Major);
+                                db.SaveChanges();
+                            }
+                        }
+                        ViewBag.Success = "Student Major Data Successfully added!";
+                        return View("Upload");
+                    }
+                }
+            }
+            return View("Home");
+        }
         // GET: AdminSection/Admin/Details/5
         public ActionResult Details(int id)
         {
