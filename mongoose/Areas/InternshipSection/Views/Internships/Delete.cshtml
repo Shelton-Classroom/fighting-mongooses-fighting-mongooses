@@ -8,6 +8,10 @@
     {
         @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
     }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
 }
 <h2>Delete</h2>
 
@@ -92,11 +96,18 @@
 
     @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" />
+        @Html.AntiForgeryToken()<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    @{
+        if (User.IsInRole("Employer"))
+        {
             @Html.Partial("_backToEmp")
-        </div>
+        }
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Back", "Index", null, new {@class = "btn btn-info"})
+        }
+    }
+</div>
     }
 </div>

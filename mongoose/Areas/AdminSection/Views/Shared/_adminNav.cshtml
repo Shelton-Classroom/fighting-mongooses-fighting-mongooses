@@ -2,11 +2,8 @@
 <nav class="navbar " style="margin-top:4rem;">
     <div class="container-fluid">
         <ul class="nav nav-tabs nav-justified menu_items">
-            <li class="menu-item">@Html.ActionLink("Home", "Home", "Students", new { area = "StudentSection" }, new { id = "stuHome" })</li>
-            <li class="menu-item">@Html.ActionLink("Upload", "OpenInternships", "Students", new { area = "StudentSection" }, new { id = "stuOpen" })</li>
-            <li class="menu-item">@Html.ActionLink("Users", "SavedInternships", "Students", new { area = "StudentSection" }, new { id = "stuSaved" })</li>
-            <li class="menu-item">@Html.ActionLink("Internships", "ActiveInternships", "Students", new { area = "StudentSection" }, new { id = "stuActive" })</li>
-            <li class="menu-item">@Html.ActionLink("Academics", "MyAcademics", "Students", new { area = "StudentSection" }, new { id = "stuAcadem" })</li>
+            <li class="menu-item">@Html.ActionLink("Home", "Home", "Admin", new { area = "AdminSection" }, new { id = "adminHome" })</li>
+            <li class="menu-item">@Html.ActionLink("Upload", "Upload", "Admin", new { area = "AdminSection" }, new { id = "adminUpload" })</li>
             
         </ul>
     </div>

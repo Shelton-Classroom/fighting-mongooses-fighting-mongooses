@@ -93,8 +93,13 @@ namespace mongoose.Controllers
                     {
                         return RedirectToAction("Home", "InstructorSection/Instructors");
                     }
+                    else if (await UserManager.IsInRoleAsync(user.Id, "Admin"))
+                    {
+                        return RedirectToAction("Home", "AdminSection/Admin");
+                    }
 
-                    return RedirectToAction("Index", "Home");
+
+                        return RedirectToAction("Index", "Home");
                     //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -178,13 +183,17 @@ namespace mongoose.Controllers
                 {
                     UserManager.AddToRole(user.Id, model.UserRole);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("Home", model.UserRole + "Section/" + model.UserRole);
+                    }
                     return RedirectToAction("Create",model.UserRole + "Section/" + model.UserRole + "s");
                 }
                 AddErrors(result);

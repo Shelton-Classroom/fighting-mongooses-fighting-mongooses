@@ -3,7 +3,7 @@
     ViewBag.Title = "Upload";
     var message = ViewBag.Success;
 }
-
+@Html.Partial("_adminNav")
 <h2>Upload</h2>
 
 @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -13,7 +13,7 @@
     <br />
     <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
 }
-<br/>
+<br />
 @using (Html.BeginForm("UploadMajor", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <label class="custom-upload" for="file">Upload Student Major Data</label>

@@ -8,6 +8,10 @@
     {
         @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
     }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
 }
 <h2>Create</h2>
 
@@ -115,8 +119,16 @@
 }
 
 <div>
-    @Html.Partial("_backToEmp")
-
+    @{
+        if (User.IsInRole("Employer"))
+        {
+            @Html.Partial("_backToEmp")
+        }
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+        }
+    }
 </div>
 
 @section Scripts {

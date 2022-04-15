@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
 <h2>Index</h2>
 
 <p>
@@ -38,38 +38,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Midterm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Final)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Term)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Semester)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Instructor.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Internship.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentInternshipId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentInternshipId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentInternshipId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Midterm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Final)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Term)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instructor.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internship.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentInternshipId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StudentInternshipId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentInternshipId })
+            </td>
+        </tr>
+    }
 
 </table>

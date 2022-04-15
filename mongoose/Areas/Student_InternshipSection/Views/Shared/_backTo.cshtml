@@ -2,10 +2,14 @@
 {
     if (User.IsInRole("Employer"))
     {
-        @Html.ActionLink("Back", "ActiveInternships", "Employers", new { area = "EmployerSection" }, new {@class = "btn btn-success"})
+        @Html.ActionLink("Back", "ActiveInternships", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-success" })
     }
     if (User.IsInRole("Instructor"))
     {
         @Html.ActionLink("Back", "ActiveInternships", "Instructors", new { area = "InstructorSection" }, new { @class = "btn btn-success" })
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
     }
 }

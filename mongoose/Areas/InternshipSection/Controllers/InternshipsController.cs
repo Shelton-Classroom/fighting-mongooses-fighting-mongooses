@@ -82,13 +82,19 @@ namespace mongoose.Areas.InternshipSection.Controllers
                     }
                     db.SaveChanges(); //saves to database
                 }
-                
-       
-                
-                
-                
-    
-                return RedirectToAction("OpenInternships", "Employers", new {area= "EmployerSection"});
+
+
+
+
+
+                if (User.IsInRole("Employer"))
+                {
+                    return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
+                }
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);

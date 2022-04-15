@@ -3,13 +3,22 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@{
+    if (User.IsInRole("Employer"))
+    {
+        @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
+}
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Student_Internship</h4>
         <hr />

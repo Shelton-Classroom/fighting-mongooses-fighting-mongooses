@@ -17,13 +17,14 @@ namespace mongoose.Areas.AdminSection.Controllers
         // GET: AdminSection/Admin
         public ActionResult Home()
         {
+            ViewBag.Developer = "MB";
             return View();
         }
 
 
         public ActionResult Upload()
         {
-            
+            ViewBag.Developer = "MB";
             return View();
         }
 
