@@ -1,23 +1,31 @@
 ﻿
 @{
     ViewBag.Title = "Upload";
+    var message = ViewBag.Success;
 }
 
 <h2>Upload</h2>
 
 @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <table>
-        <tr>
-            <td>File:</td>
-            <td>
-                <input type="file" name="UploadedFile" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" name="Submit" value="Submit" />
-            </td>
-        </tr>
-    </table>
+    <label class="custom-upload" for="file">Upload Student Course Data</label>
+    <input type="file" name="UploadedFile" accept=".xlsx" style="width: 100%;" />
+    <br />
+    <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
 }
+<br/>
+@using (Html.BeginForm("UploadMajor", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label class="custom-upload" for="file">Upload Student Major Data</label>
+    <input type="file" name="UploadedFile" accept=".xlsx" style="width: 100%;" />
+    <br />
+    <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
+}
+
+<script type="text/javascript">
+    var message = '@message';
+    if(message){
+        alert(message);
+    }
+    console.log(message);
+</script>

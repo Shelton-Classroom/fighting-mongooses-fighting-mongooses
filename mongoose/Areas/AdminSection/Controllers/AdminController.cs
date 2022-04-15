@@ -74,14 +74,15 @@ namespace mongoose.Areas.AdminSection.Controllers
                             if (ModelState.IsValid)
                             {
                                 db.Student_Course.Add(student_Course);
-                                db.SaveChanges();
-                                return RedirectToAction("Home");
+                                db.SaveChanges();   
                             }
                         }
+                        ViewBag.Success = "Student Course Data Successfully added!";
+                        return View();
                     }
                 }
             }
-            return View("Index");
+            return View("Home");
         }
         // GET: AdminSection/Admin/Details/5
         public ActionResult Details(int id)
