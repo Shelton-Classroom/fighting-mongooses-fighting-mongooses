@@ -29,7 +29,8 @@
 
 
 <div id="courseContainer">
-    @Html.Partial("_Index", Model) @**@
+    @Html.Partial("_Index", Model) @*The model item passed into the dictionary is of type 'System.Collections.Generic.List`1[mongoose.Models.Internship]', but this dictionary requires a model item of type 'System.Collections.Generic.IEnumerable`1[mongoose.Models.Student_Internship]'.*@
+    @*This is a test push*@
 </div>
 
 @section Scripts {
