@@ -12,6 +12,11 @@
     {
         @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
     }
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
+    }
+
 }
 <h2>Edit</h2>
 

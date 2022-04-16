@@ -3,13 +3,22 @@
 @{
     ViewBag.Title = "Create";
 }
-
+@{ 
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
+}
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Student_Internship</h4>
         <hr />
@@ -87,5 +96,14 @@
 }
 
 <div>
-    @Html.ActionLink("Back", "ActiveInternships", "Instructors", new { area = "InstructorSection" }, null)
+    @{
+        if (User.IsInRole("Instructor"))
+        {
+            @Html.ActionLink("Back", "ActiveInternships", "Instructors", new { area = "InstructorSection" }, new { @class = " btn btn-success" })
+        }
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+        }
+    }
 </div>

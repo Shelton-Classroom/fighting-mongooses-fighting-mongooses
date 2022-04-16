@@ -15,6 +15,10 @@
     {
         @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
     }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
 }
 <h2>Details</h2>
 
@@ -96,14 +100,18 @@
         }
         if (User.IsInRole("Employer"))
         {
-            @Html.ActionLink("Back", "ActiveInternships", "Employers", new {area = "EmployerSection"}, new {@class = "btn btn-success" })
+            @Html.ActionLink("Back", "ActiveInternships", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-success" })
             @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
         }
         if (User.IsInRole("Instructor"))
         {
 
             @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Back", "ActiveInternships", "Instructors",new { area = "InstructorSection"}, new { @class = " btn btn-success" })
+            @Html.ActionLink("Back", "ActiveInternships", "Instructors", new { area = "InstructorSection" }, new { @class = " btn btn-success" })
+        }
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
         }
     }
 </p>

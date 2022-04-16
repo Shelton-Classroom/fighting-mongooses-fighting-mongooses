@@ -177,7 +177,15 @@ namespace mongoose.Areas.InternshipSection.Controllers
             Internship internship = db.Internships.Find(id);
             db.Internships.Remove(internship);
             db.SaveChanges();
-            return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
+            if (User.IsInRole("Employer"))
+            {
+                return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
+            }
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

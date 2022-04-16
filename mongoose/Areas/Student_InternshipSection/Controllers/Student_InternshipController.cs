@@ -56,7 +56,16 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             {
                 db.Student_Internship.Add(student_Internship);
                 db.SaveChanges();
-                return RedirectToAction("ActiveInternships", "Instructors", new { area = "InstructorSection" });
+
+                if (User.IsInRole("Instructor"))
+                {
+                    return RedirectToAction("ActiveInternships", "Instructors", new { area = "InstructorSection" });
+                }
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("Index");
+                }
+                
             }
 
             ViewBag.InstructorId = new SelectList(db.Instructors, "InstructorId", "FirstName", student_Internship.InstructorId);
@@ -134,7 +143,15 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             Student_Internship student_Internship = db.Student_Internship.Find(id);
             db.Student_Internship.Remove(student_Internship);
             db.SaveChanges();
-            return RedirectToAction("ActiveInternships", "Employers", new { area = "EmployerSection" });
+            if (User.IsInRole("Instructor"))
+            {
+                return RedirectToAction("ActiveInternships", "Instructors", new { area = "InstructorSection" });
+            }
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
