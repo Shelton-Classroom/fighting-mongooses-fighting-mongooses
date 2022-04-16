@@ -330,9 +330,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\employer.jpg" />
+    <Content Include="Content\Image\employer.jpg" />
     <Content Include="Images\puzzle.jpg" />
-    <Content Include="Images\students.jpg" />
+    <Content Include="Content\Image\students.jpg" />
     <Content Include="Models\InternshipApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InternshipApp.edmx</DependentUpon>

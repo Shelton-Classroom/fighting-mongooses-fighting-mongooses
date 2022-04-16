@@ -30,16 +30,21 @@
                     {
                         if (User.IsInRole("Student"))
                         {
-                            <li>@Html.ActionLink("Student Page", "Home", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dashboard", "Home", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })</li>
                         }
                         if (User.IsInRole("Employer"))
                         {
-                            <li>@Html.ActionLink("Employer Page", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dashboard", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
                         }
                         if (User.IsInRole("Instructor"))
                         {
-                            <li>@Html.ActionLink("Instructor Page", "Home", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dashboard", "Home", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
                         }
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Home", "Admin", new {area = "AdminSection"}, new {@class = "nav-link"})</li>
+                        }
+
                     }
                     else
                     {
