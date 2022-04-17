@@ -20,10 +20,10 @@
                                 <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
                     <div class="student_count last">
                         @{ 
-                            var count = item.Saved_Internship.ToList().Count();
+                            var count = item.Applications.ToList().Count();
                             if (count != 0)
                             {
-                                @Html.ActionLink("Saved by ", "StudentSaved", "Employers", new { area = "EmployerSection", id = item.InternshipId }, null)
+                                @Html.ActionLink("Applicant(s)", "Applicant", "Employers", new { area = "EmployerSection", id = item.InternshipId }, null)
                                 <span class="badge">@count</span>
                             }
                     

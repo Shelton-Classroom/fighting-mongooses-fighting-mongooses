@@ -14,7 +14,7 @@
         <div class="panel-content dashboard_info_content">
             <div>
                 <h3 style="font-size: 5rem;">WELCOME: @ViewBag.LoggedIn</h3>
-                <p class="text-info" style="font-size:3rem;">You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) <br/>and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "ActiveInternships") Active Intern(s).</p>
+                <p class="text-info" style="font-size:3rem;">You have @Html.ActionLink((string)ViewBag.InternshipCount, "OpenInternships")  open internship(s) <br/>and @Html.ActionLink((string)ViewBag.ActiveIntershipCount, "Applicant") Applicant(s).</p>
             </div>
             <div>
                 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))

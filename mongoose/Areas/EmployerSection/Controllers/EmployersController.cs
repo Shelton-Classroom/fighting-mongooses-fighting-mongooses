@@ -31,7 +31,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             ViewBag.BusinessName = loggedIn.Name;
             ViewBag.Developer = "MB";
             ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count().ToString();// number of employers open internships
-            ViewBag.ActiveIntershipCount = db.Student_Internship.Where(i => i.Internship.Employer.Id == userId).Count().ToString(); // number of employers active internships
+            ViewBag.ApplicantCount = db.Applications.Where(i => i.Internship.Employer.Id == userId).Count().ToString(); // number of employers active internships
             return View();
             
         }
