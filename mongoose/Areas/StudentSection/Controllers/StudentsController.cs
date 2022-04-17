@@ -16,6 +16,10 @@ namespace mongoose.Areas.StudentSection.Controllers
         private InternshipEntities db = new InternshipEntities();
 
         // GET: StudentSection/Students
+        public ActionResult Index()
+        {
+            return View(db.Students.ToList());
+        }
         [Authorize(Roles = "Student")]
         public ActionResult Home()
         {
@@ -254,8 +258,11 @@ namespace mongoose.Areas.StudentSection.Controllers
                 db.SaveChanges();
 
 
-
-                return RedirectToAction("Home");
+                if (User.IsInRole("Student"))
+                {
+                    return RedirectToAction("Home");
+                }
+                return RedirectToAction("Index");
             }
 
             return View(Student);
@@ -273,7 +280,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
-           
+            
             return View(Student);
         }
 
@@ -289,7 +296,11 @@ namespace mongoose.Areas.StudentSection.Controllers
                 db.Entry(Student).State = EntityState.Modified;
                 Student.Id = User.Identity?.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                if (User.IsInRole("Student"))
+                {
+                    return RedirectToAction("Home");
+                }
+                return RedirectToAction("Index");
             }
             return View(Student);
         }

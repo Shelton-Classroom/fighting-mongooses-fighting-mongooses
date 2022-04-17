@@ -16,6 +16,10 @@ namespace mongoose.Areas.EmployerSection.Controllers
         private InternshipEntities db = new InternshipEntities();
 
         // GET: EmployerSection/Employers
+        public ActionResult Index()
+        {
+            return View(db.Employers.ToList());
+        }
         [Authorize(Roles = "Employer")]
         public ActionResult Home()
         {   var userId = User.Identity.GetUserId();
@@ -196,10 +200,13 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 db.Employers.Add(employer);
                 employer.Id = User.Identity.GetUserId(); //binds employer with logged in user m.b.
                 db.SaveChanges();
-                
-                
 
-                return RedirectToAction("Home");
+
+                if (User.IsInRole("Employer"))
+                {
+                    return RedirectToAction("Home");
+                }
+                return RedirectToAction("Index");
             }
 
             return View(employer);
@@ -217,8 +224,11 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
-            var UserId = User.Identity.GetUserId();
-            ViewBag.UserEmpId = db.Employers.FirstOrDefault(e => e.Id == UserId).EmployerId;
+            if (User.IsInRole("Employer"))
+            {
+                var UserId = User.Identity.GetUserId();
+                ViewBag.UserEmpId = db.Employers.FirstOrDefault(e => e.Id == UserId).EmployerId;
+            }
             ViewBag.Developer = "MB";
             return View(employer);
         }
@@ -235,7 +245,11 @@ namespace mongoose.Areas.EmployerSection.Controllers
                 db.Entry(employer).State = EntityState.Modified;
                 employer.Id = User.Identity?.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                if (User.IsInRole("Employer"))
+                {
+                    return RedirectToAction("Home");
+                }
+                return RedirectToAction("Index");
             }
             return View(employer);
         }

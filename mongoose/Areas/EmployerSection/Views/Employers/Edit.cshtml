@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
 }
 
-@if (ViewBag.UserEmpId == Model.EmployerId)
+@if (ViewBag.UserEmpId == Model.EmployerId || User.IsInRole("Admin"))
 {
     <h2>Edit</h2>
 

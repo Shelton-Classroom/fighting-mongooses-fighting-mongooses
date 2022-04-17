@@ -323,14 +323,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Sand.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Image\LOGO.svg" />
     <Content Include="Content\Image\puzzle.jpg" />
-    <Content Include="Content\Sand.css" />
+    <Content Include="Content\SandOld.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Image\employer.jpg" />
+    <Content Include="Content\Image\network.jpg" />
     <Content Include="Images\puzzle.jpg" />
     <Content Include="Content\Image\students.jpg" />
     <Content Include="Models\InternshipApp.Context.tt">
@@ -371,10 +373,8 @@
     <Content Include="Areas\InstructorSection\Views\Instructors\Edit.cshtml" />
     <Content Include="Areas\InstructorSection\Views\Instructors\Home.cshtml" />
     <Content Include="Areas\EmployerSection\Views\Shared\View.cshtml" />
-    <Content Include="Areas\StudentSection\Views\Students\test.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\OpenInternships.cshtml" />
     <Content Include="Areas\StudentSection\Views\Students\ActiveInternships.cshtml" />
-    <Content Include="Areas\StudentSection\Views\Students\LandingPage.cshtml" />
     <EntityDeploy Include="Models\InternshipApp.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>InternshipApp.Designer.cs</LastGenOutput>
@@ -483,6 +483,8 @@
     <Content Include="Areas\AdminSection\Views\Shared\_adminNav.cshtml" />
     <Content Include="Areas\AdminSection\Views\Admin\Home.cshtml" />
     <Content Include="Areas\AdminSection\Views\Admin\Upload.cshtml" />
+    <Content Include="Areas\StudentSection\Views\Students\Index.cshtml" />
+    <Content Include="Areas\EmployerSection\Views\Employers\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

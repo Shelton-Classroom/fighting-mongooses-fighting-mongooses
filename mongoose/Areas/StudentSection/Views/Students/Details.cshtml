@@ -15,6 +15,10 @@
     {
         @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
     }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
 }
 <h2>Details</h2>
 
@@ -135,14 +139,14 @@
             }
             else
             {
-                
-                    if (User.IsInRole("Student"))
-                    {
-                        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
-                        <br />
-                        @Html.ActionLink("Add/Change Photo", "ProfilePicture")
-                    }
-                
+
+                if (User.IsInRole("Student"))
+                {
+                    <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
+                    <br />
+                    @Html.ActionLink("Add/Change Photo", "ProfilePicture")
+                }
+
 
 
             }
@@ -158,8 +162,8 @@
     @{
         if (User.IsInRole("Student"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId })
-            @Html.ActionLink("Back", "Home")
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" } )
+            @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-info" })
         }
         if (User.IsInRole("Employer"))
         {
@@ -168,6 +172,10 @@
         if (User.IsInRole("Instructor"))
         {
             @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
         }
     }
 

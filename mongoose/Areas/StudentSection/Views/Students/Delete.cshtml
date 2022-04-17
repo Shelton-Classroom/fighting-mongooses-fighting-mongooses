@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+@Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -99,22 +99,16 @@
             @Html.DisplayFor(model => model.Zipcode)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Semester.Term)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Semester.Term)
-        </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
         </div>
     }
 </div>
