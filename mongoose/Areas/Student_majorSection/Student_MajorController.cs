@@ -43,11 +43,7 @@ namespace mongoose.Areas.Student_majorSection
         {
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
-            var userId = User.Identity.GetUserId();
-            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
-            ViewBag.StudentId = loggedIn.StudentId;
-            //ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); Getting user ID is not working for the bridge table at this juncture
-
+            
                             
             return View();
         }
@@ -63,7 +59,7 @@ namespace mongoose.Areas.Student_majorSection
             {
                 db.Student_Major.Add(student_Major);
                 db.SaveChanges();
-                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
+                return RedirectToAction("Index");
             }
 
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name", student_Major.MajorId);
@@ -102,7 +98,7 @@ namespace mongoose.Areas.Student_majorSection
             {
                 db.Entry(student_Major).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
+                return RedirectToAction("Index");
             }
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name", student_Major.MajorId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Major.StudentId);
@@ -132,7 +128,7 @@ namespace mongoose.Areas.Student_majorSection
             Student_Major student_Major = db.Student_Major.Find(id);
             db.Student_Major.Remove(student_Major);
             db.SaveChanges();
-            return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

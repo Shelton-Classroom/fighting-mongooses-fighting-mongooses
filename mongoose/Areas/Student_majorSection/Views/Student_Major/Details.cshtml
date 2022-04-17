@@ -3,7 +3,23 @@
 @{
     ViewBag.Title = "Details";
 }
-
+@{ if (User.IsInRole("Employer"))
+    {
+        @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
+    }
+    if (User.IsInRole("Student"))
+    {
+        @Html.Partial("~/Areas/StudentSection/Views/Shared/_studentNav.cshtml")
+    }
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
+}
 <h2>Details</h2>
 
 <div>
@@ -28,23 +44,28 @@
 
     </dl>
 </div>
-@*@{
-        if (User.IsInRole("Student")) //If student they can view details only links back to student/OpenInterships (All Interships) mb
+<p>
+    @{
+        if (User.IsInRole("Student"))
         {
-            @Html.ActionLink("Back", "OpenInternships", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
         }
-        if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
+        if (User.IsInRole("Employer"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId })
-            @Html.Partial("_backToEmp")
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
         }
         if (User.IsInRole("Instructor"))
         {
-            @Html.ActionLink("Back", "OpenInternships", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })
-        }
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
 
-    }*@ //code copied to navigate/adapt to this section
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentMajorId }) |
-    @Html.ActionLink("Back to List", "Index")
+        }
+        if (User.IsInRole("Admin"))
+        {
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentMajorId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
+            </div>
+
+        }
+    }
 </p>

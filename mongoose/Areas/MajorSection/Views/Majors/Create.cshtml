@@ -3,13 +3,13 @@
 @{
     ViewBag.Title = "Create";
 }
-
+@Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Major</h4>
         <hr />
@@ -47,5 +47,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Majors", "Majors", "Instructors", new { area = "InstructorSection" }, null)
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
 </div>

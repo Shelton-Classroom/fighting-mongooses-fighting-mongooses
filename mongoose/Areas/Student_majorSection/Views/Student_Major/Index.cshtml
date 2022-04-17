@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+@Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+<h2>Student Majors</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -20,20 +20,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Major.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentMajorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentMajorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentMajorId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Major.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentMajorId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StudentMajorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentMajorId })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -42,9 +42,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
         {
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
-            var userId = User.Identity.GetUserId();
-            var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
-            ViewBag.StudentId = loggedIn.StudentId;
+            
             return View();
         }
 
@@ -59,7 +57,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             {
                 db.Student_Course.Add(student_Course);
                 db.SaveChanges();
-                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
+                return RedirectToAction("Index");
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
@@ -81,9 +79,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Course.StudentId);
-            //var userId = User.Identity.GetUserId();
-            //var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
-            //ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == loggedIn.StudentId).ToList();
+          
             return View(student_Course);
         }
 
@@ -98,7 +94,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             {
                 db.Entry(student_Course).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("MyAcademics", "Students", new { area = "StudentSection" });
+                return RedirectToAction("Index");
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Course.StudentId);

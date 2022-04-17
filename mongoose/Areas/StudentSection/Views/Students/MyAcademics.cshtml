@@ -22,11 +22,6 @@
                     <td>
                         <p>@m.Major.Name</p>
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "Student_Major", new { area = "Student_majorSection", id = m.StudentMajorId }, null) |
-                        @Html.ActionLink("Delete", "Delete", "Student_Major", new { area = "Student_majorSection", id = m.StudentMajorId }, null)
-
-                    </td>
                 </tr>
 
 
@@ -34,9 +29,7 @@
             }
 
         </table>
-        <div>
-            @Html.ActionLink("Add Major", "Create", "Student_Major", new { area = "Student_majorSection" }, new { @class = "nav-link" })
-        </div>
+      
 
     </div>
 
@@ -54,11 +47,6 @@
                     <td>
                         <p>@c.Cours.Name    -    @c.SemesterCompleted</p> @*//Do we want to include more info here?*@
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "Student_Course", new { area = "Student_CourseSection", id = c.StudentCourseid }, null) |
-                        @Html.ActionLink("Delete", "Delete", "Student_Course", new { area = "Student_CourseSection", id = c.StudentCourseid }, null)
-
-                    </td>
                 </tr>
 
 
@@ -66,9 +54,7 @@
             }
 
         </table>
-        <div>
-            @Html.ActionLink("Add Course", "Create", "Student_Course", new { area = "Student_CourseSection" }, new { @class = "nav-link" })
-        </div>
+       
 
     </div>
     

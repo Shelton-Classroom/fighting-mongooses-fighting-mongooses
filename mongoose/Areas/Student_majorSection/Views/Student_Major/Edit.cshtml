@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -42,5 +42,5 @@
 
 
 <div>
-    @Html.Partial("_backToStu")
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
 </div>

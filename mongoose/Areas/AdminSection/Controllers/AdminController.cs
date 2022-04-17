@@ -28,10 +28,96 @@ namespace mongoose.Areas.AdminSection.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult UploadCourse(FormCollection formCollection)
+        {
 
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            Cours cours = new Cours();
+                            cours.Name = workSheet.Cells[rowIterator, 1].Value.ToString();
+                            cours.Description = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            cours.Department = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            cours.Credits = Int32.Parse(workSheet.Cells[rowIterator, 4].Value.ToString());
+                            cours.Number = Int32.Parse(workSheet.Cells[rowIterator, 5].Value.ToString());
+                            
+
+                            if (ModelState.IsValid)
+                            {
+                                db.Courses.Add(cours);
+                                db.SaveChanges();
+                            }
+                        }
+                        ViewBag.Success = "Course Data Successfully added!";
+                        return View();
+                    }
+                }
+            }
+            return View("Home");
+        }
+        [HttpPost]
+        public ActionResult UploadMajor(FormCollection formCollection)
+        {
+
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            Major major = new Major();
+                            major.Name = workSheet.Cells[rowIterator, 1].Value.ToString();
+                            major.Description = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            major.RequiredCredits = Int32.Parse(workSheet.Cells[rowIterator, 3].Value.ToString());
+                       
+
+
+                            if (ModelState.IsValid)
+                            {
+                                db.Majors.Add(major);
+                                db.SaveChanges();
+                            }
+                        }
+                        ViewBag.Success = "Major Data Successfully added!";
+                        return View();
+                    }
+                }
+            }
+            return View("Home");
+        }
 
         [HttpPost]
-        public ActionResult Upload(FormCollection formCollection)
+        public ActionResult UploadStudentCourse(FormCollection formCollection)
         {
             
             if (Request != null)
@@ -87,7 +173,7 @@ namespace mongoose.Areas.AdminSection.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadMajor(FormCollection formCollection)
+        public ActionResult UploadStudentMajor(FormCollection formCollection)
         {
 
             if (Request != null)

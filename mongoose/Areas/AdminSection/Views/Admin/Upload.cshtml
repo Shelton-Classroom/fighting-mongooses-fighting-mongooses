@@ -6,9 +6,10 @@
 @Html.Partial("_adminNav")
 <h2>Upload</h2>
 
-@using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+@using (Html.BeginForm("UploadCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <label class="custom-upload" for="file">Upload Student Course Data</label>
+    <label class="custom-upload" for="file">Upload Course Data</label>
     <input type="file" name="UploadedFile" accept=".xlsx" style="width: 100%;" />
     <br />
     <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
@@ -16,11 +17,31 @@
 <br />
 @using (Html.BeginForm("UploadMajor", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    <label class="custom-upload" for="file">Upload Major Data</label>
+    <input type="file" name="UploadedFile" accept=".xlsx" style="width: 100%;" />
+    <br />
+    <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
+}
+<br />
+@using (Html.BeginForm("UploadStudentCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label class="custom-upload" for="file">Upload Student Course Data</label>
+    <input type="file" name="UploadedFile" accept=".xlsx" style="width: 100%;" />
+    <br />
+    <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
+}
+<br />
+
+@using (Html.BeginForm("UploadStudentMajor", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     <label class="custom-upload" for="file">Upload Student Major Data</label>
     <input type="file" name="UploadedFile" accept=".xlsx" style="width: 100%;" />
     <br />
     <input type="submit" name="Submit" value="Submit" class="submit btn btn-default" />
 }
+<br />
+
+
 
 <script type="text/javascript">
     var message = '@message';
