@@ -1,12 +1,24 @@
 ﻿@model mongoose.Models.Employer
 @using Microsoft.AspNet.Identity;
-@Html.Partial("_employerNav")
+
+@{
+    if (User.IsInRole("Employer"))
+    {
+        @Html.Partial("_employerNav")
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
+}
+
 @{
     ViewBag.Title = "Edit";
 }
 
 @if (ViewBag.UserEmpId == Model.EmployerId || User.IsInRole("Admin"))
 {
+
     <h2>Edit</h2>
 
 
@@ -99,18 +111,29 @@
             </div>
         </div>
     }
+    
+    if (User.IsInRole("Employer"))
+                {
+                    <div>
+                        @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
+                    </div>
+    }
+    if (User.IsInRole("Admin"))
+                {
+                    <div>
+                        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
+                    </div>
+                }
 
-    <div>
-        @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
-    </div>
-}
+
+    }
 else
 {
-    <h3>Incorrect User Id</h3>
-    <div>
-        @Html.ActionLink("Back", "Home", null, new {@class = "btn btn-success"})
-    </div>
-}
+        <h3>Incorrect User Id</h3>
+        <div>
+            @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
+        </div>
+    }
 
 
 

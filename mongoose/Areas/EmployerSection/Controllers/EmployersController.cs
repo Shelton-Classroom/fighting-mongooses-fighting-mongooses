@@ -253,7 +253,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             }
             return View(employer);
         }
-        [Authorize(Roles = "Instructor")]
+        [Authorize(Roles = "Admin")]
         // GET: EmployerSection/Employers/Delete/5
         public ActionResult Delete(int? id)
         {

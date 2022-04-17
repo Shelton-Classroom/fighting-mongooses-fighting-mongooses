@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+@Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -37,12 +37,13 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn btn-default" /> |
-    @Html.ActionLink("Back to Majors", "Majors", "Instructors", new { area = "InstructorSection" }, null)
-</div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "Index", null, new {@class="btn btn-success"})
+        </div>
     }
 </div>

@@ -52,7 +52,7 @@ namespace mongoose.Areas.CourseSection.Controllers
             {
                 db.Courses.Add(cours);
                 db.SaveChanges();
-                return RedirectToAction("Classes", "Instructors", new { area = "InstructorSection" });
+                return RedirectToAction("Index");
             }
 
             return View(cours);
@@ -84,7 +84,7 @@ namespace mongoose.Areas.CourseSection.Controllers
             {
                 db.Entry(cours).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Classes", "Instructors", new { area = "InstructorSection" });
+                return RedirectToAction("Index");
             }
             return View(cours);
         }
@@ -120,7 +120,7 @@ namespace mongoose.Areas.CourseSection.Controllers
             Cours cours = db.Courses.Find(id);
             db.Courses.Remove(cours);
             db.SaveChanges();
-            return RedirectToAction("Classes", "Instructors", new { area = "InstructorSection" });
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

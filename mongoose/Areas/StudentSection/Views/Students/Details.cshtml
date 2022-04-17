@@ -134,6 +134,13 @@
                 <div class="profile-image_container">
                     <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="dashboard-image" />
                 </div>
+                if (User.IsInRole("Student") || User.IsInRole("Admin"))
+                {
+        <div>
+            @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info" })
+        </div>
+                    
+                }
 
 
             }
@@ -144,7 +151,7 @@
                 {
                     <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
                     <br />
-                    @Html.ActionLink("Add/Change Photo", "ProfilePicture")
+                    @Html.ActionLink("Add Photo", "ProfilePicture", null, new { @class = "btn btn-info" })
                 }
 
 
@@ -162,8 +169,11 @@
     @{
         if (User.IsInRole("Student"))
         {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" } )
-            @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-info" })
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
+        </div>
+            
         }
         if (User.IsInRole("Employer"))
         {
@@ -175,7 +185,10 @@
         }
         if (User.IsInRole("Admin"))
         {
-            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
+        </div>
         }
     }
 

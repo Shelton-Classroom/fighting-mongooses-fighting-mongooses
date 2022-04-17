@@ -16,6 +16,10 @@ namespace mongoose.Areas.InstructorSection.Controllers
         private InternshipEntities db = new InternshipEntities();
 
         // GET: InstructorSection/Instructors
+        public ActionResult Index()
+        {
+            return View(db.Instructors.ToList());
+        }
         [Authorize(Roles = "Instructor")]
         public ActionResult Home()
         {
@@ -172,7 +176,11 @@ namespace mongoose.Areas.InstructorSection.Controllers
                 db.Instructors.Add(instructor);
                 instructor.Id = User.Identity.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                if (User.IsInRole("Instructor"))
+                {
+                    return RedirectToAction("Home");
+                }
+                return RedirectToAction("Index");
             }
 
             return View(instructor);
@@ -205,7 +213,11 @@ namespace mongoose.Areas.InstructorSection.Controllers
                 db.Entry(instructor).State = EntityState.Modified;
                 instructor.Id = User.Identity.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                if (User.IsInRole("Instructor"))
+                {
+                    return RedirectToAction("Home");
+                }
+                return RedirectToAction("Index");
             }
             return View(instructor);
         }

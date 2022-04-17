@@ -6,7 +6,9 @@
 @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
 <h2>Employers</h2>
 
-
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
 <table class="table table-striped">
     <tr>
         <th>

@@ -36,7 +36,7 @@
             <td>
                 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + item.ApplicationId + ".docx")))
                 {
-                    <a href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download"></i></a>
+                    <a href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download fa-2x"></i></a>
                 }
 
             </td>

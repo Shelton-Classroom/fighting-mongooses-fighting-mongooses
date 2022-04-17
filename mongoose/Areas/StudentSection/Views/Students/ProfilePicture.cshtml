@@ -17,15 +17,19 @@ else
     <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
     <br />
 }
-@using (Html.BeginForm("ProfilePicture", "Students", FormMethod.Post,
-                            new { enctype = "multipart/form-data" }))
-{
-    <label class="custom-upload" for="file">Add/Change Image</label>
-    <input type="file" name="file" id="file" accept="image/jpeg,image/jpg" style="width: 100%;" />
-    <br />
-    <input type="submit" value="Upload" class="submit btn btn-default" />
 
-}
-@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+<div>
+    @using (Html.BeginForm("ProfilePicture", "Students", FormMethod.Post,
+                                new { enctype = "multipart/form-data" }))
+    {
+        <label class="custom-upload" for="file">Add/Change Image</label>
+        <input type="file" name="file" id="file" accept="image/jpeg,image/jpg" style="width: 100%;" />
+        <br />
+        <input type="submit" value="Upload" class="submit btn btn-default" />
+
+    }
+    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+</div>
+
 
 

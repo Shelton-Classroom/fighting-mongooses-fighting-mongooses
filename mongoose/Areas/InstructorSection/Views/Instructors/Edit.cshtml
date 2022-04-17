@@ -3,14 +3,23 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@{
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.Partial("~/Areas/InstructorSection/Views/Shared/_instructorNav.cshtml")
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
+}
 <h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Instructor</h4>
         <hr />
@@ -56,10 +65,17 @@
         </div>
     </div>
 }
+@{
+    if (User.IsInRole("Instructor"))
+    {
+        @Html.ActionLink("Back", "Home", null, new { @class = " btn btn-success" })
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Back", "Index", null, new { @class = " btn btn-success" })
+    }
+}
 
-<div>
-    @Html.ActionLink("Back to List","Home")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
