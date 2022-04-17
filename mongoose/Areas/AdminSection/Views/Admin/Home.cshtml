@@ -9,7 +9,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">USERS</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body admin-flex">
         @Html.ActionLink("Students", "Index", "Students", new { area = "StudentSection" }, new { @class = "btn btn-lg btn-primary" })
         @Html.ActionLink("Employers", "Index", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-lg btn-primary" })
         @Html.ActionLink("Instructors", "Index", "Instructors", new { area = "InstructorSection" }, new { @class = "btn btn-lg btn-primary" })
@@ -20,9 +20,9 @@
     <div class="panel-heading">
         <h3 class="panel-title">INTERNSHIPS</h3>
     </div>
-    <div class="panel-body">
-        @Html.ActionLink("Open Internships", "Index", "Internships", new { area = "InternshipSection" }, new { @class = "btn btn-lg btn-info" })
-        @Html.ActionLink("Active Internships", "Index", "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-lg btn-info" })
+    <div class="panel-body admin-flex">
+        @Html.ActionLink("Open Internships", "Index", "Internships", new { area = "InternshipSection" }, new { @class = "btn btn-lg btn-success" })
+        @Html.ActionLink("Active Internships", "Index", "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-lg btn-success" })
     </div>
 </div>
 
@@ -30,7 +30,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">ACADEMICS</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body admin-flex">
         @Html.ActionLink("Majors", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-lg btn-warning" })
         @Html.ActionLink("Courses", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-lg btn-warning" })
         @Html.ActionLink("Student Majors", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-lg btn-warning" })

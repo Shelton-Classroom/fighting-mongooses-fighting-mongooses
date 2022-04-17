@@ -1,3 +1,21 @@
+﻿
+Conversation opened. 1 read message.
+
+Skip to content
+Using Virginia's Community Colleges Mail with screen readers
+3 of 492
+css
+Inbox
+
+Ramu Bista <rb21526@email.vccs.edu >
+Attachments
+12:29 AM (18 hours ago)
+to me
+
+Minor adjustments done. logo goes into the Images folder. I'm free most of the evening Saturday and would love to work along. Will be working on the contact pages.
+
+3 Attachments
+Awesome, thanks!Looks great!Thanks, I'll take a look.
 ﻿@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic&display=swap"); /*!
  * bootswatch v3.4.1
  * Homepage: https://bootswatch.com
@@ -9,7 +27,6 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */ /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -1848,7 +1865,7 @@ pre {
 
 .row {
     margin-right: -15px;
-    margin-left: -15px
+    margin-left: -15px;
 }
 
 .row-no-gutters {
@@ -4301,11 +4318,10 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
             }
 
         .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-            color: #00bc8c;
+            color: black;
             cursor: default;
-            background-color: #222222;
             border: 1px solid #464545;
-            border-bottom-color: transparent
+            border-bottom-color: #979797;
         }
 
     .nav-tabs.nav-justified {
@@ -4503,7 +4519,9 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
     .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
         padding-right: 0;
-        padding-left: 0
+        padding-left: 0;
+        background-color: #979797;
+        width: 100%;
     }
 }
 
@@ -4511,11 +4529,12 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     position: fixed;
     right: 0;
     left: 0;
-    z-index: 1030
+    z-index: 1030;
 }
 
     .navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
-        max-height: 340px
+        max-height: 340px;
+        background-color: #979797;
     }
 
 @media (max-device-width:480px) and (orientation:landscape) {
@@ -4532,7 +4551,8 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 .navbar-fixed-top {
     top: 0;
-    border-width: 0 0 1px
+    border-width: 0 0 1px;
+    width: 100%;
 }
 
 .navbar-fixed-bottom {
@@ -4593,7 +4613,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     margin-right: 15px;
     margin-top: 13px;
     margin-bottom: 13px;
-    background-color: transparent;
+    background-color: snow;
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px
@@ -4607,7 +4627,8 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
         display: block;
         width: 22px;
         height: 2px;
-        border-radius: 1px
+        border-radius: 1px;
+        background-color: dimgray;
     }
 
         .navbar-toggle .icon-bar + .icon-bar {
@@ -4621,14 +4642,17 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-nav {
-    margin: 9.75px -15px
+    margin: 9.75px -15px;
+    background-color: black;
 }
 
     .navbar-nav > li > a {
         padding-top: 10px;
         padding-bottom: 10px;
-        line-height: 21px
+        line-height: 21px;
+        color: black;
     }
+
 
 @media (max-width:767px) {
     .navbar-nav .open .dropdown-menu {
@@ -7337,3 +7361,6 @@ a.list-group-item-danger.active {
 .panel-default > .panel-heading {
     background-color: #464545
 }
+
+Sand.css
+Displaying Site.css.
