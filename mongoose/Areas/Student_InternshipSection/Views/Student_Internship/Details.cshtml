@@ -31,21 +31,29 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Internship.Name)
+            @{
+                <a href="~/InternshipSection/Internships/Details/@Model.InternshipId">@Html.DisplayFor(model => model.Internship.Name)</a>
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Internship.Employer)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Internship.Employer.Name)
+            @{
+                <a href="~/EmployerSection/Employers/Details/@Model.Internship.EmployerId">@Html.DisplayFor(model => model.Internship.Employer.Name)</a>
+            }
         </dd>
         <dt>
             Student
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Student.LastName), @Html.DisplayFor(model => model.Student.FirstName)
+            
+            @{
+                <a href="~/StudentSection/Students/Details/@Model.StudentId">@Html.DisplayFor(model => model.Student.LastName), @Html.DisplayFor(model => model.Student.FirstName)</a>
+            }
+
         </dd>
 
         <dt>
@@ -53,8 +61,9 @@
         </dt>
 
         <dd>
-
-            @Html.DisplayFor(model => model.Instructor.LastName), @Html.DisplayFor(model => model.Instructor.FirstName)
+            @{
+                <a href="~/InstructorSection/Instructors/Details/@Model.InstructorId">@Html.DisplayFor(model => model.Instructor.LastName), @Html.DisplayFor(model => model.Instructor.FirstName)</a>
+            }
         </dd>
 
         <dt>
@@ -101,14 +110,19 @@
         }
         if (User.IsInRole("Employer"))
         {
-            @Html.ActionLink("Back", "ActiveInternships", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-success" })
-            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
+            <div>
+                @Html.ActionLink("Back", "ActiveInternships", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
+            </div>
+            
         }
         if (User.IsInRole("Instructor"))
         {
-
-            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Back", "ActiveInternships", "Instructors", new { area = "InstructorSection" }, new { @class = " btn btn-success" })
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentInternshipId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Back", "ActiveInternships", "Instructors", new { area = "InstructorSection" }, new { @class = " btn btn-success" })
+            </div>
+            
         }
         if (User.IsInRole("Admin"))
         {

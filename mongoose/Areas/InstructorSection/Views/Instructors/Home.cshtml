@@ -5,26 +5,61 @@
 }
 @Html.Partial("_instructorNav")
 
-<section class="console_container">
-    <div class="console_info">
-        <h2>WELCOME</h2>
-        <h1>@ViewBag.LoggedIn</h1>
-        @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
-    </div>
-    <div class="console_image">
-        @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
-        {
-            <div class="profile-image_container">
-                <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="dashboard-image" />
+
+
+<section class="dashboard">
+    <div class="dashboard_info_panel panel panel-success">
+        <div class="panel-heading dashboard_info_heading">
+            <h1 class="panel-title">Instructor</h1>
+            @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile }, new { @class = "dashboard_view_profile" })
+        </div>
+        <div class="panel-content dashboard_info_content">
+            <div>
+                <h3 style="font-size: 5rem;">WELCOME: @ViewBag.LoggedIn</h3>
+                <p class="text-info" style="font-size:3rem;">You have @Html.ActionLink((string)ViewBag.InternshipCount, "ActiveInternships")  Active intern(s) .</p>
+            </div>
+            <div>
+                @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+                {
+
+                    <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" />
+
+
+                }
+                else
+                {
+
+                    <img class="dashboard-image" src="@Url.Content(String.Format("~/Images/no-image.jpg"))" />
+                    <br />
+                    @Html.ActionLink("Add Photo", "ProfilePicture")
+                }
             </div>
 
-        }
-        else
-        {
 
-            <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
-            <br />
-            @Html.ActionLink("Add Photo", "ProfilePicture")
-        }
+        </div>
+
+
     </div>
-</section>
+    @*<section class="console_container">
+        <div class="console_info">
+            <h2>WELCOME</h2>
+            <h1>@ViewBag.LoggedIn</h1>
+            @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile })
+        </div>
+        <div class="console_image">
+            @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
+            {
+                <div class="profile-image_container">
+                    <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="dashboard-image" />
+                </div>
+
+            }
+            else
+            {
+
+                <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
+                <br />
+                @Html.ActionLink("Add Photo", "ProfilePicture")
+            }
+        </div>*@
+    </section>

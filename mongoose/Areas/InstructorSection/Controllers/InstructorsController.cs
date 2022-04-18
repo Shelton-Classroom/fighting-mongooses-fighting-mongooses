@@ -28,7 +28,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
             var loggedIn = db.Instructors.FirstOrDefault(e => e.Id == userId);
 
             var profileDetails = loggedIn.InstructorId;
-
+            ViewBag.InternshipCount = db.Student_Internship.Where(i => i.InstructorId == loggedIn.InstructorId).Count().ToString();
             ViewBag.LoggedIn = loggedIn.FirstName;
             ViewBag.EditProfile = profileDetails;
             ViewBag.UserId = userId;
@@ -149,8 +149,8 @@ namespace mongoose.Areas.InstructorSection.Controllers
 
             
            
-            //var userid = User.Identity.GetUserId();
-            //var intructorid = User.Identity.GetUserId();
+            var userid = User.Identity.GetUserId();
+            var intructorid = db.Instructors.FirstOrDefault(i => i.Id == userid).InstructorId;
             ///*var internships = db.Student_Internship.Where(i => i.Instructor.Id == userid);*/   //list of internships instructor is assigned to mb
             //ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
             //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -199,6 +199,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
                     internships = internships.OrderByDescending(i => i.StudentInternshipId);
                     break;
             }
+       
             ViewBag.InstructorList = new SelectList(db.Instructors.OrderBy(i => i.LastName), "InstructorId", "LastName");
             return View(internships.ToList());
         }

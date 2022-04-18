@@ -91,6 +91,20 @@
             <dd>
                 @Html.DisplayFor(model => model.Employer.Name)
             </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Internship_Major)
+            </dt>
+
+            <dd>
+                @{ 
+                    var major = Model.Internship_Major.ToList();
+                    foreach(var m in major)
+                    {
+                        <p>@m.Major.Name</p>
+                    }
+
+                }
+            </dd>
 
         </dl>
     </div>

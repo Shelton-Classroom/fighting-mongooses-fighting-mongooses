@@ -23,22 +23,27 @@ namespace mongoose.Models
             this.Saved_Internship = new HashSet<Saved_Internship>();
             this.Applications = new HashSet<Application>();
         }
-    
+        [Display(Name = "Internship ID")]
         public int InternshipId { get; set; }
+        [Display(Name = "Employer ID")]
         public int EmployerId { get; set; }
+        [Display(Name = "Title")]
         public string Name { get; set; }
         public string Description { get; set; }
         public string Length { get; set; }
         public Nullable<decimal> Rate { get; set; }
         public string Location { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name ="Start Date")]
         public Nullable<System.DateTime> StartDate { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Date Posted")]
         public System.DateTime PostDate { get; set; }
         public payMe Paid { get; set; }
     
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name = "Major")]
         public virtual ICollection<Internship_Major> Internship_Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Internship> Student_Internship { get; set; }
