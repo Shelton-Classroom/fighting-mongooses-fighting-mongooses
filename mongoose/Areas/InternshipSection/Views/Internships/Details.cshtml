@@ -111,13 +111,19 @@
 @{
     if (User.IsInRole("Student"))
     {
+    <div>
         @Html.Partial("_backToStu")
         @Html.ActionLink("APPLY", "Create/" + Model.InternshipId, "Applications", new { area = "ApplicationSection" }, new { @class = "btn btn-success" })
+    </div>
+        
     }
     if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId }, new { @class = "btn btn-warning" })
-        @Html.Partial("_backToEmp")
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId }, new { @class = "btn btn-warning" })
+            @Html.Partial("_backToEmp")
+        </div>
+        
     }
     if (User.IsInRole("Instructor"))
     {

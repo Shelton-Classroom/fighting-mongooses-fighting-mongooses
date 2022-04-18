@@ -158,6 +158,15 @@
 
             });
         }
+        function removeFunction(id) {     //removes saved internship and refreshs page- triggered by remove onclick mb
+            $.ajax({
+                url: 'InternshipSave',
+                data: { id: id }
+            }).done(function () {
+                window.location.reload();
+
+            });
+        }
 
         function changeColor() {     //when heart favicon is clicked, toggles red class for that heart element mb
             if ($(this).hasClass('red')) {

@@ -117,16 +117,6 @@
 
                 </dd>
             </dl>
-            <h4>Major(s)</h4>
-            @foreach (var m in ViewBag.studentmajor)
-            {
-                <p>@m.Major.Name</p>
-            }
-            <h4>Course(s)</h4>
-            @foreach (var c in ViewBag.studentcourse)
-            {
-                <p>@c.Cours.Name</p>
-            }
         </div>
         <div class="photo-container">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
@@ -136,10 +126,10 @@
                 </div>
                 if (User.IsInRole("Student") || User.IsInRole("Admin"))
                 {
-        <div>
-            @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info" })
-        </div>
-                    
+                    <div>
+                        @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info" })
+                    </div>
+
                 }
 
 
@@ -165,33 +155,85 @@
 
 
 </div>
-<p>
-    @{
-        if (User.IsInRole("Student"))
+<h3 class="text-success">@Html.DisplayFor(model => model.FirstName)'s Academics</h3>
+
+<div>
+    <table class="table table-striped">
+        <tr class="text-info">
+            <th>Major(s)</th>
+        </tr>
+
+        @foreach (var m in ViewBag.studentmajor)
         {
-        <div>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
-        </div>
-            
-        }
-        if (User.IsInRole("Employer"))
-        {
-            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
-        }
-        if (User.IsInRole("Instructor"))
-        {
-            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
-        }
-        if (User.IsInRole("Admin"))
-        {
-        <div>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
-        </div>
-        }
-    }
+            <tr>
+                <td>
+                    @m.Major.Name
+                </td>
+            </tr>
 
 
 
-</p>
+        }
+
+    </table>
+
+
+</div>
+
+<div>
+    <table class="table table-striped">
+        <tr class="text-info">
+            <th>Course(s)</th>
+            <th>Term</th>
+            <th>Grade</th>
+        </tr>
+
+        @foreach (var c in ViewBag.studentcourse)
+        {
+            <tr>
+                <td>
+                    @c.Cours.Name
+                </td>
+                <td>
+                    @c.SemesterCompleted, @c.Term
+                </td>
+                <td>
+                    @c.Grade
+                </td>
+            </tr>
+
+
+
+        }
+
+    </table>
+    <p>
+        @{
+            if (User.IsInRole("Student"))
+            {
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
+                </div>
+
+            }
+            if (User.IsInRole("Employer"))
+            {
+                @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+            }
+            if (User.IsInRole("Instructor"))
+            {
+                @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+            }
+            if (User.IsInRole("Admin"))
+            {
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
+                </div>
+            }
+        }
+
+
+
+    </p>

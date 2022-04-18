@@ -23,9 +23,48 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Student_Internship</h4>
+    <h4>Student Internship</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Internship.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Internship.Employer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Internship.Employer.Name)
+        </dd>
+        <dt>
+            Student
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.LastName), @Html.DisplayFor(model => model.Student.FirstName)
+        </dd>
+
+        <dt>
+            Instructor
+        </dt>
+
+        <dd>
+
+            @Html.DisplayFor(model => model.Instructor.LastName), @Html.DisplayFor(model => model.Instructor.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Term)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semester), @Html.DisplayFor(model => model.Term)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Midterm)
         </dt>
@@ -50,45 +89,7 @@
             @Html.DisplayFor(model => model.Comments)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Term)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Term)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Semester)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Semester)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Instructor.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Instructor.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Internship.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Internship.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student.FirstName)
-        </dd>
 
     </dl>
 </div>

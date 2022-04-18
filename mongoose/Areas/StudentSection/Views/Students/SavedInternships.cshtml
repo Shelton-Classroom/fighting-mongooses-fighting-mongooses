@@ -3,9 +3,85 @@
     ViewBag.Title = "Saved Internships";
 }
 @Html.Partial("_studentNav")
-<h2>SavedInternships</h2>
+<h2>Saved Internships</h2>
 
-<table class="table">
+
+
+
+
+
+<div class="internship_container">
+    @foreach (var item in Model)
+    {
+        <div class="panel panel-primary internship_block">
+            <div class="panel-heading internship_panel_heading">
+                @Html.DisplayFor(modelItem => item.Internship.Name)
+                @{
+
+                    <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.Internship.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.Internship.PostDate)</p>
+                    if (item.Internship.Paid == 0)
+                    {
+                        <p>$@Html.DisplayFor(modelItem => item.Internship.Rate) /hr</p>
+                    }
+                    else
+                    {
+                        <p>Unpaid</p>
+                    }
+                    <a href="#" id="save" value="@item.InternshipId" onclick="removeFunction(@item.InternshipId);">Remove</a>
+
+                }
+            </div>
+            <div class="panel-body internship_panel_body">
+                @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Internship.Employer.Id + ".jpg")))
+                {
+                    <div class="studentOpenInternshipEmployer">
+                        @Html.ActionLink(item.Internship.Employer.Name, "Details", "Employers", new { area = "EmployerSection", id = item.Internship.EmployerId }, null)
+                        <img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Internship.Employer.Id + ".jpg"))" />
+                    </div>
+
+
+
+                }
+                else
+                {
+                    @Html.ActionLink(item.Internship.Employer.Name, "Details", "Employers", new { area = "EmployerSection", id = item.Internship.EmployerId }, null)
+                }
+                <div class="internship_panel_major">
+                    <p class="text-success">Major(s):</p>
+                    @{
+                        {
+
+                            var major = item.Internship.Internship_Major.ToList();
+                            if (major.Count != 0)
+                            {
+                                foreach (var m in major)
+                                {
+                                    <p>@m.Major.Name</p>
+                                }
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
+                            }
+                        }
+
+                    }
+                </div>
+
+                <div class="internship_panel_body_description">
+                    <p class="text-success ">Description:</p>
+                    @item.Internship.Description
+                </div>
+                <div class="internship_buttons">
+                    @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "bt btn-success btn-sm " })
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Internship.Name)
@@ -80,4 +156,4 @@
         </tr>
     }
 
-</table>
+</table>*@

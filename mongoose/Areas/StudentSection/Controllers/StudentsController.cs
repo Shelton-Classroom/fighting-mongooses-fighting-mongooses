@@ -219,6 +219,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
+            
             ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == id).ToList();
             ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == id).ToList();
             ViewBag.Developer = "MB";

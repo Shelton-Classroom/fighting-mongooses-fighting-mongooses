@@ -4,9 +4,11 @@
 }
 @Html.Partial("_studentNav")
 <h2>My Internships</h2>
-<p>Under Construction</p>
-<table class="table">
+<table class="table table-striped">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Internship.Name)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Midterm)
         </th>
@@ -14,22 +16,7 @@
             @Html.DisplayNameFor(model => model.Final)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Comments)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Term)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Semester)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Instructor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Internship.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Student.FirstName)
         </th>
         <th></th>
     </tr>
@@ -38,33 +25,22 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Internship.Name)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Midterm)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Final)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Comments)
+                @item.Semester, @item.Term
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Term)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Semester)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Instructor.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Internship.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null) |
-                @Html.ActionLink("Delete", "Delete/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, null)
+                <div class="internship_buttons">
+                    @Html.ActionLink("More Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-success" }) 
+                </div>
+                
             </td>
         </tr>
     }

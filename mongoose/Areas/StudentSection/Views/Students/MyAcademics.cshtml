@@ -5,22 +5,20 @@
 @Html.Partial("_studentNav")
 
 
-<section class="console_container">
-    <div class="console_info">
-        <h3>@ViewBag.Name's academics</h3>
+
+        <h3 class="text-success">@ViewBag.Name's Academics</h3>
      
-        @*//Viewbag for logged in student major(s) will go here with the edit button for any and each existing major*@
     <div>
-        <table class="table">
-            <tr>
-                <th><h1><b>Major(s)</b></h1></th>
+        <table class="table table-striped">
+            <tr class="text-info">
+                <th>Major(s)</th>
             </tr>
 
             @foreach (var m in ViewBag.studentmajor)
             {
                 <tr>
                     <td>
-                        <p>@m.Major.Name</p>
+                        @m.Major.Name
                     </td>
                 </tr>
 
@@ -33,19 +31,25 @@
 
     </div>
 
-       
-        @*//Viewbag for logged in student courses with edit buttons for any and each existing course*@
     <div>
-        <table class="table">
-            <tr>
-                <th><h1><b>Course(s)</b></h1></th>
+        <table class="table table-striped">
+            <tr class="text-info">
+                <th>Course(s)</th>
+                <th>Term</th>
+                <th>Grade</th>
             </tr>
 
             @foreach (var c in ViewBag.studentcourse)
             {
                 <tr>
                     <td>
-                        <p>@c.Cours.Name    -    @c.SemesterCompleted</p> @*//Do we want to include more info here?*@
+                        @c.Cours.Name
+                    </td>
+                    <td>
+                        @c.SemesterCompleted, @c.Term
+                    </td>
+                    <td>
+                        @c.Grade
                     </td>
                 </tr>
 
@@ -56,10 +60,7 @@
         </table>
        
 
-    </div>
-    
 
-    </div>
 
-</section>
+
 
