@@ -130,7 +130,11 @@ namespace mongoose.Areas.InternshipSection.Controllers
                 db.Entry(internship).State = EntityState.Modified;
 
                 db.SaveChanges();
-                return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
+                if (User.IsInRole("Employer"))
+                {
+                    return RedirectToAction("OpenInternships", "Employers", new { area = "EmployerSection" });
+                }
+                return RedirectToAction("Index");
             }
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
             return View(internship);
