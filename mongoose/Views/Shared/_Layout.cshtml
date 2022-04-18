@@ -123,6 +123,15 @@
                 }
             });
         });
+        $(function () { //Sends selected instructor id to controller to filter active Internships view mb
+            $('#InstructorList').change(function () {
+                var id = $(this).val();
+                console.log($(this).val());
+                if (id != null && id != '') {
+                    window.location.href = "ActiveInternships?instructorId=" + id;
+                }
+            });
+        });
         $(function () {  //Sends selected major id to controller to filter StudentSearch view mb
             $('#StudentMajorList').change(function () {
                 var id = $(this).val();

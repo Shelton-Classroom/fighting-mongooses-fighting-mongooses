@@ -1,51 +1,85 @@
-﻿@model List<mongoose.Models.Internship>
+﻿@model List<mongoose.Models.Student_Internship>
 @{
     ViewBag.Title = "ActiveInternships";
 }
 @Html.Partial("_instructorNav")
-<h2>ActiveInternships</h2>
+<h2>Active Interns</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "Student_Internship", new { area = "Student_InternshipSection" }, null)
+    @Html.ActionLink("Create New", "Create", "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-success" })
 </p>
+@using (Html.BeginForm())
+{
+    <div class="studentFilterArea">
+        <div class="studentFilterAreaSearch">
+            @Html.TextBox("SearchString", null, htmlAttributes: new { @class = "form-control", @placeholder = "Search Students" })
+            <input class="btn btn-sm btn-info" type="submit" value="Search" />
+        </div>
+        <div class="studentFilterAreaMajor">
+            @Html.DropDownList("InstructorList", null, "Sort By Instructor", htmlAttributes: new { @class = "form-control", id = "InstructorList" })
 
-
-<p>
-    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" })
-    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by:</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp;
-    @*@Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" })*@
-    &nbsp;&nbsp;&nbsp;<label class="filter">Name</label>&nbsp;&nbsp;&nbsp;
-    @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
-
-</p>
-
-<form asp-controller="Internship" asp-action="Index" method="get">
-    <p>
-        <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
-</form>
-<table class="table"></table>
-
-
-<div id="courseContainer">
-    @Html.Partial("_Index", Model) @*The model item passed into the dictionary is of type 'System.Collections.Generic.List`1[mongoose.Models.Internship]', but this dictionary requires a model item of type 'System.Collections.Generic.IEnumerable`1[mongoose.Models.Student_Internship]'.*@
-    @*This is a test push*@
-</div>
-
-@section Scripts {
-    <script type="text/javascript">
-            function FillByTag() {
-                var departmentId = $('#MajorId').val();
-                var container = $('#courseContainer');
-                container.Load('@Url.Action("_IndexByTag")?id=' + majorId);
-            }
-            function FilterByName() {
-                var parm = $('#Search').val();
-                var container = $('#courseContainer');
-                container.load('@Url.Action("_IndexByName")?parm=' + parm);
-                console.log(parm);
-            }
-
-    </script>
+        </div>
+        <div class="btn-group">
+            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Filter
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Employer", "ActiveInternships", new { sortOrder = ViewBag.EmployerNameSortParm })</li>
+            </ul>
+        </div>
+        @Html.ActionLink("Clear All", "ActiveInternships", "", new { @class = "btn btn-sm btn-info" })
+    </div>
 }
+<div class="internship_container">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Student
+            </th>
+            <th>
+                Employer
+            </th>
+            <th>
+                Instructor
+            </th>
+            <th>
+                ID
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Internship.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.LastName), @Html.DisplayFor(modelItem => item.Student.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Internship.Employer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Instructor.LastName), @Html.DisplayFor(modelItem => item.Instructor.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentInternshipId)
+                </td>
+                <td>
+                    <div class="internship_buttons">
+                        @Html.ActionLink("More Details", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-success" })
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+ 
+
