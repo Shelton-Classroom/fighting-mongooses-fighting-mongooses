@@ -40,7 +40,7 @@ namespace mongoose.Areas.StudentSection.Controllers
                 ViewBag.RecIntCount = reccomendedInternships.Count().ToString(); 
             }
             
-
+            ViewBag.Reccomended = reccomendedInternships.OrderBy(r => r.PostDate).Take(5);
             ViewBag.EditProfile = loggedIn.StudentId;
             ViewBag.UserId = userId;
             ViewBag.Developer = "MB";
@@ -219,8 +219,40 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
+
+            var courses = db.Student_Course.Where(s => s.StudentId == id).ToList();
+            double gpa = 0;
+            foreach(var course in courses)
+            {
+                if (course.Grade == "A")
+                {
+                    gpa = gpa + 4;
+                }
+                if (course.Grade == "B")
+                {
+                    gpa = gpa + 3;
+                }
+                if (course.Grade == "C")
+                {
+                    gpa = gpa + 2;
+                }
+                if (course.Grade == "D")
+                {
+                    gpa = gpa + 1;
+                }
+            }
+            if(courses.Count() > 0)
+            {
+                gpa = (gpa / courses.Count());
+            } else
+            {
+                gpa = 0;
+            }
             
-            ViewBag.studentcourse = db.Student_Course.Where(s => s.StudentId == id).ToList();
+
+
+            ViewBag.Gpa = gpa;
+            ViewBag.studentcourse = courses;
             ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == id).ToList();
             ViewBag.Developer = "MB";
             return View(Student);

@@ -8,7 +8,7 @@
 
 
 <section class="dashboard">
-    <div class="dashboard_info_panel panel panel-success">
+    <div class="dashboard_info_panel panel panel-primary">
         <div class="panel-heading dashboard_info_heading">
             <h1 class="panel-title">@ViewBag.Name</h1>
             @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile }, new { @class = "dashboard_view_profile" })
@@ -16,7 +16,20 @@
         <div class="panel-content dashboard_info_content">
             <div>
                 <h3 style="font-size: 4rem;">Welcome @ViewBag.Name,</h3>
-                <p style="font-size:3rem;">There are @ViewBag.RecIntCount<br/> recommended internship(s)  <br />and @ViewBag.activeInternshipCount Active Internship(s).</p>
+                <h4 class="text-info">Here are your reccomened internships:</h4>
+                @{ 
+                    <table class="table table-striped">
+                        @foreach(var i in ViewBag.Reccomended)
+                    {
+                        <tr>
+                            <td>
+                                <a href="/InternshipSection/Internships/Details/@i.InternshipId">@i.Name</a>
+                            </td>
+                        </tr>
+                    }
+                    </table>
+                    
+                }
             </div>
             <div>
                 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
