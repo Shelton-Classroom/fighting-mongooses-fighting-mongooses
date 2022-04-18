@@ -202,6 +202,67 @@ namespace mongoose.Areas.InstructorSection.Controllers
             ViewBag.InstructorList = new SelectList(db.Instructors.OrderBy(i => i.LastName), "InstructorId", "LastName");
             return View(internships.ToList());
         }
+        public ActionResult StudentSearch(string sortOrder, string searchString, int? majorId)
+        {
+            var Majors = db.Majors.Select(rr => new SelectListItem { Value = rr.MajorId.ToString(), Text = rr.Name }).ToList();
+            Majors.Insert(0, (new SelectListItem { Text = "All Majors", Value = "0" }));
+            ViewBag.Majors = Majors;
+
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LocationSortParm = sortOrder == "Start" ? "location_desc" : "Location";
+            ViewBag.EnrollmentSortParm = sortOrder == "Enrolled" ? "not_enrolled" : "Enrolled";
+            var students = from s in db.Students
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(i => i.FirstName.Contains(searchString)
+                                       || i.LastName.Contains(searchString));
+            }
+
+            if (majorId > 0)
+            {
+                var intMaj = db.Student_Major.Where(i => i.MajorId == majorId);
+                var stuIds = intMaj.Select(x => x.StudentId).ToList();
+                students = students.Where(i => stuIds.Contains(i.StudentId));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "Enrolled":
+                    students = students.Where(s => s.EnrollmentStatus == 0);
+                    break;
+                case "not_enrolled":
+                    students = students.Where(s => s.EnrollmentStatus != 0);
+                    break;
+                case "Location":
+                    students = students.OrderBy(s => s.State);
+                    break;
+                case "location_desc":
+                    students = students.OrderByDescending(s => s.State);
+                    break;
+                case "Name":
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.GraduationDate);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.GraduationDate);
+                    break;
+                default:
+
+                    break;
+            }
+
+            ViewBag.Developer = "MB";
+            return View(students);
+        }
         public ActionResult Classes()
         {
             var classes = db.Courses.ToList();//List of all courses MB
