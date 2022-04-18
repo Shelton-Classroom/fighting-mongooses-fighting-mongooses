@@ -5,119 +5,242 @@
 @Html.Partial("_instructorNav")
 <h2>OpenInterships</h2>
 
-@*
-<p>
-    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" }) 
-    &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp; 
-    @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" }) 
-    &nbsp;&nbsp;&nbsp;<label class="filter">Search by Major Name</label>&nbsp;&nbsp;&nbsp;
-    @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
-</p>
+@using (Html.BeginForm())
+{
+    <div class="studentFilterArea">
+        <div class="studentFilterAreaSearch">
+            @Html.TextBox("SearchString", null, htmlAttributes: new { @class = "form-control", @placeholder = "Search Internships" })
+            <input class="btn btn-sm btn-info" type="submit" value="Search" />
+        </div>
+        <div class="studentFilterAreaMajor">
+            @Html.DropDownList("Majors", null, "Sort By Major", htmlAttributes: new { @class = "form-control", id = "MajorList" })
 
-<div id="courseContainer">
-    @Html.Partial("_Index", Model)
-</div>
-
-@section Scripts {
-    <script type="text/javascript">
-        function FillByTag() {
-            var departmentId = $('#MajorId').val();
-            var container = $('#courseContainer');
-            container.Load('@Url.Action("_IndexByTag")?id=' + majorId);
-        }
-        function FilterByName() {
-            var parm = $('#Search').val();
-            var container = $('#courseContainer');
-            container.load('@Url.Action("_IndexByName")?parm=' + parm);
-        }
-
-    </script>
-}*@
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Length)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employer.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Internship_Major)
-        </th>
-        <th></th>
-    </tr>
-
+        </div>
+        <div class="btn-group">
+            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Filter
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("DATE ADDED", "OpenInternships", new { sortOrder = ViewBag.DateSortParm })</li>
+                <li>@Html.ActionLink("TITLE", "OpenInternships", new { sortOrder = ViewBag.NameSortParm })</li>
+                <li>@Html.ActionLink("LOCATION", "OpenInternships", new { sortOrder = ViewBag.LocationSortParm })</li>
+                <li>@Html.ActionLink("START-DATE", "OpenInternships", new { sortOrder = ViewBag.StartDateSortParm })</li>
+                <li>@Html.ActionLink("PAID", "OpenInternships", new { sortOrder = ViewBag.PaidSortParm })</li>
+                <li>@Html.ActionLink("EMPLOYER", "OpenInternships", new { sortOrder = ViewBag.EmployerNameSortParm })</li>
+            </ul>
+        </div>
+        @Html.ActionLink("Clear All", "OpenInternships", "", new { @class = "btn btn-sm btn-info" })
+    </div>
+}
+<div class="internship_container">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <div class="panel panel-primary internship_block">
+            <div class="panel-heading internship_panel_heading">
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employer.Name)
-            </td>
-            <td>
                 @{
-                    var major = item.Internship_Major.FirstOrDefault();
-                    if (major != null)
-                    {
-                        @Html.DisplayFor(m => major.Major.Name);
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
-                    }
+
+                    <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.StartDate)</p><p class="text-success">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
+                  
                 }
-            </td>
-            <td>
+            </div>
+            <div class="panel-body internship_panel_body">
+                @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Employer.Id + ".jpg")))
+                {
+                    <div class="studentOpenInternshipEmployer">
+                        @Html.ActionLink(item.Employer.Name, "Details", "Employers", new { area = "EmployerSection", id = item.EmployerId }, null)
+                        <img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Employer.Id + ".jpg"))" />
+                    </div>
 
-                @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null)
 
-            </td>
-        </tr>
+
+                }
+                else
+                {
+                    @Html.ActionLink(item.Employer.Name, "Details", "Employers", new { area = "EmployerSection", id = item.EmployerId }, null)
+                }
+                <div class="internship_panel_major">
+                    <p class="text-success">Major(s):</p>
+                    @{
+                        {
+
+                            var major = item.Internship_Major.ToList();
+                            if (major.Count != 0)
+                            {
+                                foreach (var m in major)
+                                {
+                                    <p>@m.Major.Name</p>
+                                }
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
+                            }
+                        }
+
+                    }
+                </div>
+
+                <div class="internship_panel_body_description">
+                    <p class="text-success ">Description:</p>
+                    @item.Description
+                </div>
+                <div class="internship_buttons">
+                    @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "bt btn-success btn-sm " })
+                </div>
+            </div>
+        </div>
     }
 
-</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <p>
+        @Html.ActionLink(HttpUtility.HtmlDecode("&laquo; New Course &raquo;"), "Create", null, null, new { @class = "btn btn-primary" })
+        &nbsp;&nbsp;&nbsp;<label class="filter">Filter by</label>&nbsp;&nbsp;&nbsp;<label class="filter">Course Tag</label>&nbsp;&nbsp;&nbsp;
+        @Html.DropDownList("MajorId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByTag()" })
+        &nbsp;&nbsp;&nbsp;<label class="filter">Search by Major Name</label>&nbsp;&nbsp;&nbsp;
+        @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()", @rows = "1" })
+    </p>
+
+    <div id="courseContainer">
+        @Html.Partial("_Index", Model)
+    </div>
+
+    @section Scripts {
+        <script type="text/javascript">
+            function FillByTag() {
+                var departmentId = $('#MajorId').val();
+                var container = $('#courseContainer');
+                container.Load('@Url.Action("_IndexByTag")?id=' + majorId);
+            }
+            function FilterByName() {
+                var parm = $('#Search').val();
+                var container = $('#courseContainer');
+                container.load('@Url.Action("_IndexByName")?parm=' + parm);
+            }
+
+        </script>
+    }*@
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Internship_Major)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Length)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employer.Name)
+                </td>
+                <td>
+                    @{
+                        var major = item.Internship_Major.FirstOrDefault();
+                        if (major != null)
+                        {
+                            @Html.DisplayFor(m => major.Major.Name);
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Add Major +", "Create/" + item.InternshipId, "Internship_Major", new { area = "Internship_MajorSection" }, null)
+                        }
+                    }
+                </td>
+                <td>
+
+                    @Html.ActionLink("Details", "Details/" + item.InternshipId, "Internships", new { area = "InternshipSection" }, null)
+
+                </td>
+            </tr>
+        }
+
+    </table>*@

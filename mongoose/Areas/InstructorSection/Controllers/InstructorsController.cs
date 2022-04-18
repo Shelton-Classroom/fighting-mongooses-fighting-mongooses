@@ -18,6 +18,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
         // GET: InstructorSection/Instructors
         public ActionResult Index()
         {
+            ViewBag.Developer = "MB";
             return View(db.Instructors.ToList());
         }
         [Authorize(Roles = "Instructor")]
@@ -31,6 +32,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
             ViewBag.LoggedIn = loggedIn.FirstName;
             ViewBag.EditProfile = profileDetails;
             ViewBag.UserId = userId;
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -38,6 +40,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             ViewBag.UserId = userId;
+            ViewBag.Developer = "MB";
             return View();
         }
         [HttpPost]
@@ -61,10 +64,84 @@ namespace mongoose.Areas.InstructorSection.Controllers
             return RedirectToAction("Home");
 
         }
-        public ActionResult OpenInternships()
+        public ActionResult OpenInternships(string sortOrder, string searchString, int? majorId)
         {
-            var internships = db.Internships.ToList(); //List of all internships MB
-            return View(internships);
+            var Majors = db.Majors.Select(rr => new SelectListItem { Value = rr.MajorId.ToString(), Text = rr.Name }).ToList();
+            Majors.Insert(0, (new SelectListItem { Text = "All Majors", Value = "0" }));
+            ViewBag.Majors = Majors;
+
+
+            //ViewBag.EmployerList = new SelectList(db.Employers.OrderBy(e => e.Name), "EmployerId", "Name");
+            //var userId = User.Identity.GetUserId(); //gets logged in users id
+            //var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId; //gets logged in users studentId
+            //var studentSaved = db.Saved_Internship.Where(s => s.StudentId == studentId); //gets students saved internships
+            //ViewBag.Saved = studentSaved.Select(x => x.InternshipId).ToList(); // list of just internshipId's from above saved_interships, to display hearts in red in view
+
+
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.StartDateSortParm = sortOrder == "Start" ? "start_desc" : "Start";
+            ViewBag.EmployerNameSortParm = sortOrder == "EmployerName" ? "employerName_desc" : "EmployerName";
+            ViewBag.LocationSortParm = sortOrder == "Location" ? "location_desc" : "Location";
+            ViewBag.PaidSortParm = sortOrder == "Paid" ? "not_paid" : "Paid";
+            var internships = from i in db.Internships
+                              select i;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                internships = internships.Where(i => i.Description.Contains(searchString)
+                                       || i.Name.Contains(searchString));
+            }
+            if (majorId > 0)
+            {
+                var intMaj = db.Internship_Major.Where(i => i.MajorId == majorId);
+                var intIds = intMaj.Select(x => x.InternshipId).ToList();
+                internships = internships.Where(i => intIds.Contains(i.InternshipId));
+
+            }
+            switch (sortOrder)
+            {
+                case "Paid":
+                    internships = internships.Where(i => i.Paid == 0);
+                    break;
+                case "not_paid":
+                    internships = internships.Where(i => i.Paid != 0);
+                    break;
+                case "Location":
+                    internships = internships.OrderBy(i => i.Location);
+                    break;
+                case "location_desc":
+                    internships = internships.OrderByDescending(i => i.Location);
+                    break;
+                case "Name":
+                    internships = internships.OrderBy(i => i.Name);
+                    break;
+                case "name_desc":
+                    internships = internships.OrderByDescending(i => i.Name);
+                    break;
+                case "EmployerName":
+                    internships = internships.OrderBy(i => i.Employer.Name);
+                    break;
+                case "employerName_desc":
+                    internships = internships.OrderByDescending(i => i.Employer.Name);
+                    break;
+                case "Date":
+                    internships = internships.OrderBy(i => i.PostDate);
+                    break;
+                case "date_desc":
+                    internships = internships.OrderByDescending(i => i.PostDate);
+                    break;
+                case "Start":
+                    internships = internships.OrderBy(i => i.StartDate);
+                    break;
+                case "start_desc":
+                    internships = internships.OrderByDescending(i => i.StartDate);
+                    break;
+                default:
+                    internships = internships.OrderByDescending(i => i.PostDate);
+                    break;
+            }
+            ViewBag.Developer = "MB";
+            return View(internships.ToList());
         }
         public ActionResult ActiveInternships(string sortOrder, string searchString, int? majorId)
         {
