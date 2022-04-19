@@ -1,17 +1,136 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@*@{
+        ViewBag.Title = "Contact";
+    }
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    <address>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <address>
+        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    </address>*@
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm contact_message">
+                <h1>Connect Contact Form</h1>
+                <br />
+                <p>Before you contact us, please check out our FAQs on the bottom of this page. You can find the most of the common problems solutions under these frequently asked questions. If you can't find your answers there, please leave your full name, and  contact information in the form.<br /> Wish you the best.</p>
+            </div>
+            <div class="col-sm">
+                <img src="assets/img/contact_image.jpg" alt="Image Handshake">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="page-section cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <form id="form_contact" data-sb-form-api-token="API_TOKEN">
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                        <label for="name">Full name</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                    </div>
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                        <label for="email">Email address</label>
+                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                    </div>
+                    <!-- Phone number input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                        <label for="phone">Phone number</label>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                    </div>
+                    <!-- Message input-->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                        <label for="message">Message</label>
+                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                    </div>
+                    <!-- Submit success message-->
+                    <!---->
+                    <!-- This is what your users will see when the form-->
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                            <div class="fw-bolder">Thank you for contacting us!!! Hang Tight!!! We will get back to you shortly...</div>
+                            Meanwhile do look at my resume at:
+                            <br />
+                            <a href="http://dotnet.reynolds.edu/itd212_03/portfolioRamu">Ramu Bista</a>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="page-section about-heading">
+    <div class="container">
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg" alt="..." />
+        <div class="about-heading-content">
+            <div class="row">
+                <div class="col-xl-9 col-lg-10 mx-auto">
+                    <div class="bg-faded rounded p-5">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">Together We Can</span>
+                            <span class="section-heading-lower">Ask us how</span>
+                        </h2>
+                        <p>Please feel free to contact us with any questions or concerns. We will get back to you as soon as possible. Your satisfaction is our number 1 priority!!!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--FAQs Section-->
+<section class="page-section faq_section">
+    <div class="container">
+        <div class="row">
+            <br /><br />
+            <h2>Frequently asked questions</h2>
+            <br />
+
+            <button class="faq_que">Where is Connect's headquarter?</button>
+            <div class="faq_ans">
+                <p>We are based off of Tampa, Florida. But our new office is getting ready for relocation right here in Richmond, VA.</p>
+            </div>
+
+            <button class="faq_que">What is Connect's customer service number?</button>
+            <div class="faq_ans">
+                <p>You can reach out to us at 1-800-CONNECT or just email our customer service team at support@connect.com</p>
+            </div>
+
+            <button class="faq_que">How can I get my refund?</button>
+            <div class="faq_ans">
+                <p>We are really sorry that you are not happy with our services. Please contact out customer service department and we will be happy to process your refund or resolve the issue as you please.</p>
+            </div>
+
+            <button class="faq_que">Are you guys hiring?</button>
+            <div class="faq_ans">
+                <p>CONNECT is an equal opportunity employer. Please view our job openings and apply at careers.connect.com. Thank you. </p>
+            </div>
+
+        </div>
+    </div>
+</section>

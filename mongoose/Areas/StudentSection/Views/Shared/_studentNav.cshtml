@@ -1,15 +1,34 @@
 ﻿
-<nav class="navbar " style="margin-top:4rem;">
+@*<nav class="navbar " style="margin-top:4rem;">
     <div class="container-fluid">
         <ul class="nav nav-tabs nav-justified menu_items">
             <li class="menu-item">@Html.ActionLink("Home", "Home","Students", new {area = "StudentSection"}, new { id = "stuHome", @class="nav-link" })</li>
             <li class="menu-item">@Html.ActionLink("Open Internships", "OpenInternships", "Students", new { area = "StudentSection" }, new { id = "stuOpen" })</li>
             <li class="menu-item">@Html.ActionLink("Saved Internships", "SavedInternships", "Students", new { area = "StudentSection" }, new { id = "stuSaved" })</li>
-            @*<li class="menu-item">@Html.ActionLink("Recommended Internships", "RecommendedInternships", null, new { id = "stuRecommended" })</li>*@
             <li class="menu-item">@Html.ActionLink("My Internships", "ActiveInternships", "Students", new { area = "StudentSection" }, new { id = "stuActive" })</li>
-            @*<li class="menu-item">@Html.ActionLink("My Academics", "MyAcademics", "Students", new { area = "StudentSection" }, new { id = "stuAcadem" })</li>*@
+           
         </ul>
     </div>
-</nav>
+</nav>*@
 
-   
+
+<div class="navbar sub-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#subNav">
+                <span class="icon-bar sub-icon"></span>
+                <span class="icon-bar sub-icon"></span>
+                <span class="icon-bar sub-icon"></span>
+                @*@Html.ActionLink("CONNECT", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="subNav">
+            <ul class="nav nav-tabs nav-justified menu-items">
+                <li class="menu-item">@Html.ActionLink("Home", "Home", "Students", new { area = "StudentSection" }, new { id = "stuHome", @class = "nav-link" })</li>
+                <li class="menu-item">@Html.ActionLink("Open Internships", "OpenInternships", "Students", new { area = "StudentSection" }, new { id = "stuOpen", @class = "nav-link" })</li>
+                <li class="menu-item">@Html.ActionLink("Saved Internships", "SavedInternships", "Students", new { area = "StudentSection" }, new { id = "stuSaved", @class = "nav-link" })</li>
+                <li class="menu-item">@Html.ActionLink("My Internships", "ActiveInternships", "Students", new { area = "StudentSection" }, new { id = "stuActive", @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </div>
+</div>  

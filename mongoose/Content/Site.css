@@ -7,12 +7,11 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
     background-color: #222222;
     margin-top: 30px;
     margin-bottom: 15px;
-    padding-bottom: 15px;
+    
     border-radius: 5px;
     min-height: 80vh;
 }
@@ -42,6 +41,9 @@ a:hover{
     text-decoration: none;
 }
 
+.sub-icon{
+    background-color: #FFFFFF;
+}
 .learn_more {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -322,6 +324,14 @@ i:hover{
     color: black;
     padding: 2px;
 }
+@media only screen and (max-width: 767px) {
+    .sub-nav {
+        background-color: #375a7f;
+        border-color: #375a7f;
+        border-radius: 5px;
+    }
+}
+
 /*Footer Elements*/
 footer {
     background-color: #979797;
