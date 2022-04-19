@@ -3,6 +3,46 @@
     ViewBag.Title = "My Interships";
 }
 @Html.Partial("_studentNav")
+
+
+
+<h2>My Applications</h2>
+@{ 
+    if(ViewBag.Applications != null)
+            {
+                 <table class="table table-striped">
+                     <tr>
+                         <th>Title</th>
+                         <th>Employer</th>
+                         <th>Application Date</th>
+                         <th>
+
+                         </th>
+                     </tr>
+                     @foreach(var a in ViewBag.Applications)
+                {
+                 <tr>
+                     <td>
+                         <a href="~/InternshipSection/Internships/Details/@a.InternshipId">@a.Internship.Name</a>
+                    </td>
+                     <td><a href="~/EmployerSection/Employers/Details/@a.Internship.EmployerId">@a.Internship.Employer.Name</a></td>
+                     <td>@String.Format("{0:MM/dd/yyyy}", a.ApplicationDate)</td>
+                     <td><div>
+                                @Html.ActionLink("Details", "Details", "Internships", new { area = "InternshipSection", id = a.InternshipId }, new { @class = "label label-info" })
+                                @Html.ActionLink("Delete", "Delete", "Applications", new { area = "ApplicationSection", id = a.ApplicationId }, new { @class = "label label-danger" })
+                         </div>
+                         
+                     </td>
+                 </tr>
+                }
+                 </table>
+            }
+}
+
+
+
+
+
 <h2>My Internships</h2>
 <table class="table table-striped">
     <tr>

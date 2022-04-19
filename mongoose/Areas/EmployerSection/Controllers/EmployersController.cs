@@ -52,7 +52,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
               
                 string path = System.IO.Path.Combine(
                                        Server.MapPath("~/Images/"), User.Identity.GetUserId() + ".jpg"); //may need to change path for web server
-                
+               
                 // file is uploaded 
                 file.SaveAs(path);
 

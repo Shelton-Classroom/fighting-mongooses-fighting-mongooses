@@ -136,10 +136,23 @@ namespace mongoose.Areas.ApplicationSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            string path = System.IO.Path.Combine(
+                                           Server.MapPath("~/Resumes/"), id + ".docx");
+            if (System.IO.File.Exists(path)){ //removes resume file (if present) on application deletion
+                System.IO.File.Delete(path);
+            }
             Application application = db.Applications.Find(id);
             db.Applications.Remove(application);
             db.SaveChanges();
-            return RedirectToAction("Applicant", "Employers", new {area = "EmployerSection"});
+            if (User.IsInRole("Employer"))
+            {
+                return RedirectToAction("Applicant", "Employers", new { area = "EmployerSection" });
+            }
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("ActiveInternships", "Students", new { area = "StudentSection" });
+            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -175,6 +175,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
+            ViewBag.Applications = db.Applications.Where(a => a.Student.Id == userId);
             ViewBag.Developer = "MB";
             return View(internships);
         }

@@ -3,7 +3,19 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+@{ if (User.IsInRole("Employer"))
+    {
+        @Html.Partial("~/Areas/EmployerSection/Views/Shared/_employerNav.cshtml")
+    }
+    if (User.IsInRole("Student"))
+    {
+        @Html.Partial("~/Areas/StudentSection/Views/Shared/_studentNav.cshtml")
+    }
+    if (User.IsInRole("Admin"))
+    {
+        @Html.Partial("~/Areas/AdminSection/Views/Shared/_adminNav.cshtml")
+    }
+}
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -45,12 +57,24 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back", "Applicant", "Employers", new {area = "EmployerSection"}, new {@class = "btn btn-success"})
-        </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-danger" /> 
+    @{
+        if (User.IsInRole("Student"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+        }
+     
+
+    }
+</div>
     }
 </div>
