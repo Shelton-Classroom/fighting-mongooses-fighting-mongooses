@@ -201,6 +201,7 @@ namespace mongoose.Areas.InstructorSection.Controllers
             }
        
             ViewBag.InstructorList = new SelectList(db.Instructors.OrderBy(i => i.LastName), "InstructorId", "LastName");
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
         public ActionResult StudentSearch(string sortOrder, string searchString, int? majorId)
@@ -287,12 +288,14 @@ namespace mongoose.Areas.InstructorSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(instructor);
         }
 
         // GET: InstructorSection/Instructors/Create
         public ActionResult Create()
         {
+            ViewBag.Developer = "MB";
             return View();
         }
 

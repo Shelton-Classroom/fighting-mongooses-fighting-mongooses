@@ -20,6 +20,7 @@ namespace mongoose.Areas.Student_majorSection
         public ActionResult Index()
         {
             var student_Major = db.Student_Major.Include(s => s.Major).Include(s => s.Student);
+            ViewBag.Developer = "MB";
             return View(student_Major.ToList());
         }
 
@@ -35,6 +36,7 @@ namespace mongoose.Areas.Student_majorSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(student_Major);
         }
 
@@ -43,8 +45,8 @@ namespace mongoose.Areas.Student_majorSection
         {
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
-            
-                            
+
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -84,6 +86,7 @@ namespace mongoose.Areas.Student_majorSection
             //var userId = User.Identity.GetUserId();
             //var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
             //ViewBag.studentmajor = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); Getting user ID is not working for the bridge table at this juncture
+            ViewBag.Developer = "MB";
             return View(student_Major);
         }
 
@@ -117,6 +120,7 @@ namespace mongoose.Areas.Student_majorSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(student_Major);
         }
 
@@ -128,6 +132,7 @@ namespace mongoose.Areas.Student_majorSection
             Student_Major student_Major = db.Student_Major.Find(id);
             db.Student_Major.Remove(student_Major);
             db.SaveChanges();
+            ViewBag.Developer = "MB";
             return RedirectToAction("Index");
         }
 

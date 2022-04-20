@@ -61,6 +61,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
 
             }
             // after successfully uploading redirect the user
+            ViewBag.Developer = "MB";
             return RedirectToAction("Home");
         }
         public ActionResult OpenInternships()
@@ -266,6 +267,7 @@ namespace mongoose.Areas.EmployerSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(employer);
         }
 

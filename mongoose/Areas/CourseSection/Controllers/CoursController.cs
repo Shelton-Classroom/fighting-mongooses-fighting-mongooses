@@ -17,6 +17,7 @@ namespace mongoose.Areas.CourseSection.Controllers
         // GET: CourseSection/Cours
         public ActionResult Index()
         {
+            ViewBag.Developer = "MB";
             return View(db.Courses.ToList());
         }
 
@@ -32,6 +33,7 @@ namespace mongoose.Areas.CourseSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(cours);
         }
 
@@ -54,7 +56,7 @@ namespace mongoose.Areas.CourseSection.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Developer = "MB";
             return View(cours);
         }
 
@@ -70,6 +72,7 @@ namespace mongoose.Areas.CourseSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(cours);
         }
 
@@ -101,6 +104,7 @@ namespace mongoose.Areas.CourseSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(cours);
         }
 

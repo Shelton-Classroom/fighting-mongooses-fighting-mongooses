@@ -19,6 +19,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
         public ActionResult Index()
         {
             var internships = db.Internships.Include(i => i.Employer);
+            ViewBag.Developer = "MB";
             return View(internships.ToList());
         }
 
@@ -34,7 +35,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             {
                 return HttpNotFound();
             }
-            
+            ViewBag.Developer = "MB";
             ViewBag.EmpId = internship.Employer.Id;
             return View(internship);
         }
@@ -49,6 +50,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name");
             /*ViewBag.Majors = db.Majors.Select(rr => new SelectListItem { Value = rr.MajorId.ToString(), Text = rr.Name }).ToList();*/ //SelectList of majors so employers can add major(s) to internship on creation
             ViewBag.Majors = db.Majors.ToList();
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -114,6 +116,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
                 return HttpNotFound();
             }
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "Name", internship.EmployerId);
+            ViewBag.Developer = "MB";
             return View(internship);
         }
 
@@ -152,6 +155,7 @@ namespace mongoose.Areas.InternshipSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(internship);
         }
 
@@ -160,20 +164,20 @@ namespace mongoose.Areas.InternshipSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {   
-            var intMaj = db.Internship_Major.Where(i => i.InternshipId == id); //list of all internshipMajors that are tied to internship
+            var intMaj = db.Internship_Major.Where(i => i.InternshipId == id); //list of all internshipMajors that are tied to internship mb
             var stuInt = db.Student_Internship.Where(i => i.InternshipId == id);
             var saveInt =db.Saved_Internship.Where(i => i.InternshipId == id);
             foreach (var i in intMaj) //loops through list above
             {
-                Internship_Major deleteMajor = db.Internship_Major.Find(i.InternshipMajorId); //selects internship major 
+                Internship_Major deleteMajor = db.Internship_Major.Find(i.InternshipMajorId); //selects internship major mb
                 db.Internship_Major.Remove(deleteMajor);//deletes the internship major tied to internship being deleted!     
             }
-            foreach (var i in stuInt) // same for student internships
+            foreach (var i in stuInt) // same for student internships mb
             {
                 Student_Internship deleteStuInt = db.Student_Internship.Find(i.StudentInternshipId);
                 db.Student_Internship.Remove(deleteStuInt);
             }
-            foreach (var i in saveInt) // same for saved internships
+            foreach (var i in saveInt) // same for saved internships mb
             {
                 Saved_Internship deleteSaveInt = db.Saved_Internship.Find(i.Saved_InternshipId);
                 db.Saved_Internship.Remove(deleteSaveInt);

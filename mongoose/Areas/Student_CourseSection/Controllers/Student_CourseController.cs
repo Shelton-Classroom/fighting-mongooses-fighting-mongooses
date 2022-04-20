@@ -19,6 +19,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
         public ActionResult Index()
         {
             var student_Course = db.Student_Course.Include(s => s.Cours).Include(s => s.Student);
+            ViewBag.Developer = "MB";
             return View(student_Course.ToList());
         }
 
@@ -34,6 +35,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(student_Course);
         }
 
@@ -42,7 +44,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
         {
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
-            
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -79,7 +81,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Course.StudentId);
-          
+            ViewBag.Developer = "MB";
             return View(student_Course);
         }
 
@@ -113,6 +115,7 @@ namespace mongoose.Areas.Student_CourseSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(student_Course);
         }
 

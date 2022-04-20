@@ -18,6 +18,7 @@ namespace mongoose.Areas.Saved_InternshipSection
         public ActionResult Index()
         {
             var saved_Internship = db.Saved_Internship.Include(s => s.Internship).Include(s => s.Student);
+            ViewBag.Developer = "MB";
             return View(saved_Internship.ToList());
         }
 
@@ -33,6 +34,7 @@ namespace mongoose.Areas.Saved_InternshipSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(saved_Internship);
         }
 
@@ -42,6 +44,7 @@ namespace mongoose.Areas.Saved_InternshipSection
 
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -78,6 +81,7 @@ namespace mongoose.Areas.Saved_InternshipSection
             }
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name", saved_Internship.InternshipId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", saved_Internship.StudentId);
+            ViewBag.Developer = "MB";
             return View(saved_Internship);
         }
 
@@ -111,6 +115,7 @@ namespace mongoose.Areas.Saved_InternshipSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(saved_Internship);
         }
 

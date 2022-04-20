@@ -18,6 +18,7 @@ namespace mongoose.Areas.StudentSection.Controllers
         // GET: StudentSection/Students
         public ActionResult Index()
         {
+            ViewBag.Developer = "MB";
             return View(db.Students.ToList());
         }
         [Authorize(Roles = "Student")]
@@ -27,7 +28,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             var loggedIn = db.Students.FirstOrDefault(s => s.Id == userId);
             ViewBag.Name = loggedIn.FirstName;
             //var usermajor = db.Student_Major.FirstOrDefault(s => s.StudentId == userId); //finds the user's major, commented out as while getting errors linking userID to studentID -MB
-            var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //Gaelan I think this is what you were going for, list of current logged in student majors - MB
+            var studentMajors = db.Student_Major.Where(s => s.StudentId == loggedIn.StudentId).ToList(); //list of current logged in student majors - MB
             var studentMajorIds = studentMajors.Select(s => s.MajorId).ToList(); //list of the logged in students majors id's -MB
             var reccomendedIntershipMajors = db.Internship_Major.Where(i => studentMajorIds.Contains(i.MajorId)).ToList(); // list of internship majors that match student major(s) -MB
 
@@ -50,7 +51,8 @@ namespace mongoose.Areas.StudentSection.Controllers
             { ViewBag.activeInternshipCount = '0'.ToString(); }
                 else { 
                 ViewBag.activeInternshipCount = activeInternships.Count().ToString(); 
-                    } //This code seems to work but am still getting errors on the home page with the string coming through on the home page
+                    }
+            ViewBag.Developer = "MB";
             return View();    
 
         }
@@ -298,7 +300,7 @@ namespace mongoose.Areas.StudentSection.Controllers
                 }
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Developer = "MB";
             return View(Student);
         }
 
@@ -314,7 +316,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
-            
+            ViewBag.Developer = "MB";
             return View(Student);
         }
 
@@ -351,7 +353,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             {
                 return HttpNotFound();
             }
-            
+            ViewBag.Developer = "MB";
             return View(Student);
         }
 
@@ -366,7 +368,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             return RedirectToAction("Index");
         }
 
-        public void InternshipSave(int id)  //on heart click will create saved internship for that internship/student or remove if it exists, hopefully!
+        public void InternshipSave(int id)  //on heart click will create saved internship for that internship/student or remove if it exists - MB
         {
             var intId = id;
             var userId = User.Identity.GetUserId();

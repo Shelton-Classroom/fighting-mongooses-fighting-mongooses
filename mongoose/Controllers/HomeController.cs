@@ -20,7 +20,7 @@ namespace mongoose.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            ViewBag.Developer = "AM";
             return View();
         }
 

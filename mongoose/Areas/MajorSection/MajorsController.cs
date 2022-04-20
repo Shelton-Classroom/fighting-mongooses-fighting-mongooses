@@ -18,6 +18,7 @@ namespace mongoose.Areas.MajorSection
         public ActionResult Index()
         {
             return View(db.Majors.ToList());
+            ViewBag.Developer = "MB";
         }
 
         // GET: MajorSection/Majors/Details/5
@@ -32,12 +33,14 @@ namespace mongoose.Areas.MajorSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(major);
         }
 
         // GET: MajorSection/Majors/Create
         public ActionResult Create()
         {
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -70,6 +73,7 @@ namespace mongoose.Areas.MajorSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(major);
         }
 
@@ -101,6 +105,7 @@ namespace mongoose.Areas.MajorSection
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(major);
         }
 
@@ -112,12 +117,12 @@ namespace mongoose.Areas.MajorSection
 
             var intMaj = db.Internship_Major.Where(i => i.MajorId == id);
             var stuMaj = db.Student_Major.Where(s => s.MajorId == id);
-            foreach (var m in intMaj) //deletes all internship majors related to Major being deleted
+            foreach (var m in intMaj) //deletes all internship majors related to Major being deleted mb 
             {
                 Internship_Major deleteIntMaj = db.Internship_Major.Find(m.InternshipMajorId);
                 db.Internship_Major.Remove(deleteIntMaj);
             }
-            foreach (var m in stuMaj) //deletes all student majors related to Major being deleted
+            foreach (var m in stuMaj) //deletes all student majors related to Major being deleted mb
             {
                 Student_Major deleteStuMaj = db.Student_Major.Find(m.StudentMajorId);
                 db.Student_Major.Remove(deleteStuMaj);

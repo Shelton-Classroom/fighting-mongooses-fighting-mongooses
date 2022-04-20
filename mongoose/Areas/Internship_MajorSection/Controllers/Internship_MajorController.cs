@@ -19,6 +19,7 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
         {
             ViewBag.DepartmentId = new SelectList(db.Majors.OrderBy(d => d.MajorId), "Major", "MajorId");
             var internship_Major = db.Internship_Major.Include(i => i.Internship).Include(i => i.Major);
+            ViewBag.Developer = "MB";
             return View(internship_Major.ToList());
         }
 
@@ -34,6 +35,7 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(internship_Major);
         }
 
@@ -43,6 +45,7 @@ namespace mongoose.Areas.Internship_MajorSection.Controllers
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name");
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
             ViewBag.instId = id;
+            ViewBag.Developer = "MB";
             return View();
         }
 

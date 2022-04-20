@@ -20,6 +20,7 @@ namespace mongoose.Areas.ApplicationSection.Controllers
         {
             var applications = db.Applications.Include(a => a.Student).Include(a => a.Internship);
             return View(applications.ToList());
+            ViewBag.Developer = "MB";
         }
 
         // GET: ApplicationSection/Applications/Details/5
@@ -52,6 +53,7 @@ namespace mongoose.Areas.ApplicationSection.Controllers
             ViewBag.CurrentDate = DateTime.Now;
             //ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
             //ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name");
+            ViewBag.Developer = "MB";
             return View();
         }
 

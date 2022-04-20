@@ -18,6 +18,7 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
         public ActionResult Index()
         {
             var student_Internship = db.Student_Internship.Include(s => s.Instructor).Include(s => s.Internship).Include(s => s.Student);
+            ViewBag.Developer = "MB";
             return View(student_Internship.ToList());
         }
 
@@ -33,6 +34,7 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(student_Internship);
         }
 
@@ -42,6 +44,7 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             ViewBag.InstructorId = new SelectList(db.Instructors, "InstructorId", "FirstName");
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
+            ViewBag.Developer = "MB";
             return View();
         }
 
@@ -89,6 +92,7 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             ViewBag.InstructorId = new SelectList(db.Instructors, "InstructorId", "FirstName", student_Internship.InstructorId);
             ViewBag.InternshipId = new SelectList(db.Internships, "InternshipId", "Name", student_Internship.InternshipId);
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName", student_Internship.StudentId);
+            ViewBag.Developer = "MB";
             return View(student_Internship);
         }
 
@@ -132,6 +136,7 @@ namespace mongoose.Areas.Student_InternshipSection.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Developer = "MB";
             return View(student_Internship);
         }
 
