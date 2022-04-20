@@ -61,7 +61,7 @@ a:hover{
 }
 
 .dashboard-image {
-    max-height: 300px;
+    max-width: 300px;
     border-radius: 12px;
 }
 .fas.fa-heart{
@@ -162,6 +162,8 @@ i:hover{
 }
 .internship_panel_body {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 2rem;
     overflow: hidden;
@@ -219,6 +221,10 @@ i:hover{
  }
  .internship_details_photo{
      align-self: center;
+     max-width: 300px;
+ }
+ .addChange{
+    margin-top:.25rem;
  }
 
 /*-------------------Student Open Internships--------------------------------------------------------- */
@@ -317,6 +323,7 @@ i:hover{
     .body-content{
         margin: 30px 10px 10px 10px;
     }
+
 }
 
 

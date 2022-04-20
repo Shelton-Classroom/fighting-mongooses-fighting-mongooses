@@ -103,5 +103,19 @@
 }
 
 <div>
-    @Html.Partial("_backTo")
+    @if (Request.IsAuthenticated)
+    {
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Back", "Details/" + Model.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Instructor"))
+        {
+            @Html.ActionLink("Back", "Details/" + Model.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+        }
+    }
 </div>

@@ -25,8 +25,8 @@
 <div>
     <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName) </h4>
     <hr />
-    <div class="console_container">
-        <div class="info-container">
+    <div class="internship_details">
+        <div class="internship_details_info">
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.FirstName)
@@ -65,7 +65,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Email)
+                    <a href="mailto:@Model.Email">@Model.Email</a>
                 </dd>
 
                 <dt>
@@ -73,7 +73,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Phone)
+                    <a href="tel:@Model.Phone">@Model.Phone</a>
                 </dd>
 
                 <dt>
@@ -118,17 +118,17 @@
                 </dd>
             </dl>
         </div>
-        <div class="photo-container">
+        <div class="internship_details_photo">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
             {
-                <div class="profile-image_container">
+                
                     <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="dashboard-image" />
-                </div>
+                
                 if (User.IsInRole("Student") || User.IsInRole("Admin"))
                 {
-                    <div>
-                        @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info" })
-                    </div>
+                    
+                        @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info addChange" })
+                    
 
                 }
 

@@ -28,8 +28,8 @@
 <div>
     <h4>Employer</h4>
     <hr />
-    <div class="console_container">
-        <div>
+    <div class="internship_details">
+        <div class="internship_details_info">
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.Name)
@@ -52,7 +52,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Phone)
+                    <a href="tel:@Model.Phone">@Model.Phone</a>
                 </dd>
 
                 <dt>
@@ -60,7 +60,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Email)
+                    <a href="mailto:@Model.Email">@Model.Email</a>
                 </dd>
 
                 <dt>
@@ -105,12 +105,12 @@
 
             </dl>
         </div>
-        <div>
+        <div class="internship_details_photo">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
             {
-                <div class="profile-image_container">
+                
                     <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="dashboard-image" />
-                </div>
+               
 
 
             }
@@ -123,7 +123,7 @@
             }
             @if (Model.Id == User.Identity.GetUserId() && User.IsInRole("Employer"))
             {
-                @Html.ActionLink("Add/Change Photo", "ProfilePicture", null, new {@class="btn btn-info"})
+                @Html.ActionLink("Add/Change Photo", "ProfilePicture", null, new {@class="btn btn-info addChange"})
             }
 
         </div>
