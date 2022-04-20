@@ -4,7 +4,7 @@
 <div class="jumbotron learn_more">
     <div class="learn_more_text">
         <h1>CONNECT</h1>
-        <p class="">The world's leading internship application application</p>
+        <p style="text-transform: uppercase;">The world's leading internship application application</p>
     </div>
     
     <p><a href="Home/About" class="btn btn-info btn-lg">Learn more &raquo;</a></p>
@@ -16,14 +16,14 @@
             <p>
                 For students in an internship, or interested in one.
             </p>
-            @Html.ActionLink(HttpUtility.HtmlDecode("Register"), "Home", "Students", new { area = "StudentSection" }, new { @class = "btn btn-warning" })
+            @Html.ActionLink(HttpUtility.HtmlDecode("Register"), "Register", "Account", null, new { @class = "btn btn-warning" })
         </div>    
     </div>
     <div class="text-center home_link home_link-employer">
         <div class="home_link-text">
             <h2>Employers</h2>
             <p>For employers managing an internship, or looking for students to fill one.</p>
-            @Html.ActionLink(HttpUtility.HtmlDecode("Register"), "Home", "Employers", new { area = "EmployerSection" }, new { @class = "btn btn-warning" })
+            @Html.ActionLink(HttpUtility.HtmlDecode("Register"), "Register", "Account", null, new { @class = "btn btn-warning" })
         </div>
         
     </div>

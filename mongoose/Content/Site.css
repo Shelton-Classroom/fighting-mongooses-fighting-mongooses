@@ -7,7 +7,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding: 0px 15px 15px 15px;
+    padding: 15px;
     background-color: #222222;
     margin-top: 30px;
     margin-bottom: 15px;
@@ -152,9 +152,8 @@ i:hover{
 .internship_panel_heading{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-between;
-    /*grid-template-columns: repeat(4, 1fr);*/
     column-gap:2rem;
     
 }
@@ -166,7 +165,7 @@ i:hover{
     justify-content: space-between;
     gap: 2rem;
     overflow: hidden;
-    max-height: 150px;
+    /*max-height: 150px;*/
 }
 
 .internship_panel_body:before, .internship_panel_body::after{
@@ -293,6 +292,7 @@ i:hover{
     padding: 0 2rem 2rem 2rem;
     height: 200px;
     max-width: 300px;
+    text-transform: uppercase;
 }
 
 /*-------------------------------ADMIN-----------------------------*/
@@ -303,7 +303,21 @@ i:hover{
 
     gap: 2rem;
 }
+/*-----------------------------------MEDIA Queries------------------------------------------*/
+@media only screen and (max-width: 767px) {
+    .sub-nav {
+        background-color: #375a7f;
+        border-color: #375a7f;
+        border-radius: 6px;
 
+    }
+    .internship_details{
+        flex-direction: column-reverse;
+    }
+    .body-content{
+        margin: 30px 10px 10px 10px;
+    }
+}
 
 
 /*end ---------------------------- michaels ---------------------------------------------- sytling*/
@@ -324,13 +338,7 @@ i:hover{
     color: black;
     padding: 2px;
 }*/
-@media only screen and (max-width: 767px) {
-    .sub-nav {
-        background-color: #375a7f;
-        border-color: #375a7f;
-        border-radius: 6px;
-    }
-}
+
 
 /*Footer Elements*/
 footer {

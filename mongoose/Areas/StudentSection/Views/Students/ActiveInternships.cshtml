@@ -14,6 +14,7 @@
                      <tr>
                          <th>Title</th>
                          <th>Employer</th>
+                         <th>Resume</th>
                          <th>Application Date</th>
                          <th>
 
@@ -26,6 +27,15 @@
                          <a href="~/InternshipSection/Internships/Details/@a.InternshipId">@a.Internship.Name</a>
                     </td>
                      <td><a href="~/EmployerSection/Employers/Details/@a.Internship.EmployerId">@a.Internship.Employer.Name</a></td>
+                     <td>
+                         @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + a.ApplicationId + ".docx")))
+                         {
+                             <a href="@Url.Content(String.Format("~/Resumes/" + a.ApplicationId + ".docx"))" download="@a.Student.LastName-@a.Student.FirstName-Resume"><i class="fas fa-file-download fa-2x"></i></a>
+                         } else
+                         {
+                             <p>None</p>
+                         }
+                     </td>
                      <td>@String.Format("{0:MM/dd/yyyy}", a.ApplicationDate)</td>
                      <td><div>
                                 @Html.ActionLink("Details", "Details", "Internships", new { area = "InternshipSection", id = a.InternshipId }, new { @class = "label label-info" })
