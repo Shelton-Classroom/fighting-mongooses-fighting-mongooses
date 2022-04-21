@@ -107,8 +107,7 @@ namespace mongoose.Areas.StudentSection.Controllers
             ViewBag.EmployerNameSortParm = sortOrder == "EmployerName" ? "employerName_desc" : "EmployerName";
             ViewBag.LocationSortParm = sortOrder == "Location" ? "location_desc" : "Location";
             ViewBag.PaidSortParm = sortOrder == "Paid" ? "not_paid" : "Paid";
-            var internships = from i in db.Internships
-                           select i;
+            var internships = db.Internships.Where(i => !db.Student_Internship.Any(s => s.InternshipId == i.InternshipId));
             if (!String.IsNullOrEmpty(searchString))
             {
                 internships = internships.Where(i => i.Description.Contains(searchString)

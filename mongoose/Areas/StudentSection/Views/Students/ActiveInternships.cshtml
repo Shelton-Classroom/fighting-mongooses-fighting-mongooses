@@ -10,42 +10,48 @@
 @{ 
     if(ViewBag.Applications != null)
             {
-                 <table class="table table-striped">
-                     <tr>
-                         <th>Title</th>
-                         <th>Employer</th>
-                         <th>Resume</th>
-                         <th>Application Date</th>
-                         <th>
-
-                         </th>
-                     </tr>
-                     @foreach(var a in ViewBag.Applications)
+                 
+                     foreach(var item in ViewBag.Applications)
                 {
-                 <tr>
-                     <td>
-                         <a href="~/InternshipSection/Internships/Details/@a.InternshipId">@a.Internship.Name</a>
-                    </td>
-                     <td><a href="~/EmployerSection/Employers/Details/@a.Internship.EmployerId">@a.Internship.Employer.Name</a></td>
-                     <td>
-                         @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + a.ApplicationId + ".docx")))
-                         {
-                             <a href="@Url.Content(String.Format("~/Resumes/" + a.ApplicationId + ".docx"))" download="@a.Student.LastName-@a.Student.FirstName-Resume"><i class="fas fa-file-download fa-2x"></i></a>
-                         } else
-                         {
-                             <p>None</p>
+                 <div class="panel panel-primary internship_block">
+                     <div class="panel-heading internship_panel_heading">
+                         <a href="/EmployerSection/Employers/Details/@item.Internship.EmployerId">@item.Internship.Employer.Name</a>
+                         @{
+
+                             <p>@item.Internship.Name</p><p>@item.ApplicationDate</p>
                          }
-                     </td>
-                     <td>@String.Format("{0:MM/dd/yyyy}", a.ApplicationDate)</td>
-                     <td><div>
-                                @Html.ActionLink("Details", "Details", "Internships", new { area = "InternshipSection", id = a.InternshipId }, new { @class = "label label-info" })
-                                @Html.ActionLink("Delete", "Delete", "Applications", new { area = "ApplicationSection", id = a.ApplicationId }, new { @class = "label label-danger" })
+                     </div>
+                     <div class="panel-body internship_panel_body">
+
+                         @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Student.Id + ".jpg")))
+                         {
+                             <div class="studentOpenInternshipEmployer">
+                                 <a href="/EmployerSection/Employers/Details/@item.Internship.EmployerId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Internship.Employer.Id + ".jpg"))" /></a>
+
+                             </div>
+                         }
+                         <div class="applicantContact">
+                             <p>Contact:</p>
+                             <a href="mailto:@item.Student.Email">@item.Student.Email</a><br />
+                             <a href="tel:@item.Student.Phone">@item.Student.Phone</a>
                          </div>
-                         
-                     </td>
-                 </tr>
+
+                         @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + item.ApplicationId + ".docx")))
+                         {
+                             <a href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download fa-3x"></i></a>
+                         }
+
+
+
+                         <div class="internship_buttons">
+                             @Html.ActionLink("Employer Info", "Details/" + (int)item.Internship.EmployerId, "Employers", new { area = "EmployerSection" }, new { @class = "label label-success" })
+                             @Html.ActionLink("Internship Info", "Details/" + (int)item.InternshipId, "Internships", new { area = "InternshipSection" }, new { @class = "label label-primary" })
+                             @Html.ActionLink("Delete", "Delete", "Applications", new { area = "ApplicationSection", id = item.ApplicationId }, new { @class = "label label-danger" })
+
+                         </div>
+                     </div>
+                 </div>
                 }
-                 </table>
             }
 }
 
@@ -54,7 +60,7 @@
 
 
 <h2>My Internships</h2>
-<table class="table table-striped">
+@*<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Internship.Name)
@@ -69,11 +75,54 @@
             @Html.DisplayNameFor(model => model.Term)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
     @foreach (var item in Model)
-    {
-        <tr>
+    {<div class="panel panel-primary internship_block">
+    <div class="panel-heading internship_panel_heading">
+        <a href="/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
+        @{
+
+            <p>@Html.DisplayFor(modelItem => item.Internship.Name)</p><p>@item.Semester, @item.Term</p>
+        }
+    </div>
+    <div class="panel-body internship_panel_body">
+
+        @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Internship.Employer.Id + ".jpg")))
+        {
+            <div class="studentOpenInternshipEmployer">
+                <a href="/EmployerSection/Employers/Details/@item.Internship.EmployerId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Internship.Employer.Id + ".jpg"))" /></a>
+
+            </div>
+        }
+
+
+
+        <div>
+            <h5 class="text-info">Instructor</h5>
+            <a href="/InstructorSection/Instructors/Details/@item.InstructorId">@item.Instructor.LastName, @item.Instructor.FirstName</a>
+        </div>
+        <div>
+            <h5 class="text-info">Midterm</h5>
+            @Html.DisplayFor(modelItem => item.Midterm)
+        </div>
+        <div>
+            <h5 class="text-info">Final</h5>
+            @Html.DisplayFor(modelItem => item.Final)
+        </div>
+        <div>
+            <h5 class="text-info">Comments</h5>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </div>
+        <div class="internship_buttons">
+            @Html.ActionLink("Student Info", "Details/" + item.StudentId, "Students", new { area = "StudentSection" }, new { @class = "label label-success" })
+            @Html.ActionLink("Instructor Info", "Details/" + item.InstructorId, "Instructors", new { area = "InstructorSection" }, new { @class = "label label-info" })
+            @Html.ActionLink("Internship Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-primary" })
+
+        </div>
+    </div>
+</div>
+        @*<tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Internship.Name)
             </td>
@@ -92,7 +141,7 @@
                 </div>
                 
             </td>
-        </tr>
+        </tr>*@
     }
 
-</table>
+@*</table>*@

@@ -96,9 +96,9 @@
             </dt>
 
             <dd>
-                @{ 
+                @{
                     var major = Model.Internship_Major.ToList();
-                    foreach(var m in major)
+                    foreach (var m in major)
                     {
                         <p>@m.Major.Name</p>
                     }
@@ -125,11 +125,19 @@
 @{
     if (User.IsInRole("Student"))
     {
-    <div>
-        @Html.Partial("_backToStu")
-        @Html.ActionLink("APPLY", "Create/" + Model.InternshipId, "Applications", new { area = "ApplicationSection" }, new { @class = "btn btn-success" })
-    </div>
+        if ((int)ViewBag.Match == Model.InternshipId)
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" }) //takes user back to previous page
+                <p>*YOU HAVE APPLIED FOR THIS POSITION</p>
+        } else
+                {
+                    <div>
+            @Html.Partial("_backToStu")
+            @Html.ActionLink("APPLY", "Create/" + Model.InternshipId, "Applications", new { area = "ApplicationSection" }, new { @class = "btn btn-success" })
+        </div>
+                }
         
+
     }
     if (User.IsInRole("Employer")) //If Employer links to internship edit page and links back to employer open internships(specific to logged in employer) mb
     {
@@ -137,7 +145,7 @@
             @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId }, new { @class = "btn btn-warning" })
             @Html.Partial("_backToEmp")
         </div>
-        
+
     }
     if (User.IsInRole("Instructor"))
     {
@@ -145,7 +153,7 @@
     }
     if (User.IsInRole("Admin"))
     {
-        @Html.ActionLink("Back", "Index",null, new {@class = "btn btn-info"}) 
+        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
     }
 
 }

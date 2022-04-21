@@ -19,6 +19,7 @@ namespace mongoose.Models
         public string Resume { get; set; }
         public int InternshipId { get; set; }
         public int StudentId { get; set; }
+        [Display(Name = "Application Date")]
         [DataType(DataType.Date)]
         public System.DateTime ApplicationDate { get; set; }
     

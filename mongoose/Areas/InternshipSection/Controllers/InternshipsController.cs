@@ -37,6 +37,19 @@ namespace mongoose.Areas.InternshipSection.Controllers
             }
             ViewBag.Developer = "MB";
             ViewBag.EmpId = internship.Employer.Id;
+            if (User.IsInRole("Student"))
+            {
+                var userId = User.Identity.GetUserId();
+                var studentId = db.Students.FirstOrDefault(s => s.Id == userId).StudentId;
+                var StudentApplications = db.Applications.Where(a => a.StudentId == studentId).ToList().FirstOrDefault(sa => sa.InternshipId == id);
+                if (StudentApplications != null){
+                    ViewBag.Match = id;
+                } else
+                {
+                    ViewBag.Match = 0;
+                }
+
+            }
             return View(internship);
         }
 
