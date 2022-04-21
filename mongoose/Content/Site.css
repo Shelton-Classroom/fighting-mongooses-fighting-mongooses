@@ -169,9 +169,7 @@ i:hover{
     overflow: hidden;
     /*max-height: 150px;*/
 }
-.internship_panel_body:nth-child(3){
     
-}
 
 .internship_panel_body:before, .internship_panel_body::after{
         content: none;
@@ -342,9 +340,12 @@ i:hover{
         display:block;
     }
     .internship_panel_body{
-        justify-content: space-between;
-    }
+        justify-content: center;
 
+    }
+    .internship_buttons{
+        flex-direction:row;
+    }
 }
 
 

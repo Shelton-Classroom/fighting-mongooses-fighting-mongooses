@@ -66,12 +66,11 @@
                     {
                         gpa = (gpa / courses.Count());
                         <p>GPA: @gpa</p>
-                    }
-                    else
-                    {
-                        gpa = 0;
-                        <p>GPA: @gpa</p>
-                    }
+                }
+                else
+                {
+                    <p>GPA: Unknown</p>
+                }
                 }
             </div>
         </div>
@@ -85,25 +84,24 @@
                 </div>
             }
             <div>
-                <h5>Major:</h5>
-                <ul>
                     @{
-
                         var major = item.Student_Major.ToList();
-                        if (major != null)
+                        if (major.Count() != 0)
                         {
-                            foreach (var m in major)
+
+                            <H5>Major:</H5>
+                            <ul>
+                            @foreach (var m in major)
                             {
                                 <li>@m.Major.Name</li>
                             }
-
+                            </ul>
                         }
                         else
                         {
 
                         }
                     }
-                </ul>
             </div>
 
 
