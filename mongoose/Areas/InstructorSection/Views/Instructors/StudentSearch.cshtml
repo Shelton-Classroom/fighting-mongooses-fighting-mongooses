@@ -32,66 +32,151 @@
     </div>
 
 }
-
-<table class="table table-striped">
-    <tr>
-        <th>
-            NAME
-        </th>
-        <th>
-            GRADUATION DATE
-        </th>
-        <th>
-            ENROLLMENT
-        </th>
-        <th>
-            LOCATION
-        </th>
-        <th>
-            MAJOR
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <a href="/StudentSection/Students/Details/@item.StudentId">@item.LastName, @item.FirstName</a>
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GraduationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentStatus)
-            </td>
-            <td>
-                @item.City, @item.State
-            </td>
-            <td>
+@foreach (var item in Model)
+{
+    <div class="panel panel-primary internship_block">
+        <div class="panel-heading internship_panel_heading">
+            <a href="/EmployerSection/Employers/Details/@item.StudentId">@item.LastName, @item.FirstName</a>
+            <p>@item.EnrollmentStatus</p>
+            <p>Graduation Date: @String.Format("{0:MM/dd/yyyy}", item.GraduationDate)</p>
+            <div>
                 @{
-
-                    var major = item.Student_Major.ToList();
-                    if (major != null)
+                    var courses = item.Student_Course.ToList();
+                    double gpa = 0;
+                    foreach (var course in courses)
                     {
-                        foreach (var m in major)
+                        if (course.Grade == "A")
                         {
-                            <p>@m.Major.Name</p>
+                            gpa = gpa + 4;
                         }
-
+                        if (course.Grade == "B")
+                        {
+                            gpa = gpa + 3;
+                        }
+                        if (course.Grade == "C")
+                        {
+                            gpa = gpa + 2;
+                        }
+                        if (course.Grade == "D")
+                        {
+                            gpa = gpa + 1;
+                        }
+                    }
+                    if (courses.Count() > 0)
+                    {
+                        gpa = (gpa / courses.Count());
+                        <p>GPA: @gpa</p>
                     }
                     else
                     {
-
+                        gpa = 0;
+                        <p>GPA: @gpa</p>
                     }
                 }
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId }, new { @class = "label label-info" })
-            </td>
-        </tr>
-    }
+            </div>
+        </div>
+        <div class="panel-body internship_panel_body">
 
-</table>
+            @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Id + ".jpg")))
+            {
+                <div class="studentOpenInternshipEmployer">
+                    <a href="/StudentSection/Students/Details/@item.StudentId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Id + ".jpg"))" /></a>
+
+                </div>
+            }
+            <div>
+                <h5>Major:</h5>
+                <ul>
+                    @{
+
+                        var major = item.Student_Major.ToList();
+                        if (major != null)
+                        {
+                            foreach (var m in major)
+                            {
+                                <li>@m.Major.Name</li>
+                            }
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                </ul>
+            </div>
+
+
+
+            <div class="internship_buttons">
+                @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId }, new { @class = "btn btn-info" })
+
+
+            </div>
+
+
+        </div>
+    </div>
+}
+@*<table class="table table-striped">
+        <tr>
+            <th>
+                NAME
+            </th>
+            <th>
+                GRADUATION DATE
+            </th>
+            <th>
+                ENROLLMENT
+            </th>
+            <th>
+                LOCATION
+            </th>
+            <th>
+                MAJOR
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/StudentSection/Students/Details/@item.StudentId">@item.LastName, @item.FirstName</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GraduationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentStatus)
+                </td>
+                <td>
+                    @item.City, @item.State
+                </td>
+                <td>
+                    @{
+
+                        var major = item.Student_Major.ToList();
+                        if (major != null)
+                        {
+                            foreach (var m in major)
+                            {
+                                <p>@m.Major.Name</p>
+                            }
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Students", new { area = "StudentSection", id = item.StudentId }, new { @class = "label label-info" })
+                </td>
+            </tr>
+        }
+
+    </table>*@
 

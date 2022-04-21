@@ -11,7 +11,8 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,16 @@ namespace mongoose.Models
         {
             this.Internships = new HashSet<Internship>();
         }
-    
+        [Display(Name="EmployerId")]
         public int EmployerId { get; set; }
         public string Name { get; set; }
+        [Display(Name = "Contact Name")]
         public string ContactName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        [Display(Name = "Address 1")]
         public string Address1 { get; set; }
+        [Display(Name = "Address 2")]
         public string Address2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }

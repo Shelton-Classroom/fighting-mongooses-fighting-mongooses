@@ -35,7 +35,10 @@ namespace mongoose.Models
         public Nullable<System.DateTime> GraduationDate { get; set; }
         [Display(Name = "Enrollment Status")]
         public status EnrollmentStatus { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Phone number is required")]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Please enter valid phone no.")]
         public string Phone { get; set; }
         [Display(Name = "Address 1")]
         public string Address1 { get; set; }

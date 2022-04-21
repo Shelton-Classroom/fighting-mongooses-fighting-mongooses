@@ -142,7 +142,6 @@ namespace mongoose.Areas.EmployerSection.Controllers
                     
                     break;
             }
-
             ViewBag.Developer = "MB";
             return View(students);
         }

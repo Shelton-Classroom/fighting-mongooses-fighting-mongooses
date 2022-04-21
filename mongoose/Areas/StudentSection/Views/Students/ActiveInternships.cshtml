@@ -18,7 +18,7 @@
                          <a href="/EmployerSection/Employers/Details/@item.Internship.EmployerId">@item.Internship.Employer.Name</a>
                          @{
 
-                             <p>@item.Internship.Name</p><p>@item.ApplicationDate</p>
+                           <a href="/InternshipSection/Internships/Details/@item.InternshipId">@item.Internship.Name</a><p>@String.Format("{0:MM/dd/yyyy}", item.ApplicationDate)</p>
                          }
                      </div>
                      <div class="panel-body internship_panel_body">
@@ -30,11 +30,11 @@
 
                              </div>
                          }
-                         <div class="applicantContact">
+                         @*<div class="applicantContact">
                              <p>Contact:</p>
-                             <a href="mailto:@item.Student.Email">@item.Student.Email</a><br />
-                             <a href="tel:@item.Student.Phone">@item.Student.Phone</a>
-                         </div>
+                             <a href="mailto:@item.Internship.Employer.Email">@item.Internship.Employer.Email</a><br />
+                             <a href="tel:@item.Internship.Employer.Phone">@item.Internship.Employer.Phone</a>
+                         </div>*@
 
                          @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + item.ApplicationId + ".docx")))
                          {
@@ -83,7 +83,7 @@
         <a href="/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
         @{
 
-            <p>@Html.DisplayFor(modelItem => item.Internship.Name)</p><p>@item.Semester, @item.Term</p>
+                <a href="/InternshipSection/Internships/Details/@item.InternshipId">@item.Internship.Name</a><p>@item.Semester, @item.Term</p>
         }
     </div>
     <div class="panel-body internship_panel_body">
@@ -115,7 +115,7 @@
             @Html.DisplayFor(modelItem => item.Comments)
         </div>
         <div class="internship_buttons">
-            @Html.ActionLink("Student Info", "Details/" + item.StudentId, "Students", new { area = "StudentSection" }, new { @class = "label label-success" })
+            @Html.ActionLink("Employer Info", "Details/" + item.Internship.EmployerId, "Employers", new { area = "EmployerSection" }, new { @class = "label label-success" })
             @Html.ActionLink("Instructor Info", "Details/" + item.InstructorId, "Instructors", new { area = "InstructorSection" }, new { @class = "label label-info" })
             @Html.ActionLink("Internship Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-primary" })
 

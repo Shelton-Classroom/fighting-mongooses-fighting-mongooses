@@ -251,15 +251,23 @@ i:hover{
     flex-wrap: nowrap;
     gap: 1rem;
 }
-.studentOpenInternshipImage{
-    width:100px;
-}
-.studentOpenInternshipEmployer{
-    display: flex;
+.studentOpenInternshipEmployer {
+ /*   display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: .5rem;*/
     max-width: 150px;
 }
+.studentOpenInternshipImage {
+    /* max-height:100%;
+    width:100%;
+    object-fit: cover;*/
+    float: left;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius:6px;
+}
+
 /*-------------------------------main page---------------------------------------------------*/
 .link_container{
     display: flex;
