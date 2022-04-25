@@ -27,9 +27,9 @@
             </div>
         </header>
     </div>
-        
 
-    
+
+
     <div class="navbar  navbar-default navbar-fixed-top main-nav">
         <div class="container">
             <div class="navbar-header">
@@ -48,19 +48,27 @@
                     {
                         if (User.IsInRole("Student"))
                         {
-                            <li>@Html.ActionLink("Dashboard", "Home", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("DASHBOARD", "Home", "Students", new { area = "StudentSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         }
                         if (User.IsInRole("Employer"))
                         {
-                            <li>@Html.ActionLink("Dashboard", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("DASHBOARD", "Home", "Employers", new { area = "EmployerSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         }
                         if (User.IsInRole("Instructor"))
                         {
-                            <li>@Html.ActionLink("Dashboard", "Home", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("DASHBOARD", "Home", "Instructors", new { area = "InstructorSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         }
                         if (User.IsInRole("Admin"))
                         {
-                            <li>@Html.ActionLink("Dashboard", "Home", "Admin", new { area = "AdminSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("DASHBOARD", "Home", "Admin", new { area = "AdminSection" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         }
 
                     }
@@ -150,7 +158,7 @@
 
 
         (function () {                                   //changes link background color for current page mb
-            var current = location.pathname.split('/')[3]; //Change to [4] when pushing to server, file path is slightly different mb
+            var current = location.pathname.split('/')[4]; //Change to [4] when pushing to server, file path is slightly different mb
             if (current === "") return;
             var menuItems = document.querySelectorAll('.menu-item a');
             for (var i = 0, len = menuItems.length; i < len; i++) {
@@ -196,17 +204,11 @@
                 var test = optionsVal.push($(this).val());
                 console.log(this);
             });
-            //$.ajax({
-            //    type: 'POST',
-            //    url: 'Create',
-            //    traditional: true,
-            //    dataType: "json",
-            //    data: { SelectedSortOrderOptions: optionsVal },
-            //    success: function () {
-            //        console.log(optionsVal);
-            //    },
-            //});
+
         });
+
+
+
 
     </script>
 

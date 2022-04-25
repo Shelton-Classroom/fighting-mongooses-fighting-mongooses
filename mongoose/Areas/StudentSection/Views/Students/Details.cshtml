@@ -1,4 +1,5 @@
 ﻿@model mongoose.Models.Student
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
@@ -121,14 +122,14 @@
         <div class="internship_details_photo">
             @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + Model.Id + ".jpg")))
             {
-                
-                    <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="dashboard-image" />
-                
+
+                <img src="@Url.Content(String.Format("~/Images/" + Model.Id + ".jpg"))" class="dashboard-image" />
+
                 if (User.IsInRole("Student") || User.IsInRole("Admin"))
                 {
-                    
-                        @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info addChange" })
-                    
+
+                    @Html.ActionLink("Change Photo", "ProfilePicture", null, new { @class = "btn btn-info addChange" })
+
 
                 }
 
@@ -137,7 +138,7 @@
             else
             {
 
-                if (User.IsInRole("Student"))
+                if (Model.Id == User.Identity.GetUserId() && User.IsInRole("Student"))
                 {
                     <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
                     <br />
@@ -156,7 +157,8 @@
 
 </div>
 
-<h3 class="text-success">Academics </h3> <h3>GPA - @ViewBag.Gpa</h3>
+<h3 class="text-success">Academics </h3>
+<h3>GPA - @ViewBag.Gpa</h3>
 
 <div>
     <table class="table table-striped">
@@ -182,60 +184,60 @@
 </div>
 
 
-    <table class="table table-striped">
-        <tr class="text-info">
-            <th>Course(s)</th>
-            <th>Term</th>
-            <th>Grade</th>
+<table class="table table-striped">
+    <tr class="text-info">
+        <th>Course(s)</th>
+        <th>Term</th>
+        <th>Grade</th>
+    </tr>
+
+    @foreach (var c in ViewBag.studentcourse)
+    {
+        <tr>
+            <td>
+                @c.Cours.Name
+            </td>
+            <td>
+                @c.SemesterCompleted, @c.Term
+            </td>
+            <td>
+                @c.Grade
+            </td>
         </tr>
 
-        @foreach (var c in ViewBag.studentcourse)
+
+
+    }
+
+</table>
+
+<p>
+    @{
+        if (Model.Id == User.Identity.GetUserId() && User.IsInRole("Student"))
         {
-            <tr>
-                <td>
-                    @c.Cours.Name
-                </td>
-                <td>
-                    @c.SemesterCompleted, @c.Term
-                </td>
-                <td>
-                    @c.Grade
-                </td>
-            </tr>
-
-
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
+            </div>
 
         }
-
-    </table>
-
-    <p>
-        @{
-            if (User.IsInRole("Student"))
-            {
-                <div>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-success" })
-                </div>
-
-            }
-            if (User.IsInRole("Employer"))
-            {
-                @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
-            }
-            if (User.IsInRole("Instructor"))
-            {
-                @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
-            }
-            if (User.IsInRole("Admin"))
-            {
-                <div>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
-                </div>
-            }
+        if (User.IsInRole("Employer"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
         }
+        if (User.IsInRole("Instructor"))
+        {
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Admin"))
+        {
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-success" })
+            </div>
+        }
+    }
 
 
 
-    </p>
+</p>

@@ -13,7 +13,7 @@
 <div class="studentFilterArea">
     <div class="studentFilterAreaSearch">
         @Html.TextBox("SearchString", null, htmlAttributes: new { @class = "form-control", @placeholder = "Search Internships" })
-        <input class="btn btn-sm btn-info" type="submit" value="Search" />
+        <input class="btn btn-info" type="submit" value="Search" />
     </div>
     <div class="studentFilterAreaMajor">
         @Html.DropDownList("Majors", null, "Sort By Major", htmlAttributes: new { @class = "form-control", id = "MajorList" })
@@ -33,7 +33,7 @@
             <li>@Html.ActionLink("EMPLOYER", "OpenInternships", new { sortOrder = ViewBag.EmployerNameSortParm })</li>
         </ul>
     </div>
-    @Html.ActionLink("Clear All", "OpenInternships", "", new { @class = "btn btn-sm btn-info" })
+    @Html.ActionLink("Clear All", "OpenInternships", "", new { @class = "btn btn-info" })
 </div>
 }
 <div class="internship_container">
@@ -44,7 +44,7 @@
                 <p>@Html.DisplayFor(modelItem => item.Name)</p>
                 @{
 
-                    <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
+                    <p class="text-warning">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
                         if (item.Paid == 0)
                         {
                         <p>$@Html.DisplayFor(modelItem => item.Rate) /hr</p> 

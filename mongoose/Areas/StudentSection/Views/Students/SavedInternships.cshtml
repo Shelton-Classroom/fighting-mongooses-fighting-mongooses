@@ -18,7 +18,7 @@
                 @Html.DisplayFor(modelItem => item.Internship.Name)
                 @{
 
-                    <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.Internship.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.Internship.PostDate)</p>
+                    <p class="text-warning">Posted: @Html.DisplayFor(modelItem => item.Internship.PostDate)</p>
                     if (item.Internship.Paid == 0)
                     {
                         <p>$@Html.DisplayFor(modelItem => item.Internship.Rate) /hr</p>

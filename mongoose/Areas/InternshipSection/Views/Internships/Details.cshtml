@@ -44,13 +44,13 @@
                 @Html.DisplayFor(model => model.Length)
             </dd>
 
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.Rate)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Rate)
-            </dd>
+            </dd>*@
 
             <dt>
                 @Html.DisplayNameFor(model => model.Location)
@@ -81,11 +81,21 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Paid)
+                @{
+                    if (Model.Paid == 0)
+                    {
+                        <p>$@Model.Rate /hr</p>
+                    }
+                    else
+                    {
+                        <p>Unpaid</p>
+                    }
+                }
+                @*@Html.DisplayFor(model => model.Paid)*@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Employer.Name)
+                @Html.DisplayNameFor(model => model.Employer)
             </dt>
 
             <dd>

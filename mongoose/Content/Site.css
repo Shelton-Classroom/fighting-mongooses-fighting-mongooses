@@ -413,3 +413,6 @@ footer {
     color: white;
 }
 
+#success_message {
+    display: none;
+}

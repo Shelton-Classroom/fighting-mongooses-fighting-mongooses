@@ -65,6 +65,7 @@
                     if (courses.Count() > 0)
                     {
                         gpa = (gpa / courses.Count());
+                        gpa = Math.Round(gpa, 2);
                         <p>GPA: @gpa</p>
                 }
                 else

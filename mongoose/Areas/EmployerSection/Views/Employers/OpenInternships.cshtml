@@ -17,7 +17,7 @@
                 <p>@Html.DisplayFor(modelItem => item.Name)</p>
                 @{
 
-                                <p class="text-warning">Start Date: @Html.DisplayFor(modelItem => item.StartDate)</p><p class="text-info">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
+                                <p class="text-warning">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
                     <div class="student_count last">
                         @{ 
                             var count = item.Applications.ToList().Count();

@@ -31,6 +31,7 @@ namespace mongoose.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Length { get; set; }
+        [DataType(DataType.Currency)]
         public Nullable<decimal> Rate { get; set; }
         public string Location { get; set; }
         [DataType(DataType.Date)]
@@ -40,7 +41,7 @@ namespace mongoose.Models
         [Display(Name = "Date Posted")]
         public System.DateTime PostDate { get; set; }
         public payMe Paid { get; set; }
-    
+        [Display(Name = "Employer")]
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [Display(Name = "Major")]
