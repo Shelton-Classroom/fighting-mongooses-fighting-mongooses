@@ -161,6 +161,7 @@ namespace mongoose.Controllers
         public ActionResult Register()
         {
             var allRoles = (new ApplicationDbContext()).Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name}).ToList();
+            allRoles.RemoveAt(0);
             ViewBag.Roles = allRoles;
             return View();
         }

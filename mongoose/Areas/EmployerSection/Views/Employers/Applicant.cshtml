@@ -28,7 +28,7 @@
     {
         <div class="panel panel-primary internship_block">
             <div class="panel-heading internship_panel_heading">
-                <a href="/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
+                <a href="~/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
                 @{
 
                     <p>@Html.DisplayFor(modelItem => item.Internship.Name) # @item.Internship.InternshipId</p><p>@Html.DisplayFor(modelItem => item.ApplicationDate)</p>
@@ -39,7 +39,7 @@
                 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Student.Id + ".jpg")))
                 {
                     <div class="studentOpenInternshipEmployer">
-                        <a href="/StudentSection/Students/Details/@item.StudentId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Student.Id + ".jpg"))" /></a>
+                        <a href="~/StudentSection/Students/Details/@item.StudentId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Student.Id + ".jpg"))" /></a>
 
                     </div>
                 }

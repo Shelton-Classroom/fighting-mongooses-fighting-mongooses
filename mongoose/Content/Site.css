@@ -164,7 +164,7 @@ i:hover{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 2rem;
     overflow: hidden;
     /*max-height: 150px;*/
