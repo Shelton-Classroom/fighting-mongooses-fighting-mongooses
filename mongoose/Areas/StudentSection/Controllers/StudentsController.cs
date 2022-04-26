@@ -172,12 +172,16 @@ namespace mongoose.Areas.StudentSection.Controllers
         //    var studentMajors = db.Majors.Where(o => o.Student.Id == userId);   //Get to coursemajor by logged in student
         //    return View(Majors.ToList());
         //}
-        public ActionResult ActiveInternships()   //This will be setup once instructor section has view for adding student to internship creating a student_intership
+        public ActionResult ActiveInternships(int? id)  
         {
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
             ViewBag.Applications = db.Applications.Where(a => a.Student.Id == userId);
             ViewBag.Developer = "MB";
+            if(id == 1)
+            {
+                ViewBag.Success = "Your Application Has Been Sent!";
+            }
             return View(internships);
         }
         public ActionResult SavedInternships()

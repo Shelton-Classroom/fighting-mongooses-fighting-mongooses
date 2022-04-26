@@ -47,7 +47,7 @@
                     <p class="text-warning">Posted: @Html.DisplayFor(modelItem => item.PostDate)</p>
                         if (item.Paid == 0)
                         {
-                        <p>$@Html.DisplayFor(modelItem => item.Rate) /hr</p> 
+                        <p>@Html.DisplayFor(modelItem => item.Rate) /hr</p> 
                         }
                         else
                         {

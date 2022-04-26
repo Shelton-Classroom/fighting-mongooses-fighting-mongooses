@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<mongoose.Models.Student_Internship>
 @{
     ViewBag.Title = "My Interships";
+    var message = ViewBag.Success;
 }
 @Html.Partial("_studentNav")
 
@@ -145,3 +146,9 @@
     }
 
 @*</table>*@
+<script type="text/javascript">
+    var message = '@message';
+    if(message){
+        alert(message);
+    }
+</script>

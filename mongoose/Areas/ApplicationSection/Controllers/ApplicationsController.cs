@@ -74,9 +74,11 @@ namespace mongoose.Areas.ApplicationSection.Controllers
                     string path = System.IO.Path.Combine(
                                            Server.MapPath("~/Resumes/"), application.ApplicationId + ".docx");
                     file.SaveAs(path);
-                    ViewBag.Success = "Application Sent!";
+                    
                 }
-                return RedirectToAction("Home", "Students", new {area = "StudentSection"});
+                
+                
+                return RedirectToAction("ActiveInternships", "Students", new {area = "StudentSection", id="1"});
             }
 
             

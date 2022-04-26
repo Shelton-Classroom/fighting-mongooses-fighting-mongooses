@@ -39,6 +39,7 @@ namespace mongoose.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "Phone number is required")]
         [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Please enter valid phone no.")]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
         [Display(Name = "Address 1")]
         public string Address1 { get; set; }
