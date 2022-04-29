@@ -150,7 +150,7 @@
             });
         });
 
-        const hearts = document.querySelectorAll('i');// adds click event listener to all heart favicons, triggers changeColor() on click mb
+        const hearts = document.querySelectorAll('i.fa-heart');// adds click event listener to all heart favicons, triggers changeColor() on click mb
         Array.from(hearts).forEach(div => {
             div.addEventListener('click', changeColor);
         });

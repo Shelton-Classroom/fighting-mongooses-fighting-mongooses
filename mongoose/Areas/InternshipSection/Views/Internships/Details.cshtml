@@ -137,12 +137,12 @@
     {
         if ((int)ViewBag.Match == Model.InternshipId)
         {
-            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" }) //takes user back to previous page
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-info" }) //takes user back to previous page
                 <p>*YOU HAVE APPLIED FOR THIS POSITION</p>
         } else
                 {
                     <div>
-            @Html.Partial("_backToStu")
+            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-info" })
             @Html.ActionLink("APPLY", "Create/" + Model.InternshipId, "Applications", new { area = "ApplicationSection" }, new { @class = "btn btn-success" })
         </div>
                 }

@@ -177,6 +177,8 @@ namespace mongoose.Areas.StudentSection.Controllers
             var userId = User.Identity.GetUserId();
             var internships = db.Student_Internship.Where(i => i.Student.Id == userId);   //List of internships student is assigned to
             ViewBag.Applications = db.Applications.Where(a => a.Student.Id == userId);
+            ViewBag.AppCount = db.Applications.Where(a => a.Student.Id == userId).Count();
+            ViewBag.StudentInternships = db.Student_Internship.Where((i) => i.Student.Id == userId).Count();
             ViewBag.Developer = "MB";
             if(id == 1)
             {

@@ -36,6 +36,7 @@ textarea {
 
 a {
     text-decoration: none;
+    color: white;
 }
 a:hover{
     text-decoration: none;
@@ -113,7 +114,7 @@ i:hover{
     color: white;
 }
 .dashboard_view_profile:hover {
-    color: white;
+    /*color: white;*/
 }
 /*----------------------------end user dashboard---------------------------------*/
 
@@ -415,4 +416,14 @@ footer {
 
 #success_message {
     display: none;
+}
+
+.label-success {
+    background-color: #3e8573;
+}
+.btn-success {
+    background-color: #3e8573;
+}
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
 }

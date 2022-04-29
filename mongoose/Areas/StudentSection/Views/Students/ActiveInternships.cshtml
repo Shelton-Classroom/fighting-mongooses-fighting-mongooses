@@ -8,7 +8,11 @@
 
 
 @{
-    if (ViewBag.Applications != null)
+    if (ViewBag.AppCount == 0 && ViewBag.StudentInternships == 0)
+    {
+        <h3>You currently have no open applications or active internships. </h3>
+    }
+    if (ViewBag.AppCount != 0)
     {
         <h2>My Applications</h2>
         foreach (var item in ViewBag.Applications)
@@ -30,10 +34,10 @@
 
                         </div>
                     }
-                 
+
                     @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + item.ApplicationId + ".docx")))
                     {
-                        <a href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download fa-3x"></i></a>
+                        <a style="align-self:center" href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download fa-5x"></i></a>
                     }
 
                     <div class="internship_buttons">
@@ -50,56 +54,61 @@
 
 
 
+@{
+    if (ViewBag.StudentInternships != 0)
+    {
+        <h2>My Internships</h2>
+        foreach (var item in Model)
+        {<div class="panel panel-primary internship_block">
+                <div class="panel-heading internship_panel_heading">
+                    <a href="/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
+                    @{
 
-
-<h2>My Internships</h2>
-@foreach (var item in Model)
-{<div class="panel panel-primary internship_block">
-        <div class="panel-heading internship_panel_heading">
-            <a href="/StudentSection/Students/Details/@item.StudentId">@item.Student.LastName, @item.Student.FirstName</a>
-            @{
-
-                <a href="/InternshipSection/Internships/Details/@item.InternshipId">@item.Internship.Name</a><p>@item.Semester, @item.Term</p>
-            }
-        </div>
-        <div class="panel-body internship_panel_body">
-
-            @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Internship.Employer.Id + ".jpg")))
-            {
-                <div class="studentOpenInternshipEmployer">
-                    <a href="/EmployerSection/Employers/Details/@item.Internship.EmployerId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Internship.Employer.Id + ".jpg"))" /></a>
-
+                        <a href="/InternshipSection/Internships/Details/@item.InternshipId">@item.Internship.Name</a><p>@item.Semester, @item.Term</p>
+                    }
                 </div>
-            }
+                <div class="panel-body internship_panel_body">
+
+                    @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + item.Internship.Employer.Id + ".jpg")))
+                    {
+                        <div class="studentOpenInternshipEmployer">
+                            <a href="/EmployerSection/Employers/Details/@item.Internship.EmployerId"><img class="studentOpenInternshipImage" src="@Url.Content(String.Format("~/Images/" + item.Internship.Employer.Id + ".jpg"))" /></a>
+
+                        </div>
+                    }
 
 
 
-            <div>
-                <h5 class="text-info">Instructor</h5>
-                <a href="/InstructorSection/Instructors/Details/@item.InstructorId">@item.Instructor.LastName, @item.Instructor.FirstName</a>
-            </div>
-            <div>
-                <h5 class="text-info">Midterm</h5>
-                @Html.DisplayFor(modelItem => item.Midterm)
-            </div>
-            <div>
-                <h5 class="text-info">Final</h5>
-                @Html.DisplayFor(modelItem => item.Final)
-            </div>
-            <div>
-                <h5 class="text-info">Comments</h5>
-                @Html.DisplayFor(modelItem => item.Comments)
-            </div>
-            <div class="internship_buttons">
-                @Html.ActionLink("Employer Info", "Details/" + item.Internship.EmployerId, "Employers", new { area = "EmployerSection" }, new { @class = "label label-success" })
-                @Html.ActionLink("Instructor Info", "Details/" + item.InstructorId, "Instructors", new { area = "InstructorSection" }, new { @class = "label label-info" })
-                @Html.ActionLink("Internship Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-primary" })
+                    <div>
+                        <h5 class="text-info">Instructor</h5>
+                        <a href="/InstructorSection/Instructors/Details/@item.InstructorId">@item.Instructor.LastName, @item.Instructor.FirstName</a>
+                    </div>
+                    <div>
+                        <h5 class="text-info">Midterm</h5>
+                        @Html.DisplayFor(modelItem => item.Midterm)
+                    </div>
+                    <div>
+                        <h5 class="text-info">Final</h5>
+                        @Html.DisplayFor(modelItem => item.Final)
+                    </div>
+                    <div>
+                        <h5 class="text-info">Comments</h5>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </div>
+                    <div class="internship_buttons">
+                        @Html.ActionLink("Employer Info", "Details/" + item.Internship.EmployerId, "Employers", new { area = "EmployerSection" }, new { @class = "label label-success" })
+                        @Html.ActionLink("Instructor Info", "Details/" + item.InstructorId, "Instructors", new { area = "InstructorSection" }, new { @class = "label label-info" })
+                        @Html.ActionLink("Internship Info", "Details/" + item.StudentInternshipId, "Student_Internship", new { area = "Student_InternshipSection" }, new { @class = "label label-primary" })
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
+        }
+    }
 }
+
+
 
 <script type="text/javascript">
     var message = '@message';

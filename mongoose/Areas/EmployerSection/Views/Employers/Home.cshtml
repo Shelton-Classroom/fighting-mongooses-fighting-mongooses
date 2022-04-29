@@ -6,7 +6,7 @@
     ViewBag.Title = "HOME";
 }
 <section class="dashboard">
-    <div class="dashboard_info_panel panel panel-success">
+    <div class="dashboard_info_panel panel panel-primary">
         <div class="panel-heading dashboard_info_heading">
             <h1 class="panel-title">@ViewBag.BusinessName</h1>
             @Html.ActionLink("View/Edit Profile", "Details", new { id = ViewBag.EditProfile}, new {@class = "dashboard_view_profile"})

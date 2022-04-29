@@ -43,7 +43,7 @@
 
                     </div>
                 }
-            <div class="applicantContact">
+            <div style="align-self:center" class="applicantContact">
                 <p>Contact:</p>
                 <a href="mailto:@item.Student.Email">@item.Student.Email</a><br/>
                 <a href="tel:@item.Student.Phone">@item.Student.Phone</a>
@@ -51,7 +51,7 @@
 
                 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Resumes/" + item.ApplicationId + ".docx")))
                 {
-                    <a href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download fa-3x"></i></a>
+                    <a style="align-self:center" href="@Url.Content(String.Format("~/Resumes/" + item.ApplicationId + ".docx"))" download="@item.Student.LastName-@item.Student.FirstName-Resume"><i class="fas fa-file-download fa-5x"></i></a>
                 }
                 
 
