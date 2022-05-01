@@ -44,7 +44,7 @@ namespace mongoose.Areas.Student_majorSection
         public ActionResult Create()
         {
             ViewBag.MajorId = new SelectList(db.Majors, "MajorId", "Name");
-            ViewBag.StudentId = new SelectList(db.Students, "StudentId", "FirstName");
+            ViewBag.StudentId = new SelectList(db.Students, "StudentId", "LastName");
 
             ViewBag.Developer = "MB";
             return View();

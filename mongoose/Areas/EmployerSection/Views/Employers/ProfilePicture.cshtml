@@ -8,7 +8,7 @@
 @if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Images/" + ViewBag.UserId + ".jpg")))
 {
     <div class="profile-image_container">
-        <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="profile-image" />
+        <img src="@Url.Content(String.Format("~/Images/" + ViewBag.UserId + ".jpg"))" class="dashboard-image" />
     </div>
 
 }

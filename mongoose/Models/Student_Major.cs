@@ -11,11 +11,13 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Student_Major
     {
         public int StudentMajorId { get; set; }
+        [Display(Name = "Major")]
         public int MajorId { get; set; }
+        [Display(Name = "Student")]
         public int StudentId { get; set; }
     
         public virtual Major Major { get; set; }
