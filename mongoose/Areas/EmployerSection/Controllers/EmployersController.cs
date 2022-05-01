@@ -23,16 +23,26 @@ namespace mongoose.Areas.EmployerSection.Controllers
         [Authorize(Roles = "Employer")]
         public ActionResult Home()
         {   var userId = User.Identity.GetUserId();
-            var loggedIn = db.Employers.FirstOrDefault(e => e.Id == userId);
-            var profileDetails = loggedIn.EmployerId;
-            ViewBag.LoggedIn = loggedIn.ContactName;
-            ViewBag.UserId = userId;
-            ViewBag.EditProfile = profileDetails;
-            ViewBag.BusinessName = loggedIn.Name;
-            ViewBag.Developer = "MB";
-            ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId ).Count().ToString();// number of employers open internships
-            ViewBag.ApplicantCount = db.Applications.Where(i => i.Internship.Employer.Id == userId).Count().ToString(); // number of employers active internships
-            return View();
+            if (db.Employers.Any(s => s.Id == userId))
+            {
+                var loggedIn = db.Employers.FirstOrDefault(e => e.Id == userId);
+                var profileDetails = loggedIn.EmployerId;
+                ViewBag.LoggedIn = loggedIn.ContactName;
+                ViewBag.UserId = userId;
+                ViewBag.EditProfile = profileDetails;
+                ViewBag.BusinessName = loggedIn.Name;
+                ViewBag.Developer = "MB";
+                ViewBag.InternshipCount = db.Internships.Where(i => i.Employer.Id == userId).Count().ToString();// number of employers open internships
+                ViewBag.ApplicantCount = db.Applications.Where(i => i.Internship.Employer.Id == userId).Count().ToString(); // number of employers active internships
+                return View();
+            } else
+            {
+            
+                return View("Create");
+            }
+
+
+            
             
         }
         public ActionResult ProfilePicture()

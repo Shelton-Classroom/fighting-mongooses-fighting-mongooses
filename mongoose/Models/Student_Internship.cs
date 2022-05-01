@@ -11,16 +11,22 @@ namespace mongoose.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Student_Internship
     {
         public int StudentInternshipId { get; set; }
+        [Display(Name = "Student ID")]
+        
         public int StudentId { get; set; }
+        [Display(Name = "Instructor ID")]
         public int InstructorId { get; set; }
+        [Display(Name = "Internship ID")]
         public int InternshipId { get; set; }
         public string Midterm { get; set; }
         public string Final { get; set; }
         public string Comments { get; set; }
+        [Display(Name = "Year")]
+        [Required(ErrorMessage = "This field is required")]
         public int Term { get; set; }
         public corSemester Semester { get; set; }
     

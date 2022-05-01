@@ -23,7 +23,7 @@ else
     <label class="custom-upload" for="file">Add/Change Image</label>
     <input type="file" name="file" id="file" accept="image/jpeg,image/jpg" style="width: 100%;" />
     <br />
-    <input type="submit" value="Upload" class="submit btn btn-default" />
-
+    <input type="submit" value="Upload" class="submit btn btn-success" />
+    @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-info" })
 }
-@Html.ActionLink("Back", "Home")
+

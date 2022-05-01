@@ -427,3 +427,14 @@ footer {
 table a:not(.btn), .table a:not(.btn) {
     text-decoration: none;
 }
+
+
+/*input[data-val-required] + span:before {
+    content: "*";
+    font-weight: bold;
+    color: red;
+    position: relative;
+    top: -34px;
+    left: -12px;
+    font-size: 14pt;
+}*/

@@ -22,17 +22,30 @@ namespace mongoose.Models
         }
         [Display(Name="EmployerId")]
         public int EmployerId { get; set; }
+        [Display(Name="Businees Name")]
+        [Required(ErrorMessage = "This field is required")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Contact Name")]
         public string ContactName { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Please enter valid 10 digit phone no.")]
         public string Phone { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "This field is required")]
         public string Email { get; set; }
         [Display(Name = "Address 1")]
+        [Required(ErrorMessage = "This field is required")]
         public string Address1 { get; set; }
         [Display(Name = "Address 2")]
         public string Address2 { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string City { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string State { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [StringLength(10, MinimumLength = 5)]
+        [RegularExpression("(^\\d{5}(-\\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)", ErrorMessage = "Zip code is invalid.")]
         public string Zipcode { get; set; }
         public string Id { get; set; }
     

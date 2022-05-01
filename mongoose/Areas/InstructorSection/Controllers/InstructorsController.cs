@@ -25,15 +25,21 @@ namespace mongoose.Areas.InstructorSection.Controllers
         public ActionResult Home()
         {
             var userId = User.Identity.GetUserId();
-            var loggedIn = db.Instructors.FirstOrDefault(e => e.Id == userId);
-
-            var profileDetails = loggedIn.InstructorId;
-            ViewBag.InternshipCount = db.Student_Internship.Where(i => i.InstructorId == loggedIn.InstructorId).Count().ToString();
-            ViewBag.LoggedIn = loggedIn.FirstName;
-            ViewBag.EditProfile = profileDetails;
-            ViewBag.UserId = userId;
-            ViewBag.Developer = "MB";
-            return View();
+            if (db.Instructors.Any(i => i.Id == userId))
+            {
+                var loggedIn = db.Instructors.FirstOrDefault(e => e.Id == userId);
+                var profileDetails = loggedIn.InstructorId;
+                ViewBag.InternshipCount = db.Student_Internship.Where(i => i.InstructorId == loggedIn.InstructorId).Count().ToString();
+                ViewBag.LoggedIn = loggedIn.FirstName;
+                ViewBag.EditProfile = profileDetails;
+                ViewBag.UserId = userId;
+                ViewBag.Developer = "MB";
+                return View();
+            }else
+            {
+                return View("Create");
+            }
+            
         }
 
         public ActionResult ProfilePicture()

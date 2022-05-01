@@ -27,19 +27,25 @@ namespace mongoose.Models
         public int InternshipId { get; set; }
         [Display(Name = "Employer ID")]
         public int EmployerId { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Title")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Description { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Length { get; set; }
         [DataType(DataType.Currency)]
         public Nullable<decimal> Rate { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Location { get; set; }
         [DataType(DataType.Date)]
         [Display(Name ="Start Date")]
+        [Required(ErrorMessage = "This field is required")]
         public Nullable<System.DateTime> StartDate { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Date Posted")]
         public System.DateTime PostDate { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public payMe Paid { get; set; }
         [Display(Name = "Employer")]
         public virtual Employer Employer { get; set; }

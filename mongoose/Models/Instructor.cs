@@ -22,11 +22,17 @@ namespace mongoose.Models
         }
         [Display(Name = "Instructor Id")]
         public int InstructorId { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "This field is required")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Please enter valid 10 digit phone no.")]
         public string Phone { get; set; }
         public string Id { get; set; }
     

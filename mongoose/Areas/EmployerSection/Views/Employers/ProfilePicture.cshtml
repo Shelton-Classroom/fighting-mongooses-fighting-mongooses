@@ -15,19 +15,19 @@
 else
 {
     <div class="profile-image_container">
-        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="profile-image" />
+        <img src="@Url.Content(String.Format("~/Images/no-image.jpg"))" class="dashboard-image" />
     </div>
-    
+
     <br />
 }
 @using (Html.BeginForm("ProfilePicture", "Employers", FormMethod.Post,
-                            new { enctype = "multipart/form-data", @class ="form-group" }))
+                            new { enctype = "multipart/form-data", @class = "form-group" }))
 {
     <label class="form-label mt-4" for="file">Add/Change Image</label>
-    <input class="form-control" type="file" name="file" id="file" accept="image/jpeg,image/jpg";" />
+    <input class="form-control" type="file" name="file" id="file" accept="image/jpeg,image/jpg" ;" />
     <br />
-    <input type="submit" value="Upload" class="submit btn btn-default" />
-
+    <input type="submit" value="Upload" class="submit btn btn-success" />
+    @Html.ActionLink("Back", "Home", null, new { @class = "btn btn-info" })
 }
-@Html.ActionLink("Back", "Home")
+
 
