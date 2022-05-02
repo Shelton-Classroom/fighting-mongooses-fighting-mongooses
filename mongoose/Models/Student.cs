@@ -24,7 +24,7 @@ namespace mongoose.Models
             this.Saved_Internship = new HashSet<Saved_Internship>();
             this.Applications = new HashSet<Application>();
         }
-        [Range(6, 8, ErrorMessage = "Id must be 7 digits")]
+        [RegularExpression("(^[0-9]{7}$)", ErrorMessage = "Id must be 7 digits")]
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = " Student Id")]
         public int StudentId { get; set; }

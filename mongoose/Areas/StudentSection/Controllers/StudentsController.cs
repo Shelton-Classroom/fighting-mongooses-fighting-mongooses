@@ -304,21 +304,29 @@ namespace mongoose.Areas.StudentSection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentId,FirstName,LastName,GraduationDate,EnrollmentStatus,Email,Phone,Address1,Address2,City,State,Zipcode")] Student Student) //do not change m.b.
         {
-            if (ModelState.IsValid)
+            if(db.Students.Any(s => s.StudentId == Student.StudentId))
             {
-                db.Students.Add(Student);
-                Student.Id = User.Identity.GetUserId();
-                db.SaveChanges();
-
-
-                if (User.IsInRole("Student"))
+                ViewBag.Message = "This id already exists, try again";
+                return View("Create");
+            } else
+            {
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Home");
+                    db.Students.Add(Student);
+                    Student.Id = User.Identity.GetUserId();
+                    db.SaveChanges();
+
+
+                    if (User.IsInRole("Student"))
+                    {
+                        return RedirectToAction("Home");
+                    }
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                ViewBag.Developer = "MB";
+                return View(Student);
             }
-            ViewBag.Developer = "MB";
-            return View(Student);
+            
         }
 
         // GET: StudentSection/Students/Edit/5
